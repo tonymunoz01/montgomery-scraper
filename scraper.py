@@ -114,8 +114,9 @@ def scrape_case_ids() -> List[Dict[str, str]]:
             # Check if the row contains both required elements
             mf_cell = row.find('td', string='MORTGAGE FORECLOSURE (MF)')
             open_cell = row.find('td', class_='text-success', string='OPEN')
+            reopen_cell = row.find('td', string='REOPENED')
             
-            if mf_cell and open_cell:
+            if mf_cell and (open_cell or reopen_cell):
                 # Extract case_id from onclick attribute
                 onclick_attr = row.get('onclick', '')
                 # Look for case_id in the onclick attribute
@@ -123,11 +124,7 @@ def scrape_case_ids() -> List[Dict[str, str]]:
                 
                 if case_id_match:
                     case_id = case_id_match.group(1)
-                    case_data.append({
-                        'case_id': case_id,
-                        'type': 'MORTGAGE FORECLOSURE (MF)',
-                        'status': 'OPEN'
-                    })
+                    case_data.append(case_id)
         
         return case_data
     
