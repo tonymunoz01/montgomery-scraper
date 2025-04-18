@@ -1,0 +1,138 @@
+[
+    {
+        "Filing Type": "MORTGAGE FORECLOSURE (MF)",
+        "Filling Date": "12/22/2010",
+        "Status": "REOPENED",
+        "PLAINTIFF": "CITIMORTGAGE INC.",
+        "Defendants": [
+            "GENEVIEVE M. GRAY",
+            "JEFFREY A. GRAY",
+            "CITYWIDE BUILDING FINANCE"
+        ],
+        "Parcel Number": "R72060070013",
+        "CASE FILING ID": "797654_C",
+        "Source URL": "",
+        "County": "Montgomery"
+    },
+    {
+        "Filing Type": "MORTGAGE FORECLOSURE (MF)",
+        "Filling Date": "2/11/2025",
+        "Status": "OPEN",
+        "PLAINTIFF": "MYCUMORTGAGE LLC",
+        "Defendants": [
+            "SARAH HUNTER",
+            "JOHN DOE UNKNOWN",
+            "ANDREW HUNTER",
+            "JANE DOE UNKNOWN",
+            "MATTHEW HUNTER",
+            "JILL DOE UNKNOWN",
+            "STATE OF OHIO DEPARTMENT OF MEDICAID",
+            "MONTGOMERY COUNTY TREASURER"
+        ],
+        "Parcel Number": "R72148090005",
+        "CASE FILING ID": "6422069_CI",
+        "Source URL": "",
+        "County": "Montgomery"
+    },
+    {
+        "Filing Type": "MORTGAGE FORECLOSURE (MF)",
+        "Filling Date": "2/28/2025",
+        "Status": "OPEN",
+        "PLAINTIFF": "NAR OHIO LLC",
+        "Defendants": [
+            "LATHEDIA L PEAKE",
+            "UNKNOWN PEAKE UNK SPOUSE IF ANY OF LATHEDIA",
+            "SHONTAE L MCINTYRE",
+            "UNKNOWN MCINTYRE UNK SPOUSE IF ANY OF SHONTAE",
+            "KELLI CHRISTINA MAYS ABOAGYE",
+            "MONTGOMERY COUNTY TREASURER"
+        ],
+        "Parcel Number": "H33002010001",
+        "CASE FILING ID": "6438816_CI",
+        "Source URL": "",
+        "County": "Montgomery"
+    },
+    {
+        "Filing Type": "MORTGAGE FORECLOSURE (MF)",
+        "Filling Date": "3/5/2025",
+        "Status": "OPEN",
+        "PLAINTIFF": "NAR OHIO LLC",
+        "Defendants": [
+            "UNKNOWN BYRD HEIRS OF WALTER",
+            "VICKIE L BYRD INDIVIDUAL",
+            "UNKNOWN BYRD UNKNOWN SPOUSE OF VICKIE",
+            "THE UNKNOWN HEIRS OF WALTER BYRD JR",
+            "UNKNOWN BYRD HEIRS ET AL OF WILLIE C.",
+            "WALTER CLARK III",
+            "UNKNOWN SPOUSE IF ANY OF WALTER CLARK III",
+            "EMMANUEL CLARK",
+            "UNKNOWN SPOUSE IF ANY OF EMMANUEL CLARK",
+            "STATE OF OHIO",
+            "MONTGOMERY COUNTY TREASURER"
+        ],
+        "Parcel Number": "H33014070001",
+        "CASE FILING ID": "6443697_CI",
+        "Source URL": "",
+        "County": "Montgomery"
+    },
+    {
+        "Filing Type": "MORTGAGE FORECLOSURE (MF)",
+        "Filling Date": "3/19/2025",
+        "Status": "OPEN",
+        "PLAINTIFF": "NAR OHIO LLC",
+        "Defendants": [
+            "UNKNOWN HEIRS OF TIMOTHY L HASTY",
+            "LYNNE M GOOD INDIVIDUAL",
+            "UNKNOWN SPOUSE IF ANY OF LYNNE M GOOD",
+            "JEFFREY ALAN HASTY",
+            "UNKNOWN SPOUSE IF ANY OF JEFFREY ALAN HASTY",
+            "TIMOTHY BRIAN HASTY",
+            "UNKNOWN SPOUSE IF ANY OF TIMOTHY BRIAN HASTY",
+            "MONTGOMERY COUNTY TREASURER"
+        ],
+        "Parcel Number": "R72165090064",
+        "CASE FILING ID": "6458041_CI",
+        "Source URL": "",
+        "County": "Montgomery"
+    },
+    {
+        "Filing Type": "MORTGAGE FORECLOSURE (MF)",
+        "Filling Date": "3/24/2025",
+        "Status": "OPEN",
+        "PLAINTIFF": "MYCUMORTGAGE LLC",
+        "Defendants": [
+            "NATHAN WRAY",
+            "JANE DOE UNKNOWN",
+            "JAMES WRAY",
+            "JUNE DOE UNKNOWN",
+            "MONTGOMERY COUNTY TREASURER",
+            "UNKNOWN WRAY HEIRS ET AL OF DARELENE"
+        ],
+        "Parcel Number": "O67219040010",
+        "CASE FILING ID": "6461686_CI",
+        "Source URL": "",
+        "County": "Montgomery"
+    },
+    {
+        "Filing Type": "MORTGAGE FORECLOSURE (MF)",
+        "Filling Date": "6/26/2024",
+        "Status": "OPEN",
+        "PLAINTIFF": "TOWD POINT MORTGAGE TRUST 2015-4",
+        "Defendants": [
+            "MICHAEL P TALKINGTON",
+            "UNKNOWN SPOUSE OF JUDITH A. TALKINGTON IF ANY NA",
+            "MICHAEL P TALKINGTON",
+            "UNKNOWN SPOUSE OF MICHAEL P. TALKINGTON IF ANY N",
+            "ROGER E TALKINGTON",
+            "UNKNOWN SPOUSE OF ROGER E. TALKINGTON IF ANY NAM",
+            "SCOTT TALKINGTON",
+            "KIMBERLY L TALKINGTON",
+            "STATE OF OHIO DEPARTMENT OF MEDICAID",
+            "MONTGOMERY COUNTY TREASURER"
+        ],
+        "Parcel Number": "R72147050049",
+        "CASE FILING ID": "6215630_CI",
+        "Source URL": "",
+        "County": "Montgomery"
+    }
+]
