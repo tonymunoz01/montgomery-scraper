@@ -14,7 +14,7 @@ def get_search_results(captcha_token: str) -> str:
     """
     Make a request to the backend with the recaptcha token and get the HTML response.
     """
-    print("reCAPTCHA Solved Token:", captcha_token)
+
     general_search_results_url = os.getenv('GENERAL_SEARCH_RESULTS_URL')
     base_url = os.getenv('PAGE_URL')
     
