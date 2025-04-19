@@ -6,9 +6,18 @@ import re
 import os
 from dotenv import load_dotenv
 from recaptcha import get_recaptcha_token  # We'll create this function in recaptcha.py
+import psycopg2
+from psycopg2.extras import Json
 
 # Load environment variables
 load_dotenv()
+
+# Get database configuration from environment variables
+DB_HOST = os.getenv('DB_HOST')
+DB_PORT = os.getenv('DB_PORT')
+DB_NAME = os.getenv('DB_NAME')
+DB_USER = os.getenv('DB_USER')
+DB_PASSWORD = os.getenv('DB_PASSWORD')
 
 def get_search_results(captcha_token: str) -> str:
     """
@@ -247,6 +256,71 @@ def scrape_case_details(case_id: str) -> Dict:
         print(f"Response content: {response.text[:1000] if 'response' in locals() else 'No response'}")
         return None
 
+def save_to_postgresql(data: List[Dict[str, str]]) -> None:
+    """
+    Save the scraped data to PostgreSQL database.
+    """
+    try:
+        # Connect to the database
+        conn = psycopg2.connect(
+            host=DB_HOST,
+            port=DB_PORT,
+            database=DB_NAME,
+            user=DB_USER,
+            password=DB_PASSWORD
+        )
+        cur = conn.cursor()
+        
+        # Create table if it doesn't exist
+        cur.execute("""
+            CREATE TABLE IF NOT EXISTS foreclosure_cases (
+                id SERIAL PRIMARY KEY,
+                filing_type VARCHAR(255),
+                filing_date DATE,
+                status VARCHAR(100),
+                plaintiff VARCHAR(255),
+                defendants JSONB,
+                parcel_number VARCHAR(100),
+                case_filing_id VARCHAR(100),
+                source_url VARCHAR(255),
+                county VARCHAR(100),
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            )
+        """)
+        
+        # Insert data
+        for case in data:
+            cur.execute("""
+                INSERT INTO foreclosure_cases 
+                (filing_type, filing_date, status, plaintiff, defendants, parcel_number, 
+                 case_filing_id, source_url, county)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+            """, (
+                case['Filing Type'],
+                case['Filling Date'],
+                case['Status'],
+                case['PLAINTIFF'],
+                Json(case['Defendants']),
+                case['Parcel Number'],
+                case['CASE FILING ID'],
+                case['Source URL'],
+                case['County']
+            ))
+        
+        # Commit the transaction
+        conn.commit()
+        print(f"Successfully saved {len(data)} cases to PostgreSQL database")
+        
+    except Exception as e:
+        print(f"Error saving to PostgreSQL: {e}")
+        if 'conn' in locals():
+            conn.rollback()
+    finally:
+        if 'cur' in locals():
+            cur.close()
+        if 'conn' in locals():
+            conn.close()
+
 if __name__ == "__main__":
     # Scrape the case IDs
     case_ids = scrape_case_ids()
@@ -260,6 +334,6 @@ if __name__ == "__main__":
         if case_details:
             case_details_list.append(case_details)
     
-    # Save to JSON file
-    save_to_json(case_details_list, 'case_details.json')
-    print(f"\nSuccessfully saved {len(case_details_list)} case details to case_details.json")
+    # Save to PostgreSQL database
+    save_to_postgresql(case_details_list)
+    print(f"\nSuccessfully saved {len(case_details_list)} case details to PostgreSQL database")
