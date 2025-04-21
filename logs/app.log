@@ -1,0 +1,42 @@
+2025-04-21 00:04:37.540 | INFO     | app.utils.recaptcha:get_recaptcha_token:30 - Creating task with URL: https://api.capmonster.cloud/createTask
+2025-04-21 00:04:44.697 | INFO     | app.utils.recaptcha:get_recaptcha_token:46 - Checking task result (attempt 1/10)
+2025-04-21 00:04:51.638 | INFO     | app.utils.recaptcha:get_recaptcha_token:46 - Checking task result (attempt 2/10)
+2025-04-21 00:04:53.581 | INFO     | app.utils.recaptcha:get_recaptcha_token:57 - Successfully got recaptcha token
+2025-04-21 00:05:11.363 | INFO     | app.services.scraper:scrape_new_cases:23 - Found 7 cases to process
+2025-04-21 00:05:11.363 | INFO     | app.services.scraper:scrape_new_cases:28 - Processing case ID: 1165132
+2025-04-21 00:05:14.003 | INFO     | app.services.scraper:scrape_new_cases:28 - Processing case ID: 65660907
+2025-04-21 00:05:15.646 | INFO     | app.services.scraper:scrape_new_cases:28 - Processing case ID: 73134885
+2025-04-21 00:05:17.179 | INFO     | app.services.scraper:scrape_new_cases:28 - Processing case ID: 49020684
+2025-04-21 00:05:18.704 | INFO     | app.services.scraper:scrape_new_cases:28 - Processing case ID: 68092252
+2025-04-21 00:05:20.345 | INFO     | app.services.scraper:scrape_new_cases:28 - Processing case ID: 1122910
+2025-04-21 00:05:21.914 | INFO     | app.services.scraper:scrape_new_cases:28 - Processing case ID: 5006281
+2025-04-21 00:05:23.612 | INFO     | app.utils.scraper:save_to_postgresql:269 - Case ID 1165132 already exists in database, skipping...
+2025-04-21 00:05:23.613 | INFO     | app.utils.scraper:save_to_postgresql:269 - Case ID 65660907 already exists in database, skipping...
+2025-04-21 00:05:23.613 | INFO     | app.utils.scraper:save_to_postgresql:269 - Case ID 73134885 already exists in database, skipping...
+2025-04-21 00:05:23.613 | INFO     | app.utils.scraper:save_to_postgresql:269 - Case ID 49020684 already exists in database, skipping...
+2025-04-21 00:05:23.613 | INFO     | app.utils.scraper:save_to_postgresql:269 - Case ID 68092252 already exists in database, skipping...
+2025-04-21 00:05:23.613 | INFO     | app.utils.scraper:save_to_postgresql:269 - Case ID 1122910 already exists in database, skipping...
+2025-04-21 00:05:23.614 | INFO     | app.utils.scraper:save_to_postgresql:269 - Case ID 5006281 already exists in database, skipping...
+2025-04-21 00:05:23.614 | INFO     | app.utils.scraper:save_to_postgresql:273 - Successfully saved 0 new cases to PostgreSQL database
+2025-04-21 00:05:23.614 | INFO     | app.services.scraper:scrape_new_cases:35 - Successfully saved 7 case details to PostgreSQL database
+2025-04-21 00:12:48.129 | INFO     | app.utils.recaptcha:get_recaptcha_token:30 - Creating task with URL: https://api.capmonster.cloud/createTask
+2025-04-21 00:12:55.272 | INFO     | app.utils.recaptcha:get_recaptcha_token:46 - Checking task result (attempt 1/10)
+2025-04-21 00:13:02.068 | INFO     | app.utils.recaptcha:get_recaptcha_token:46 - Checking task result (attempt 2/10)
+2025-04-21 00:13:04.003 | INFO     | app.utils.recaptcha:get_recaptcha_token:57 - Successfully got recaptcha token
+2025-04-21 00:13:27.908 | INFO     | app.services.foreclosure_scraper:scrape_new_cases:23 - Found 7 cases to process
+2025-04-21 00:13:27.908 | INFO     | app.services.foreclosure_scraper:scrape_new_cases:28 - Processing case ID: 1165132
+2025-04-21 00:13:30.685 | INFO     | app.services.foreclosure_scraper:scrape_new_cases:28 - Processing case ID: 65660907
+2025-04-21 00:13:33.453 | INFO     | app.services.foreclosure_scraper:scrape_new_cases:28 - Processing case ID: 73134885
+2025-04-21 00:13:34.966 | INFO     | app.services.foreclosure_scraper:scrape_new_cases:28 - Processing case ID: 49020684
+2025-04-21 00:13:36.665 | INFO     | app.services.foreclosure_scraper:scrape_new_cases:28 - Processing case ID: 68092252
+2025-04-21 00:13:39.327 | INFO     | app.services.foreclosure_scraper:scrape_new_cases:28 - Processing case ID: 1122910
+2025-04-21 00:13:40.898 | INFO     | app.services.foreclosure_scraper:scrape_new_cases:28 - Processing case ID: 5006281
+2025-04-21 00:13:42.519 | INFO     | app.utils.foreclosure_scraper:save_to_postgresql:272 - Successfully saved case 1165132 to database
+2025-04-21 00:13:42.520 | INFO     | app.utils.foreclosure_scraper:save_to_postgresql:272 - Successfully saved case 65660907 to database
+2025-04-21 00:13:42.520 | INFO     | app.utils.foreclosure_scraper:save_to_postgresql:272 - Successfully saved case 73134885 to database
+2025-04-21 00:13:42.521 | INFO     | app.utils.foreclosure_scraper:save_to_postgresql:272 - Successfully saved case 49020684 to database
+2025-04-21 00:13:42.521 | INFO     | app.utils.foreclosure_scraper:save_to_postgresql:272 - Successfully saved case 68092252 to database
+2025-04-21 00:13:42.522 | INFO     | app.utils.foreclosure_scraper:save_to_postgresql:272 - Successfully saved case 1122910 to database
+2025-04-21 00:13:42.522 | INFO     | app.utils.foreclosure_scraper:save_to_postgresql:272 - Successfully saved case 5006281 to database
+2025-04-21 00:13:42.523 | INFO     | app.utils.foreclosure_scraper:save_to_postgresql:278 - Successfully saved 7 new cases to PostgreSQL database
+2025-04-21 00:13:42.523 | INFO     | app.services.foreclosure_scraper:scrape_new_cases:35 - Successfully saved 7 case details to PostgreSQL database
