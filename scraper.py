@@ -190,7 +190,7 @@ def scrape_case_details(case_id: str) -> Dict:
             'Defendants': [],
             'Parcel Number': '',
             'CASE FILING ID': '',
-            'Source URL': '',
+            'case_id': case_id,
             'County': 'Montgomery'
         }
         
@@ -259,6 +259,7 @@ def scrape_case_details(case_id: str) -> Dict:
 def save_to_postgresql(data: List[Dict[str, str]]) -> None:
     """
     Save the scraped data to PostgreSQL database.
+    Only saves data for case_ids that don't already exist in the database.
     """
     try:
         # Connect to the database
@@ -282,34 +283,47 @@ def save_to_postgresql(data: List[Dict[str, str]]) -> None:
                 defendants JSONB,
                 parcel_number VARCHAR(100),
                 case_filing_id VARCHAR(100),
-                source_url VARCHAR(255),
+                case_id VARCHAR(100),
                 county VARCHAR(100),
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
         """)
         
+        # Track how many new cases were added
+        new_cases_added = 0
+        
         # Insert data
         for case in data:
+            # Check if case_id already exists
             cur.execute("""
-                INSERT INTO foreclosure_cases 
-                (filing_type, filing_date, status, plaintiff, defendants, parcel_number, 
-                 case_filing_id, source_url, county)
-                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
-            """, (
-                case['Filing Type'],
-                case['Filling Date'],
-                case['Status'],
-                case['PLAINTIFF'],
-                Json(case['Defendants']),
-                case['Parcel Number'],
-                case['CASE FILING ID'],
-                case['Source URL'],
-                case['County']
-            ))
+                SELECT case_id FROM foreclosure_cases WHERE case_id = %s
+            """, (case['case_id'],))
+            
+            if cur.fetchone() is None:
+                # Case doesn't exist, insert it
+                cur.execute("""
+                    INSERT INTO foreclosure_cases 
+                    (filing_type, filing_date, status, plaintiff, defendants, parcel_number, 
+                     case_filing_id, case_id, county)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+                """, (
+                    case['Filing Type'],
+                    case['Filling Date'],
+                    case['Status'],
+                    case['PLAINTIFF'],
+                    Json(case['Defendants']),
+                    case['Parcel Number'],
+                    case['CASE FILING ID'],
+                    case['case_id'],
+                    case['County']
+                ))
+                new_cases_added += 1
+            else:
+                print(f"Case ID {case['case_id']} already exists in database, skipping...")
         
         # Commit the transaction
         conn.commit()
-        print(f"Successfully saved {len(data)} cases to PostgreSQL database")
+        print(f"Successfully saved {new_cases_added} new cases to PostgreSQL database")
         
     except Exception as e:
         print(f"Error saving to PostgreSQL: {e}")
