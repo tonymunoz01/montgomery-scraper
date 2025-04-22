@@ -40,3 +40,78 @@
 2025-04-21 00:13:42.522 | INFO     | app.utils.foreclosure_scraper:save_to_postgresql:272 - Successfully saved case 5006281 to database
 2025-04-21 00:13:42.523 | INFO     | app.utils.foreclosure_scraper:save_to_postgresql:278 - Successfully saved 7 new cases to PostgreSQL database
 2025-04-21 00:13:42.523 | INFO     | app.services.foreclosure_scraper:scrape_new_cases:35 - Successfully saved 7 case details to PostgreSQL database
+2025-04-22 00:15:18.894 | ERROR    | app.core.database:get_db:23 - Database session error: (psycopg2.errors.UndefinedTable) relation "probate_cases" does not exist
+LINE 2: FROM probate_cases
+             ^
+
+[SQL: SELECT probate_cases.id AS probate_cases_id, probate_cases.decedent_name AS probate_cases_decedent_name, probate_cases.filing_date AS probate_cases_filing_date, probate_cases.case_number AS probate_cases_case_number, probate_cases.source_url AS probate_cases_source_url, probate_cases.county AS probate_cases_county, probate_cases.created_at AS probate_cases_created_at, probate_cases.updated_at AS probate_cases_updated_at 
+FROM probate_cases]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-04-22 00:15:20.979 | ERROR    | app.core.database:get_db:23 - Database session error: (psycopg2.errors.UndefinedTable) relation "probate_cases" does not exist
+LINE 2: FROM probate_cases
+             ^
+
+[SQL: SELECT probate_cases.id AS probate_cases_id, probate_cases.decedent_name AS probate_cases_decedent_name, probate_cases.filing_date AS probate_cases_filing_date, probate_cases.case_number AS probate_cases_case_number, probate_cases.source_url AS probate_cases_source_url, probate_cases.county AS probate_cases_county, probate_cases.created_at AS probate_cases_created_at, probate_cases.updated_at AS probate_cases_updated_at 
+FROM probate_cases]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-04-22 00:16:55.557 | INFO     | app.core.database:init_db:21 - Database tables created successfully
+2025-04-22 00:17:00.429 | INFO     | app.core.database:init_db:21 - Database tables created successfully
+2025-04-22 00:17:12.050 | INFO     | app.core.database:init_db:21 - Database tables created successfully
+2025-04-22 00:17:13.147 | INFO     | app.core.database:init_db:21 - Database tables created successfully
+2025-04-22 00:17:27.279 | INFO     | app.core.database:init_db:21 - Database tables created successfully
+2025-04-22 00:17:29.497 | INFO     | app.core.database:init_db:19 - Database tables created successfully
+2025-04-22 00:17:37.060 | INFO     | app.core.database:init_db:19 - Database tables created successfully
+2025-04-22 00:17:39.619 | INFO     | app.core.database:init_db:19 - Database tables created successfully
+2025-04-22 00:17:40.644 | INFO     | app.core.database:init_db:19 - Database tables created successfully
+2025-04-22 00:17:48.526 | INFO     | app.core.database:init_db:19 - Database tables created successfully
+2025-04-22 00:20:19.459 | INFO     | app.core.database:init_db:19 - Database tables created successfully
+2025-04-22 00:20:20.465 | INFO     | app.core.database:init_db:19 - Database tables created successfully
+2025-04-22 00:20:37.141 | INFO     | app.core.database:init_db:19 - Database tables created successfully
+2025-04-22 00:20:38.943 | INFO     | app.core.database:init_db:19 - Database tables created successfully
+2025-04-22 00:22:10.801 | INFO     | app.core.database:init_db:19 - Database tables created successfully
+2025-04-22 00:22:18.102 | INFO     | app.core.database:init_db:19 - Database tables created successfully
+2025-04-22 00:22:55.207 | ERROR    | app.core.database:get_db:32 - Database session error: 404: Case not found
+2025-04-22 00:23:03.820 | INFO     | app.core.database:init_db:19 - Database tables created successfully
+2025-04-22 00:23:31.173 | INFO     | app.core.database:init_db:19 - Database tables created successfully
+2025-04-22 00:25:15.105 | INFO     | app.core.database:init_db:19 - Database tables created successfully
+2025-04-22 00:25:18.352 | INFO     | app.core.database:init_db:19 - Database tables created successfully
+2025-04-22 00:28:54.266 | INFO     | app.core.database:init_db:19 - Database tables created successfully
+2025-04-22 00:28:55.849 | INFO     | app.core.database:init_db:19 - Database tables created successfully
+2025-04-22 00:29:12.504 | INFO     | app.core.database:init_db:19 - Database tables created successfully
+2025-04-22 00:30:50.190 | INFO     | app.core.database:init_db:19 - Database tables created successfully
+2025-04-22 00:30:53.731 | INFO     | app.core.database:init_db:19 - Database tables created successfully
+2025-04-22 00:31:10.775 | INFO     | app.core.database:init_db:19 - Database tables created successfully
+2025-04-22 00:32:01.463 | INFO     | app.core.database:init_db:19 - Database tables created successfully
+2025-04-22 00:32:02.648 | INFO     | app.core.database:init_db:19 - Database tables created successfully
+2025-04-22 00:32:28.490 | INFO     | app.core.database:init_db:19 - Database tables created successfully
+2025-04-22 00:32:29.544 | INFO     | app.core.database:init_db:19 - Database tables created successfully
+2025-04-22 00:33:01.433 | INFO     | app.core.database:init_db:19 - Database tables created successfully
+2025-04-22 00:33:04.374 | INFO     | app.core.database:init_db:19 - Database tables created successfully
+2025-04-22 00:33:43.322 | INFO     | app.core.database:init_db:19 - Database tables created successfully
+2025-04-22 00:33:44.394 | INFO     | app.core.database:init_db:19 - Database tables created successfully
+2025-04-22 00:35:02.273 | INFO     | app.core.database:init_db:19 - Database tables created successfully
+2025-04-22 00:40:05.768 | INFO     | app.core.database:init_db:19 - Database tables created successfully
+2025-04-22 00:40:35.125 | INFO     | app.core.database:init_db:19 - Database tables created successfully
+2025-04-22 00:47:41.055 | INFO     | app.core.database:init_db:19 - Database tables created successfully
+2025-04-22 00:48:24.803 | INFO     | app.core.database:init_db:19 - Database tables created successfully
+2025-04-22 00:49:16.999 | INFO     | app.core.database:init_db:19 - Database tables created successfully
+2025-04-22 00:50:09.985 | INFO     | app.core.database:init_db:19 - Database tables created successfully
+2025-04-22 00:50:20.674 | INFO     | app.core.database:init_db:19 - Database tables created successfully
+2025-04-22 00:51:01.236 | INFO     | app.core.database:init_db:19 - Database tables created successfully
+2025-04-22 00:51:18.924 | INFO     | app.core.database:init_db:19 - Database tables created successfully
+2025-04-22 00:51:52.879 | INFO     | app.core.database:init_db:19 - Database tables created successfully
+2025-04-22 09:17:18.299 | INFO     | app.core.database:init_db:19 - Database tables created successfully
+2025-04-22 09:19:02.812 | INFO     | app.core.database:init_db:19 - Database tables created successfully
+2025-04-22 09:20:36.016 | INFO     | app.core.database:init_db:19 - Database tables created successfully
+2025-04-22 09:22:25.567 | INFO     | app.core.database:init_db:19 - Database tables created successfully
+2025-04-22 10:23:14.176 | INFO     | app.core.database:init_db:19 - Database tables created successfully
+2025-04-22 10:29:47.878 | INFO     | app.core.database:init_db:19 - Database tables created successfully
+2025-04-22 10:32:45.707 | INFO     | app.core.database:init_db:19 - Database tables created successfully
+2025-04-22 10:34:00.832 | INFO     | app.core.database:init_db:19 - Database tables created successfully
+2025-04-22 10:43:42.902 | INFO     | app.core.database:init_db:19 - Database tables created successfully
+2025-04-22 10:59:54.718 | INFO     | app.core.database:init_db:19 - Database tables created successfully
+2025-04-22 11:00:29.139 | INFO     | app.core.database:init_db:19 - Database tables created successfully
+2025-04-22 11:14:36.478 | INFO     | app.core.database:init_db:19 - Database tables created successfully
+2025-04-22 11:15:23.886 | INFO     | app.core.database:init_db:19 - Database tables created successfully
+2025-04-22 11:15:32.348 | INFO     | app.core.database:init_db:19 - Database tables created successfully
+2025-04-22 11:31:30.844 | INFO     | app.core.database:init_db:19 - Database tables created successfully
