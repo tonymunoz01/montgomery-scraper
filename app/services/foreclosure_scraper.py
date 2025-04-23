@@ -4,7 +4,7 @@ from app.core.config import settings
 from app.core.database import get_db
 from app.schemas.foreclosure_case import ForeclosureCaseCreate
 from app.utils.recaptcha import get_recaptcha_token
-from app.utils.foreclosure_scraper import scrape_case_ids, scrape_case_details, save_to_postgresql
+from app.utils.foreclosure_scraper import scrape_case_ids, scrape_case_details, save_to_database
 
 class ForeclosureScraperService:
     async def scrape_new_cases(self) -> List[ForeclosureCaseCreate]:
@@ -31,7 +31,7 @@ class ForeclosureScraperService:
                     case_details_list.append(case_details)
 
             # Save to PostgreSQL database
-            save_to_postgresql(case_details_list)
+            save_to_database(case_details_list)
             logger.info(f"Successfully saved {len(case_details_list)} case details to PostgreSQL database")
 
             return case_details_list

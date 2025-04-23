@@ -1,18 +1,18 @@
-import time
 import requests
+import time
 from loguru import logger
-from urllib.parse import urljoin
-
 from app.core.config import settings
 
 def get_recaptcha_token() -> str:
     """
-    Get a solved reCAPTCHA token using CapMonster API.
-    Returns the token as a string, or empty string if failed.
+    Get reCAPTCHA token using CapMonster service.
     """
     try:
-        # Step 1: Create Task
-        task_payload = {
+        logger.info("Starting reCAPTCHA token generation")
+        
+        # Create task
+        create_task_url = f"{settings.CAPMONSTER_BASE_URL}{settings.CAPMONSTER_CREATE_TASK_URL}"
+        task_data = {
             "clientKey": settings.CAPMONSTER_API_KEY,
             "task": {
                 "type": "RecaptchaV3TaskProxyless",
@@ -22,53 +22,40 @@ def get_recaptcha_token() -> str:
                 "pageAction": settings.RECAPTCHA_ACTION
             }
         }
-
-        # Construct full URLs
-        create_task_url = urljoin(settings.CAPMONSTER_BASE_URL, settings.CAPMONSTER_CREATE_TASK_URL)
-        get_result_url = urljoin(settings.CAPMONSTER_BASE_URL, settings.CAPMONSTER_GET_RESULT_URL)
-
-        logger.info(f"Creating task with URL: {create_task_url}")
-        response = requests.post(create_task_url, json=task_payload)
+        
+        logger.info("Creating reCAPTCHA task")
+        response = requests.post(create_task_url, json=task_data)
         response.raise_for_status()
+        task_id = response.json()["taskId"]
+        logger.info(f"Created task with ID: {task_id}")
         
-        task_id = response.json().get('taskId')
-        if not task_id:
-            logger.error("Failed to create task")
-            return ""
-
-        # Step 2: Poll for Result
-        max_attempts = 10  # Maximum number of attempts
+        # Get task result
+        get_result_url = f"{settings.CAPMONSTER_BASE_URL}{settings.CAPMONSTER_GET_RESULT_URL}"
+        result_data = {
+            "clientKey": settings.CAPMONSTER_API_KEY,
+            "taskId": task_id
+        }
+        
+        # Poll for result
+        max_attempts = 30
         attempt = 0
-        
         while attempt < max_attempts:
-            time.sleep(5)
-            attempt += 1
-            logger.info(f"Checking task result (attempt {attempt}/{max_attempts})")
+            logger.info(f"Checking task result (attempt {attempt + 1}/{max_attempts})")
+            response = requests.post(get_result_url, json=result_data)
+            response.raise_for_status()
+            result = response.json()
             
-            result_response = requests.post(get_result_url, json={
-                "clientKey": settings.CAPMONSTER_API_KEY,
-                "taskId": task_id
-            })
-            result_response.raise_for_status()
-            result = result_response.json()
-            
-            if result.get('status') == 'ready':
-                token = result['solution']['gRecaptchaResponse']
-                logger.info("Successfully got recaptcha token")
+            if result["status"] == "ready":
+                token = result["solution"]["gRecaptchaResponse"]
+                logger.info("Successfully obtained reCAPTCHA token")
                 return token
-            elif result.get('status') == 'failed':
-                logger.error("Task failed")
-                return ""
             
-        logger.error(f"Max attempts ({max_attempts}) reached without getting a result")
+            time.sleep(2)  # Wait 2 seconds before next attempt
+            attempt += 1
+        
+        logger.error("Failed to get reCAPTCHA token: Timeout")
         return ""
-
-    except requests.exceptions.RequestException as e:
-        logger.error(f"Request error getting recaptcha token: {e}")
-        if hasattr(e, 'response'):
-            logger.error(f"Response status: {e.response.status_code}")
-            logger.error(f"Response content: {e.response.text[:500]}")
-        return ""
+        
     except Exception as e:
-        logger.error(f"Error getting recaptcha token: {e}")
+        logger.error(f"Error getting reCAPTCHA token: {str(e)}")
         return "" 

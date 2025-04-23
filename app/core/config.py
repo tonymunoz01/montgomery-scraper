@@ -1,11 +1,11 @@
 from typing import List
-from pydantic_settings import BaseSettings
 from pydantic import AnyHttpUrl
+from pydantic_settings import BaseSettings
 
 class Settings(BaseSettings):
-    PROJECT_NAME: str = "Probate Case Scraper API"
+    PROJECT_NAME: str = "Court Case Scraper API"
     VERSION: str = "1.0.0"
-    DESCRIPTION: str = "API for scraping and managing probate case data from Montgomery County, Ohio court website"
+    DESCRIPTION: str = "API for scraping and managing court case data from Montgomery County, Ohio court website"
     API_V1_STR: str = "/api/v1"
     
     # CORS
@@ -13,13 +13,26 @@ class Settings(BaseSettings):
     
     # Database
     DB_HOST: str
-    DB_PORT: str
+    DB_PORT: int
     DB_NAME: str
     DB_USER: str
     DB_PASSWORD: str
     
-    # Probate Case Scraping
-    PROBATE_CASE_SEARCH_URL: str = "https://go.mcohio.org/applications/probate/prodcfm/casesearch_actionx.cfm"
+    # Court Website URLs
+    PAGE_URL: str
+    GENERAL_SEARCH_RESULTS_URL: str
+    CASE_INFORMATION_URL: str = "/Helpers/caseInformation.aspx"
+    
+    # reCAPTCHA Settings
+    RECAPTCHA_SITE_KEY: str
+    RECAPTCHA_ACTION: str
+    RECAPTCHA_MIN_SCORE: float = 0.5
+    
+    # CapMonster Settings
+    CAPMONSTER_API_KEY: str
+    CAPMONSTER_BASE_URL: str = "https://api.capmonster.cloud"
+    CAPMONSTER_CREATE_TASK_URL: str = "/createTask"
+    CAPMONSTER_GET_RESULT_URL: str = "/getTaskResult"
     
     class Config:
         env_file = ".env"

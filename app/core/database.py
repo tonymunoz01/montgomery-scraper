@@ -10,11 +10,21 @@ SQLALCHEMY_DATABASE_URL = f"postgresql://{settings.DB_USER}:{settings.DB_PASSWOR
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-def init_db():
-    """Initialize the database by creating all tables"""
+def init_db(recreate: bool = False):
+    """Initialize the database by creating all tables
+    
+    Args:
+        recreate (bool): If True, drop all tables before creating them
+    """
     try:
         # Import all models here to avoid circular imports
         from app.models.probate_case import ProbateCase
+        from app.models.foreclosure_case import ForeclosureCase
+        
+        if recreate:
+            Base.metadata.drop_all(bind=engine)
+            logger.info("Dropped all existing tables")
+            
         Base.metadata.create_all(bind=engine)
         logger.info("Database tables created successfully")
     except Exception as e:

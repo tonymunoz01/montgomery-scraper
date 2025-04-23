@@ -13,6 +13,7 @@ from sqlalchemy.orm import Session
 from app.models.probate_case import ProbateCase
 from app.core.database import SessionLocal
 import uuid
+from app.core.config import settings
 
 # Configure logging
 logging.basicConfig(
@@ -21,9 +22,9 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+BASE_URL = settings.PROBATE_CASE_SEARCH_URL
+
 class ProbateCaseScraper:
-    BASE_URL = "https://go.mcohio.org/applications/probate/prodcfm/casesearch_actionx.cfm"
-    
     def __init__(self):
         self.session = requests.Session()
         self.session.headers.update({
@@ -39,20 +40,20 @@ class ProbateCaseScraper:
         """Close database session when scraper is destroyed"""
         self.db.close()
     
-    def _get_full_url(self, relative_url: str) -> str:
+    def get_full_url(self, relative_url: str) -> str:
         """Convert relative URL to full URL"""
         if relative_url.startswith('http'):
             return relative_url
         # Remove any leading slash
         relative_url = relative_url.lstrip('/')
-        return f"https://go.mcohio.org/applications/probate/prodcfm/{relative_url}"
+        return urljoin(BASE_URL, relative_url)
     
     def get_case_list(self) -> List[str]:
         """Get a list of case URLs from the search page"""
         try:
             # First get the search page to get cookies
             logger.info("Getting initial search page...")
-            response = self.session.get(self.BASE_URL)
+            response = self.session.get(BASE_URL)
             response.raise_for_status()
             
             # Prepare form data
@@ -61,7 +62,7 @@ class ProbateCaseScraper:
             }
             
             logger.info(f"Submitting search form with data: {form_data}")
-            response = self.session.post(self.BASE_URL, data=form_data)
+            response = self.session.post(BASE_URL, data=form_data)
             response.raise_for_status()
             
             soup = BeautifulSoup(response.text, 'html.parser')
@@ -72,7 +73,7 @@ class ProbateCaseScraper:
                 href = link.get('href')
                 if href and 'casesearchresultx.cfm' in href:
                     # Convert relative URL to absolute URL
-                    absolute_url = urljoin(self.BASE_URL, href)
+                    absolute_url = self.get_full_url(href)
                     case_urls.append(absolute_url)
             
             # Remove duplicates while preserving order
