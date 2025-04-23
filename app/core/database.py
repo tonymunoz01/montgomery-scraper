@@ -1,6 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from loguru import logger
+from sqlalchemy import inspect
 
 from app.core.config import settings
 from app.core.base import Base
@@ -20,10 +21,18 @@ def init_db(recreate: bool = False):
         # Import all models here to avoid circular imports
         from app.models.probate_case import ProbateCase
         from app.models.foreclosure_case import ForeclosureCase
+        from app.models.divorce_case import DivorceCase
+        
+        # Check if tables exist
+        inspector = inspect(engine)
+        existing_tables = inspector.get_table_names()
         
         if recreate:
             Base.metadata.drop_all(bind=engine)
             logger.info("Dropped all existing tables")
+        elif existing_tables:
+            logger.info("Tables already exist, skipping creation")
+            return
             
         Base.metadata.create_all(bind=engine)
         logger.info("Database tables created successfully")

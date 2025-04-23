@@ -9,7 +9,7 @@ from app.schemas.foreclosure_case import ForeclosureCase, ForeclosureCaseCreate
 router = APIRouter()
 foreclosure_scraper_service = ForeclosureScraperService()
 
-@router.get("/", response_model=List[ForeclosureCase])
+@router.get("/", response_model=List[ForeclosureCase], operation_id="get_foreclosure_cases")
 async def get_cases(db=Depends(get_db)):
     """
     Get all foreclosure cases from the database
@@ -22,7 +22,7 @@ async def get_cases(db=Depends(get_db)):
         logger.error(f"Error fetching foreclosure cases: {e}")
         raise HTTPException(status_code=500, detail="Error fetching foreclosure cases")
 
-@router.post("/scrape", response_model=List[ForeclosureCase])
+@router.post("/scrape", response_model=List[ForeclosureCase], operation_id="scrape_foreclosure_cases")
 async def scrape_cases():
     """
     Scrape new foreclosure cases and save them to the database
@@ -34,7 +34,7 @@ async def scrape_cases():
         logger.error(f"Error scraping foreclosure cases: {e}")
         raise HTTPException(status_code=500, detail="Error scraping foreclosure cases")
 
-@router.get("/{case_id}", response_model=ForeclosureCase)
+@router.get("/{case_id}", response_model=ForeclosureCase, operation_id="get_foreclosure_case_by_id")
 async def get_case(case_id: str, db=Depends(get_db)):
     """
     Get a specific foreclosure case by ID

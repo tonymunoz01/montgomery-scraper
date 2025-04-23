@@ -19,8 +19,8 @@ class Settings(BaseSettings):
     DB_PASSWORD: str
     
     # Court Website URLs
-    PAGE_URL: str
-    GENERAL_SEARCH_RESULTS_URL: str
+    PAGE_URL: str = "https://pro.mcohio.org"
+    GENERAL_SEARCH_RESULTS_URL: str = "/Helpers/caseInformation.aspx"
     CASE_INFORMATION_URL: str = "/Helpers/caseInformation.aspx"
     
     # reCAPTCHA Settings
