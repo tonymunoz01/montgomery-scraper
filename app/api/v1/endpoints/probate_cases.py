@@ -5,7 +5,7 @@ from typing import List
 from app.core.database import get_db
 from app.schemas.probate_case import ProbateCase
 from app.services.probate_case_service import ProbateCaseService
-from app.services.probate_case_scraper import ProbateCaseScraper
+from app.utils.probate_case_scraper import ProbateCaseScraper
 
 router = APIRouter()
 

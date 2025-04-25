@@ -218,6 +218,7 @@ def scrape_case_details(case_data: Dict) -> Dict:
             'plaintiff': '',
             'defendant': '',
             'county': 'Montgomery',
+            'property_address': '',  # Add default empty string for property_address
             'created_at': None  # Will be set by the database
         }
         

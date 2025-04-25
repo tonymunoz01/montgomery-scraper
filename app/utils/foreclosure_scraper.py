@@ -215,7 +215,8 @@ def scrape_case_details(case_id: str) -> Dict:
             'defendants': [],
             'parcel_number': '',
             'case_filing_id': '',
-            'county': 'Montgomery'
+            'county': 'Montgomery',
+            'property_address': ''
         }
         
         # Find all table cells that might contain our data
@@ -242,6 +243,12 @@ def scrape_case_details(case_id: str) -> Dict:
                 if next_cell:
                     case_details['status'] = next_cell.text.strip()
                     logger.info(f"Found status: {case_details['status']}")
+            
+            elif 'Property Address:' in cell_text:
+                next_cell = cells[i + 1] if i + 1 < len(cells) else None
+                if next_cell:
+                    case_details['property_address'] = next_cell.text.strip()
+                    logger.info(f"Found property address: {case_details['property_address']}")
         
         # Special handling for Parcel Number, PLAINTIFF, DEFENDANT, and CASE FILING ID
         for row in soup.find_all('tr'):

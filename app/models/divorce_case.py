@@ -13,4 +13,5 @@ class DivorceCase(Base):
     filing_date = Column(String)
     status = Column(String)
     county = Column(String)
+    property_address = Column(String, nullable=True)
     created_at = Column(DateTime(timezone=True), server_default=func.now()) 

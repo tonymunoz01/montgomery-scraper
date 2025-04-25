@@ -35,6 +35,9 @@ class ProbateCaseScraper:
             'Upgrade-Insecure-Requests': '1',
         })
         self.db = SessionLocal()
+        # Initialize database tables
+        from app.core.database import init_db
+        init_db(recreate=False)
     
     def __del__(self):
         """Close database session when scraper is destroyed"""
@@ -58,7 +61,9 @@ class ProbateCaseScraper:
             
             # Prepare form data
             form_data = {
-                'search': 'go'
+                'SEARCH': 'go', 
+                'caseyear': '2025'
+
             }
             
             logger.info(f"Submitting search form with data: {form_data}")
@@ -138,7 +143,8 @@ class ProbateCaseScraper:
                 'case_number': '',
                 'source_url': case_url,
                 'county': 'Montgomery County, Ohio',
-                'case_status': ''
+                'case_status': '',
+                'property_address': ''
             }
             
             # Find the main details table
@@ -196,7 +202,7 @@ class ProbateCaseScraper:
                         return {}
             
             # Check if we found all required fields
-            missing_fields = [field for field, value in details.items() if not value and field not in ['county', 'case_status']]
+            missing_fields = [field for field, value in details.items() if not value and field not in ['county', 'case_status', 'property_address']]
             if missing_fields:
                 logger.warning(f"Missing required fields: {missing_fields}")
                 return {}

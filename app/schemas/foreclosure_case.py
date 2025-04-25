@@ -12,6 +12,7 @@ class ForeclosureCaseBase(BaseModel):
     parcel_number: str
     case_filing_id: str
     county: str
+    property_address: str
 
 class ForeclosureCaseCreate(ForeclosureCaseBase):
     pass

@@ -9,7 +9,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from app.core.config import settings
 from app.api.v1.api import api_router
-from app.services.probate_case_scraper import ProbateCaseScraper
+from app.utils.probate_case_scraper import ProbateCaseScraper
 from app.services.probate_case_service import ProbateCaseService
 from app.core.database import SessionLocal, init_db
 from app.api.v1.endpoints import foreclosure_cases, divorce_cases

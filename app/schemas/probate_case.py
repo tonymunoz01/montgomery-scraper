@@ -8,6 +8,7 @@ class ProbateCaseBase(BaseModel):
     case_number: str
     source_url: str
     county: str = "Montgomery County, Ohio"
+    property_address: Optional[str] = None
 
 class ProbateCaseCreate(ProbateCaseBase):
     pass

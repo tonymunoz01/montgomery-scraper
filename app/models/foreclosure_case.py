@@ -13,4 +13,5 @@ class ForeclosureCase(Base):
     parcel_number = Column(String)
     case_filing_id = Column(String)
     county = Column(String)
+    property_address = Column(String)
     created_at = Column(DateTime(timezone=True), server_default=func.now()) 

@@ -8096,3 +8096,2122 @@ WHERE foreclosure_cases.case_id = %(case_id_1)s
 2025-04-23 00:15:32.276 | INFO     | app.utils.divorce_scraper:save_to_database:297 - Successfully saved case 1241807 to database
 2025-04-23 00:15:32.778 | INFO     | app.utils.divorce_scraper:save_to_database:302 - Successfully saved 3 new cases to database
 2025-04-23 00:15:32.778 | INFO     | app.services.divorce_scraper:scrape_new_cases:36 - Successfully saved 3 case details to PostgreSQL database
+2025-04-23 09:06:26.938 | INFO     | app.core.database:init_db:34 - Tables already exist, skipping creation
+2025-04-23 09:07:10.389 | INFO     | app.core.database:init_db:34 - Tables already exist, skipping creation
+2025-04-23 09:12:53.917 | INFO     | app.utils.recaptcha:get_recaptcha_token:11 - Starting reCAPTCHA token generation
+2025-04-23 09:12:53.918 | INFO     | app.utils.recaptcha:get_recaptcha_token:26 - Creating reCAPTCHA task
+2025-04-23 09:12:55.615 | INFO     | app.utils.recaptcha:get_recaptcha_token:30 - Created task with ID: 2011544023
+2025-04-23 09:12:55.616 | INFO     | app.utils.recaptcha:get_recaptcha_token:43 - Checking task result (attempt 1/30)
+2025-04-23 09:12:59.152 | INFO     | app.utils.recaptcha:get_recaptcha_token:43 - Checking task result (attempt 2/30)
+2025-04-23 09:13:02.734 | INFO     | app.utils.recaptcha:get_recaptcha_token:43 - Checking task result (attempt 3/30)
+2025-04-23 09:13:06.324 | INFO     | app.utils.recaptcha:get_recaptcha_token:43 - Checking task result (attempt 4/30)
+2025-04-23 09:13:07.870 | INFO     | app.utils.recaptcha:get_recaptcha_token:50 - Successfully obtained reCAPTCHA token
+2025-04-23 09:13:07.872 | INFO     | app.utils.foreclosure_scraper:scrape_case_ids:129 - Starting case ID scraping process...
+2025-04-23 09:13:07.873 | INFO     | app.utils.foreclosure_scraper:scrape_case_ids:132 - Getting search results
+2025-04-23 09:13:07.873 | INFO     | app.utils.foreclosure_scraper:get_search_results:19 - Starting search request process...
+2025-04-23 09:13:07.873 | INFO     | app.utils.foreclosure_scraper:get_search_results:20 - Received reCAPTCHA token: 03AFcWeA43HaM9zSH5_I...
+2025-04-23 09:13:07.873 | INFO     | app.utils.foreclosure_scraper:get_search_results:24 - Created new session
+2025-04-23 09:13:07.873 | INFO     | app.utils.foreclosure_scraper:get_search_results:27 - Fetching initial page from https://pro.mcohio.org/
+2025-04-23 09:13:10.092 | INFO     | app.utils.foreclosure_scraper:get_search_results:30 - Successfully retrieved initial page
+2025-04-23 09:13:10.092 | INFO     | app.utils.foreclosure_scraper:get_search_results:31 - Initial page status code: 200
+2025-04-23 09:13:10.092 | INFO     | app.utils.foreclosure_scraper:get_search_results:32 - Initial page content length: 20622 bytes
+2025-04-23 09:13:10.099 | INFO     | app.utils.foreclosure_scraper:get_search_results:39 - Preparing search request with reCAPTCHA token
+2025-04-23 09:13:10.099 | INFO     | app.utils.foreclosure_scraper:get_search_results:75 - Sending search request with the following parameters:
+2025-04-23 09:13:10.099 | INFO     | app.utils.foreclosure_scraper:get_search_results:76 - Case Type: MORTGAGE FORECLOSURE (MF)
+2025-04-23 09:13:10.099 | INFO     | app.utils.foreclosure_scraper:get_search_results:77 - Case Status: OPEN
+2025-04-23 09:13:10.099 | INFO     | app.utils.foreclosure_scraper:get_search_results:78 - Search URL: https://pro.mcohio.org/Helpers/generalSearchResults.aspx
+2025-04-23 09:13:10.099 | INFO     | app.utils.foreclosure_scraper:get_search_results:79 - Request headers: {
+  "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
+  "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
+  "Accept-Language": "en-US,en;q=0.5",
+  "Accept-Encoding": "gzip, deflate, br",
+  "Content-Type": "application/x-www-form-urlencoded",
+  "Origin": "https://pro.mcohio.org",
+  "Referer": "https://pro.mcohio.org/",
+  "Connection": "keep-alive",
+  "Upgrade-Insecure-Requests": "1",
+  "Sec-Fetch-Dest": "document",
+  "Sec-Fetch-Mode": "navigate",
+  "Sec-Fetch-Site": "same-origin",
+  "Sec-Fetch-User": "?1"
+}
+2025-04-23 09:13:10.099 | INFO     | app.utils.foreclosure_scraper:get_search_results:80 - Request data: {
+  "__VIEWSTATE": "",
+  "__EVENTVALIDATION": "",
+  "__EVENTTARGET": "",
+  "__EVENTARGUMENT": "",
+  "searchType": "general",
+  "captchaToken": "03AFcWeA43HaM9zSH5_IICeBjXDeSFTZd--_AM9nP-WybBELKf7Os3L9Pb9iF2V8-39-DB8EHj4SDnCTIqHBMkvRGG7S-MGOOgzwhHFoAWgRLPjaCjNJ8YwOlRTtsc--sPZPm1VxM_OwjEUjaZrDhJDnOHIEXJjVQCB3s6SZM2uCv2A3vtDhvkPpIG_6ZTXVkyRB762On1GKHkIJs2qdVz7jzybugU1xdgf2H9k0HSZEySvT789V50nlJrkXLLsqx4TgNn6OVMO0glhI4TEhztQ8F2KI_40xcrxDyUbi7xlmNPInjahWlEgWkBzCMTcvquqxMb8XAXw35rk7_9F86t3FWS7te4oUpgttVIya_cKWbuiXl2bly6ryp4HuU0-gkFgBpY1HiJf-im__jmZ9e60ffBZQIb9sjyV_plb3V2-59lh45qKsePqc9aol7FNxybYbxMhbEVOnKB-hIJzdLEVz8KnB-kHY6PZ4zksDMDwqANudv5z17MJwiprB1lpHsn1NXuM2I4WDYtlSaGHakKQ2ZkrusAhkRu0KncOjflba5Vyepf1dLNex7q4EXBWN9p8z6bZts34eLt8KErNATYmjVmM9rdXBqWRjg7VOejYRIawEEUxxO5Fwoc7NVnCuJ1Lte_QE5rg7qZBfc6TIg0dCxUcvGRMMTATr2iMzsRbicGAGAmnbe-WmZi9Ce7iu4hHd9KX7p_gAFXEfPapMTYa-LrUylEm5GOxqvZrUQCJnEwCuEUex3eg9J3lzEizFnmj2jMAMj3rLF42UDldFH69Gq_mQrPqJ73xRklNawc_kx1WMfEdbT6peTL7S6KXQWHcQOh2IYNByZ-UAPtreki-Tw3RD3f2NvbSpl8mBepFiZdvFAz9Y-5qU7I6emBSmLuo3_euCF5uKGGROwrnW57vskvSJnUyaoDeVU4zC1azWu9Hzmu4w0ceyg",
+  "ctl00$ContentPlaceHolder1$txtCaseNumber": "",
+  "ctl00$ContentPlaceHolder1$txtPartyName": "",
+  "ctl00$ContentPlaceHolder1$txtAttorneyName": "",
+  "ctl00$ContentPlaceHolder1$txtAttorneyBarNumber": "",
+  "ctl00$ContentPlaceHolder1$txtCaseType": "MORTGAGE FORECLOSURE (MF)",
+  "ctl00$ContentPlaceHolder1$txtCaseStatus": "OPEN",
+  "ctl00$ContentPlaceHolder1$txtFilingDateFrom": "",
+  "ctl00$ContentPlaceHolder1$txtFilingDateTo": "",
+  "ctl00$ContentPlaceHolder1$btnSearch": "Search"
+}
+2025-04-23 09:13:10.100 | INFO     | app.utils.foreclosure_scraper:get_search_results:83 - Making POST request to https://pro.mcohio.org/Helpers/generalSearchResults.aspx
+2025-04-23 09:13:10.438 | INFO     | app.utils.foreclosure_scraper:get_search_results:87 - Search request completed with status code: 200
+2025-04-23 09:13:10.438 | INFO     | app.utils.foreclosure_scraper:get_search_results:88 - Response headers: {
+  "Cache-Control": "private",
+  "Content-Type": "text/html; charset=utf-8",
+  "Server": "Microsoft-IIS/10.0",
+  "X-AspNet-Version": "4.0.30319",
+  "X-Powered-By": "ASP.NET",
+  "Strict-Transport-Security": "max-age=31536000",
+  "Date": "Wed, 23 Apr 2025 13:13:09 GMT",
+  "Content-Length": "705"
+}
+2025-04-23 09:13:10.438 | INFO     | app.utils.foreclosure_scraper:get_search_results:89 - Response content length: 705 bytes
+2025-04-23 09:13:10.439 | WARNING  | app.utils.foreclosure_scraper:get_search_results:107 - No table found in the response
+2025-04-23 09:13:10.439 | DEBUG    | app.utils.foreclosure_scraper:get_search_results:108 - Response content preview: <div class="mt-2"><h5>IP Address Blocked for Abuse</h5>reCAPTCHA (a system for detecting whether you are a real user or a bot) has flagged you as likely being a bot or automated browser instead of a real human. Due to the number of requests that you have made with a low reCAPTCHA score, we have blocked your IP address from performing searches on our site. <br/><br/>If you feel that you have been blocked in error, please contact PRO Support via email at <a href="mailto:prosupport@mcohio.org">pros
+2025-04-23 09:13:10.441 | INFO     | app.utils.foreclosure_scraper:scrape_case_ids:139 - Parsing HTML content for case IDs
+2025-04-23 09:13:10.441 | INFO     | app.utils.foreclosure_scraper:scrape_case_ids:144 - Found 0 total rows in the table
+2025-04-23 09:13:10.441 | INFO     | app.utils.foreclosure_scraper:scrape_case_ids:169 - Scraping complete. Found 0 foreclosure case IDs
+2025-04-23 09:13:10.441 | INFO     | app.services.foreclosure_scraper:scrape_new_cases:23 - Found 0 cases to process
+2025-04-23 09:13:10.442 | INFO     | app.utils.foreclosure_scraper:save_to_database:291 - Starting to save data to database
+2025-04-23 09:13:10.442 | INFO     | app.utils.foreclosure_scraper:save_to_database:295 - Ensuring foreclosure_cases table exists
+2025-04-23 09:13:10.444 | INFO     | app.utils.foreclosure_scraper:save_to_database:297 - Foreclosure_cases table exists or was created successfully
+2025-04-23 09:13:10.444 | INFO     | app.utils.foreclosure_scraper:save_to_database:322 - Successfully saved 0 new cases to database
+2025-04-23 09:13:10.445 | INFO     | app.services.foreclosure_scraper:scrape_new_cases:35 - Successfully saved 0 case details to PostgreSQL database
+2025-04-24 15:28:01.303 | INFO     | app.core.database:init_db:38 - Database tables created successfully
+2025-04-24 15:37:23.834 | INFO     | app.core.database:init_db:38 - Database tables created successfully
+2025-04-24 15:37:55.960 | INFO     | app.core.database:init_db:34 - Tables already exist, skipping creation
+2025-04-24 15:38:41.462 | INFO     | app.core.database:init_db:34 - Tables already exist, skipping creation
+2025-04-24 15:38:46.768 | INFO     | app.core.database:init_db:34 - Tables already exist, skipping creation
+2025-04-24 15:38:52.853 | INFO     | app.core.database:init_db:34 - Tables already exist, skipping creation
+2025-04-24 15:38:57.352 | INFO     | app.core.database:init_db:34 - Tables already exist, skipping creation
+2025-04-24 15:39:02.026 | INFO     | app.core.database:init_db:34 - Tables already exist, skipping creation
+2025-04-24 15:39:06.671 | INFO     | app.core.database:init_db:34 - Tables already exist, skipping creation
+2025-04-24 15:39:30.805 | INFO     | app.core.database:init_db:38 - Database tables created successfully
+2025-04-24 15:40:16.667 | INFO     | app.core.database:init_db:34 - Tables already exist, skipping creation
+2025-04-24 15:56:55.179 | INFO     | app.core.database:init_db:34 - Tables already exist, skipping creation
+2025-04-24 17:42:22.102 | INFO     | app.core.database:init_db:34 - Tables already exist, skipping creation
+2025-04-24 18:17:01.188 | INFO     | app.core.database:init_db:34 - Tables already exist, skipping creation
+2025-04-24 18:20:43.253 | INFO     | app.core.database:init_db:34 - Tables already exist, skipping creation
+2025-04-24 18:20:45.714 | INFO     | app.core.database:init_db:34 - Tables already exist, skipping creation
+2025-04-24 18:27:00.140 | INFO     | app.core.database:init_db:34 - Tables already exist, skipping creation
+2025-04-24 18:27:40.733 | INFO     | app.core.database:init_db:38 - Database tables created successfully
+2025-04-24 18:30:06.154 | INFO     | app.core.database:init_db:34 - Tables already exist, skipping creation
+2025-04-24 18:32:43.900 | INFO     | app.core.database:init_db:38 - Database tables created successfully
+2025-04-24 18:38:26.869 | INFO     | app.core.database:init_db:34 - Tables already exist, skipping creation
+2025-04-24 18:39:19.014 | INFO     | app.core.database:init_db:34 - Tables already exist, skipping creation
+2025-04-24 18:41:34.986 | ERROR    | app.core.database:get_db:51 - Database session error: 500: (psycopg2.errors.UndefinedTable) relation "probate_cases" does not exist
+LINE 2: FROM probate_cases 
+             ^
+
+[SQL: SELECT probate_cases.id AS probate_cases_id, probate_cases.decedent_name AS probate_cases_decedent_name, probate_cases.filing_date AS probate_cases_filing_date, probate_cases.case_number AS probate_cases_case_number, probate_cases.source_url AS probate_cases_source_url, probate_cases.county AS probate_cases_county, probate_cases.property_address AS probate_cases_property_address, probate_cases.created_at AS probate_cases_created_at 
+FROM probate_cases 
+WHERE probate_cases.case_number = %(case_number_1)s 
+ LIMIT %(param_1)s]
+[parameters: {'case_number_1': '2025EST00005', 'param_1': 1}]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-04-24 18:42:14.435 | INFO     | app.core.database:init_db:38 - Database tables created successfully
+2025-04-24 18:42:33.423 | INFO     | app.core.database:init_db:34 - Tables already exist, skipping creation
+2025-04-24 18:42:48.779 | INFO     | app.core.database:init_db:34 - Tables already exist, skipping creation
+2025-04-24 18:46:37.228 | INFO     | app.utils.recaptcha:get_recaptcha_token:11 - Starting reCAPTCHA token generation
+2025-04-24 18:46:37.230 | INFO     | app.utils.recaptcha:get_recaptcha_token:26 - Creating reCAPTCHA task
+2025-04-24 18:46:39.204 | INFO     | app.utils.recaptcha:get_recaptcha_token:30 - Created task with ID: 1681047631
+2025-04-24 18:46:39.205 | INFO     | app.utils.recaptcha:get_recaptcha_token:43 - Checking task result (attempt 1/30)
+2025-04-24 18:46:42.968 | INFO     | app.utils.recaptcha:get_recaptcha_token:43 - Checking task result (attempt 2/30)
+2025-04-24 18:46:46.736 | INFO     | app.utils.recaptcha:get_recaptcha_token:43 - Checking task result (attempt 3/30)
+2025-04-24 18:46:50.492 | INFO     | app.utils.recaptcha:get_recaptcha_token:43 - Checking task result (attempt 4/30)
+2025-04-24 18:46:52.260 | INFO     | app.utils.recaptcha:get_recaptcha_token:50 - Successfully obtained reCAPTCHA token
+2025-04-24 18:46:52.262 | INFO     | app.utils.divorce_scraper:scrape_case_ids:110 - Starting case ID scraping process...
+2025-04-24 18:46:52.262 | INFO     | app.utils.divorce_scraper:get_search_results:21 - Starting search request process...
+2025-04-24 18:46:52.262 | INFO     | app.utils.divorce_scraper:get_search_results:22 - Received reCAPTCHA token: 03AFcWeA5xQ0daQAqTfK...
+2025-04-24 18:46:52.262 | INFO     | app.utils.divorce_scraper:get_search_results:25 - Created new session
+2025-04-24 18:46:52.263 | INFO     | app.utils.divorce_scraper:get_search_results:49 - Fetching initial page from https://pro.mcohio.org
+2025-04-24 18:46:53.704 | INFO     | app.utils.divorce_scraper:get_search_results:52 - Successfully retrieved initial page
+2025-04-24 18:46:53.720 | INFO     | app.utils.divorce_scraper:get_search_results:79 - Sending search request with the following parameters:
+2025-04-24 18:46:53.720 | INFO     | app.utils.divorce_scraper:get_search_results:80 - Search Type: general
+2025-04-24 18:46:53.720 | INFO     | app.utils.divorce_scraper:get_search_results:81 - Case Type: DIVORCE WITH CHILDREN (DRC)
+2025-04-24 18:46:53.721 | INFO     | app.utils.divorce_scraper:get_search_results:82 - Case Status: OPEN
+2025-04-24 18:46:53.721 | INFO     | app.utils.divorce_scraper:get_search_results:85 - Making request to: https://pro.mcohio.org/Helpers/generalSearchResults.aspx
+2025-04-24 18:47:22.732 | INFO     | app.utils.divorce_scraper:get_search_results:90 - Response Status Code: 200
+2025-04-24 18:47:22.732 | INFO     | app.utils.divorce_scraper:get_search_results:91 - Response Headers: {'Cache-Control': 'private', 'Content-Type': 'text/html; charset=utf-8', 'Server': 'Microsoft-IIS/10.0', 'X-AspNet-Version': '4.0.30319', 'X-Powered-By': 'ASP.NET', 'Strict-Transport-Security': 'max-age=31536000', 'Date': 'Thu, 24 Apr 2025 22:47:21 GMT', 'Content-Length': '279147'}
+2025-04-24 18:47:22.732 | INFO     | app.utils.divorce_scraper:get_search_results:92 - Response Content Length: 279147
+2025-04-24 18:47:22.846 | INFO     | app.utils.divorce_scraper:scrape_case_ids:129 - Found 955 total rows in the table
+2025-04-24 18:47:22.848 | INFO     | app.utils.divorce_scraper:scrape_case_ids:160 - Found DRC case ID: 240228 with case number: 1999 DR 01319
+2025-04-24 18:47:22.848 | INFO     | app.utils.divorce_scraper:scrape_case_details:185 - Starting to scrape details for case ID: 240228
+2025-04-24 18:47:22.848 | INFO     | app.utils.divorce_scraper:scrape_case_details:204 - Making request for case details to https://pro.mcohio.org//Helpers/caseInformation.aspx
+2025-04-24 18:47:24.135 | INFO     | app.utils.divorce_scraper:scrape_case_details:207 - Successfully retrieved case details for case ID: 240228
+2025-04-24 18:47:24.153 | INFO     | app.utils.divorce_scraper:scrape_case_details:258 - Successfully scraped case ID 240228:
+2025-04-24 18:47:24.153 | INFO     | app.utils.divorce_scraper:scrape_case_details:259 - {
+  "id": null,
+  "case_id": "240228",
+  "case_number": "1999 DR 01319",
+  "filing_date": "8/18/1999",
+  "status": "CLOSED",
+  "plaintiff": "JILL FLEMING",
+  "defendant": "JUSTIN FLEMING",
+  "county": "Montgomery",
+  "created_at": null
+}
+2025-04-24 18:47:24.155 | INFO     | app.utils.divorce_scraper:scrape_case_ids:166 - Successfully scraped details for case ID: 240228
+2025-04-24 18:47:24.159 | INFO     | app.utils.divorce_scraper:scrape_case_ids:160 - Found DRC case ID: 1048832 with case number: 2009 DR 00059
+2025-04-24 18:47:24.159 | INFO     | app.utils.divorce_scraper:scrape_case_details:185 - Starting to scrape details for case ID: 1048832
+2025-04-24 18:47:24.159 | INFO     | app.utils.divorce_scraper:scrape_case_details:204 - Making request for case details to https://pro.mcohio.org//Helpers/caseInformation.aspx
+2025-04-24 18:47:25.377 | INFO     | app.utils.divorce_scraper:scrape_case_details:207 - Successfully retrieved case details for case ID: 1048832
+2025-04-24 18:47:25.387 | INFO     | app.utils.divorce_scraper:scrape_case_details:258 - Successfully scraped case ID 1048832:
+2025-04-24 18:47:25.387 | INFO     | app.utils.divorce_scraper:scrape_case_details:259 - {
+  "id": null,
+  "case_id": "1048832",
+  "case_number": "2009 DR 00059",
+  "filing_date": "1/22/2009",
+  "status": "CLOSED",
+  "plaintiff": "CHRISTIAN W. VALENTINE",
+  "defendant": "ALICIA VALENTINE",
+  "county": "Montgomery",
+  "created_at": null
+}
+2025-04-24 18:47:25.388 | INFO     | app.utils.divorce_scraper:scrape_case_ids:166 - Successfully scraped details for case ID: 1048832
+2025-04-24 18:47:25.389 | INFO     | app.utils.divorce_scraper:scrape_case_ids:160 - Found DRC case ID: 1241807 with case number: 2012 DR 00416
+2025-04-24 18:47:25.390 | INFO     | app.utils.divorce_scraper:scrape_case_details:185 - Starting to scrape details for case ID: 1241807
+2025-04-24 18:47:25.390 | INFO     | app.utils.divorce_scraper:scrape_case_details:204 - Making request for case details to https://pro.mcohio.org//Helpers/caseInformation.aspx
+2025-04-24 18:47:26.648 | INFO     | app.utils.divorce_scraper:scrape_case_details:207 - Successfully retrieved case details for case ID: 1241807
+2025-04-24 18:47:26.654 | INFO     | app.utils.divorce_scraper:scrape_case_details:258 - Successfully scraped case ID 1241807:
+2025-04-24 18:47:26.654 | INFO     | app.utils.divorce_scraper:scrape_case_details:259 - {
+  "id": null,
+  "case_id": "1241807",
+  "case_number": "2012 DR 00416",
+  "filing_date": "4/19/2012",
+  "status": "CLOSED",
+  "plaintiff": "BAHIA SALAH",
+  "defendant": "GHALEB M. SALAH",
+  "county": "Montgomery",
+  "created_at": null
+}
+2025-04-24 18:47:26.655 | INFO     | app.utils.divorce_scraper:scrape_case_ids:166 - Successfully scraped details for case ID: 1241807
+2025-04-24 18:47:26.655 | INFO     | app.utils.divorce_scraper:scrape_case_ids:172 - Scraping complete. Found and processed 3 DRC cases
+2025-04-24 18:47:26.656 | INFO     | app.services.divorce_scraper:scrape_new_cases:24 - Found 3 cases to process
+2025-04-24 18:47:26.656 | INFO     | app.services.divorce_scraper:scrape_new_cases:29 - Processing case ID: {'id': None, 'case_id': '240228', 'case_number': '1999 DR 01319', 'filing_date': '8/18/1999', 'status': 'CLOSED', 'plaintiff': 'JILL FLEMING', 'defendant': 'JUSTIN FLEMING', 'county': 'Montgomery', 'created_at': None}
+2025-04-24 18:47:26.656 | INFO     | app.utils.divorce_scraper:scrape_case_details:185 - Starting to scrape details for case ID: 240228
+2025-04-24 18:47:26.656 | INFO     | app.utils.divorce_scraper:scrape_case_details:204 - Making request for case details to https://pro.mcohio.org//Helpers/caseInformation.aspx
+2025-04-24 18:47:28.597 | INFO     | app.utils.divorce_scraper:scrape_case_details:207 - Successfully retrieved case details for case ID: 240228
+2025-04-24 18:47:28.609 | INFO     | app.utils.divorce_scraper:scrape_case_details:258 - Successfully scraped case ID 240228:
+2025-04-24 18:47:28.610 | INFO     | app.utils.divorce_scraper:scrape_case_details:259 - {
+  "id": null,
+  "case_id": "240228",
+  "case_number": "1999 DR 01319",
+  "filing_date": "8/18/1999",
+  "status": "CLOSED",
+  "plaintiff": "JILL FLEMING",
+  "defendant": "JUSTIN FLEMING",
+  "county": "Montgomery",
+  "created_at": null
+}
+2025-04-24 18:47:28.611 | INFO     | app.services.divorce_scraper:scrape_new_cases:29 - Processing case ID: {'id': None, 'case_id': '1048832', 'case_number': '2009 DR 00059', 'filing_date': '1/22/2009', 'status': 'CLOSED', 'plaintiff': 'CHRISTIAN W. VALENTINE', 'defendant': 'ALICIA VALENTINE', 'county': 'Montgomery', 'created_at': None}
+2025-04-24 18:47:28.611 | INFO     | app.utils.divorce_scraper:scrape_case_details:185 - Starting to scrape details for case ID: 1048832
+2025-04-24 18:47:28.612 | INFO     | app.utils.divorce_scraper:scrape_case_details:204 - Making request for case details to https://pro.mcohio.org//Helpers/caseInformation.aspx
+2025-04-24 18:47:30.810 | INFO     | app.utils.divorce_scraper:scrape_case_details:207 - Successfully retrieved case details for case ID: 1048832
+2025-04-24 18:47:30.822 | INFO     | app.utils.divorce_scraper:scrape_case_details:258 - Successfully scraped case ID 1048832:
+2025-04-24 18:47:30.822 | INFO     | app.utils.divorce_scraper:scrape_case_details:259 - {
+  "id": null,
+  "case_id": "1048832",
+  "case_number": "2009 DR 00059",
+  "filing_date": "1/22/2009",
+  "status": "CLOSED",
+  "plaintiff": "CHRISTIAN W. VALENTINE",
+  "defendant": "ALICIA VALENTINE",
+  "county": "Montgomery",
+  "created_at": null
+}
+2025-04-24 18:47:30.823 | INFO     | app.services.divorce_scraper:scrape_new_cases:29 - Processing case ID: {'id': None, 'case_id': '1241807', 'case_number': '2012 DR 00416', 'filing_date': '4/19/2012', 'status': 'CLOSED', 'plaintiff': 'BAHIA SALAH', 'defendant': 'GHALEB M. SALAH', 'county': 'Montgomery', 'created_at': None}
+2025-04-24 18:47:30.823 | INFO     | app.utils.divorce_scraper:scrape_case_details:185 - Starting to scrape details for case ID: 1241807
+2025-04-24 18:47:30.823 | INFO     | app.utils.divorce_scraper:scrape_case_details:204 - Making request for case details to https://pro.mcohio.org//Helpers/caseInformation.aspx
+2025-04-24 18:47:32.540 | INFO     | app.utils.divorce_scraper:scrape_case_details:207 - Successfully retrieved case details for case ID: 1241807
+2025-04-24 18:47:32.553 | INFO     | app.utils.divorce_scraper:scrape_case_details:258 - Successfully scraped case ID 1241807:
+2025-04-24 18:47:32.553 | INFO     | app.utils.divorce_scraper:scrape_case_details:259 - {
+  "id": null,
+  "case_id": "1241807",
+  "case_number": "2012 DR 00416",
+  "filing_date": "4/19/2012",
+  "status": "CLOSED",
+  "plaintiff": "BAHIA SALAH",
+  "defendant": "GHALEB M. SALAH",
+  "county": "Montgomery",
+  "created_at": null
+}
+2025-04-24 18:47:32.555 | INFO     | app.utils.divorce_scraper:save_to_database:276 - Starting to save data to database
+2025-04-24 18:47:32.555 | INFO     | app.utils.divorce_scraper:save_to_database:279 - Ensuring divorce_cases table exists
+2025-04-24 18:47:32.559 | INFO     | app.utils.divorce_scraper:save_to_database:281 - Divorce_cases table exists or was created successfully
+2025-04-24 18:47:32.566 | INFO     | app.utils.divorce_scraper:save_to_database:297 - Successfully saved case 240228 to database
+2025-04-24 18:47:32.567 | INFO     | app.utils.divorce_scraper:save_to_database:297 - Successfully saved case 1048832 to database
+2025-04-24 18:47:32.568 | INFO     | app.utils.divorce_scraper:save_to_database:297 - Successfully saved case 1241807 to database
+2025-04-24 18:47:32.573 | INFO     | app.utils.divorce_scraper:save_to_database:302 - Successfully saved 3 new cases to database
+2025-04-24 18:47:32.573 | INFO     | app.services.divorce_scraper:scrape_new_cases:36 - Successfully saved 3 case details to PostgreSQL database
+2025-04-24 18:47:32.577 | ERROR    | app.services.divorce_scraper:scrape_new_cases:49 - Error scraping divorce cases: 1 validation error for DivorceCase
+property_address
+  Input should be a valid string [type=string_type, input_value=None, input_type=NoneType]
+    For further information visit https://errors.pydantic.dev/2.6/v/string_type
+2025-04-24 18:47:32.577 | ERROR    | app.api.v1.endpoints.divorce_cases:scrape_cases:34 - Error scraping divorce cases: 1 validation error for DivorceCase
+property_address
+  Input should be a valid string [type=string_type, input_value=None, input_type=NoneType]
+    For further information visit https://errors.pydantic.dev/2.6/v/string_type
+2025-04-24 18:48:54.374 | INFO     | app.core.database:init_db:34 - Tables already exist, skipping creation
+2025-04-24 18:50:21.848 | INFO     | app.core.database:init_db:34 - Tables already exist, skipping creation
+2025-04-24 18:50:27.696 | INFO     | app.utils.recaptcha:get_recaptcha_token:11 - Starting reCAPTCHA token generation
+2025-04-24 18:50:27.697 | INFO     | app.utils.recaptcha:get_recaptcha_token:26 - Creating reCAPTCHA task
+2025-04-24 18:50:29.404 | INFO     | app.utils.recaptcha:get_recaptcha_token:30 - Created task with ID: 1278853429
+2025-04-24 18:50:29.406 | INFO     | app.utils.recaptcha:get_recaptcha_token:43 - Checking task result (attempt 1/30)
+2025-04-24 18:50:33.166 | INFO     | app.utils.recaptcha:get_recaptcha_token:43 - Checking task result (attempt 2/30)
+2025-04-24 18:50:36.925 | INFO     | app.utils.recaptcha:get_recaptcha_token:43 - Checking task result (attempt 3/30)
+2025-04-24 18:50:40.685 | INFO     | app.utils.recaptcha:get_recaptcha_token:43 - Checking task result (attempt 4/30)
+2025-04-24 18:50:42.404 | INFO     | app.utils.recaptcha:get_recaptcha_token:50 - Successfully obtained reCAPTCHA token
+2025-04-24 18:50:42.407 | INFO     | app.utils.divorce_scraper:scrape_case_ids:110 - Starting case ID scraping process...
+2025-04-24 18:50:42.407 | INFO     | app.utils.divorce_scraper:get_search_results:21 - Starting search request process...
+2025-04-24 18:50:42.407 | INFO     | app.utils.divorce_scraper:get_search_results:22 - Received reCAPTCHA token: 03AFcWeA60o7KV4_Zl0C...
+2025-04-24 18:50:42.407 | INFO     | app.utils.divorce_scraper:get_search_results:25 - Created new session
+2025-04-24 18:50:42.407 | INFO     | app.utils.divorce_scraper:get_search_results:49 - Fetching initial page from https://pro.mcohio.org
+2025-04-24 18:50:43.551 | INFO     | app.utils.divorce_scraper:get_search_results:52 - Successfully retrieved initial page
+2025-04-24 18:50:43.555 | INFO     | app.utils.divorce_scraper:get_search_results:79 - Sending search request with the following parameters:
+2025-04-24 18:50:43.555 | INFO     | app.utils.divorce_scraper:get_search_results:80 - Search Type: general
+2025-04-24 18:50:43.556 | INFO     | app.utils.divorce_scraper:get_search_results:81 - Case Type: DIVORCE WITH CHILDREN (DRC)
+2025-04-24 18:50:43.556 | INFO     | app.utils.divorce_scraper:get_search_results:82 - Case Status: OPEN
+2025-04-24 18:50:43.556 | INFO     | app.utils.divorce_scraper:get_search_results:85 - Making request to: https://pro.mcohio.org/Helpers/generalSearchResults.aspx
+2025-04-24 18:51:07.855 | INFO     | app.utils.divorce_scraper:get_search_results:90 - Response Status Code: 200
+2025-04-24 18:51:07.856 | INFO     | app.utils.divorce_scraper:get_search_results:91 - Response Headers: {'Cache-Control': 'private', 'Content-Type': 'text/html; charset=utf-8', 'Server': 'Microsoft-IIS/10.0', 'X-AspNet-Version': '4.0.30319', 'X-Powered-By': 'ASP.NET', 'Strict-Transport-Security': 'max-age=31536000', 'Date': 'Thu, 24 Apr 2025 22:51:06 GMT', 'Content-Length': '279147'}
+2025-04-24 18:51:07.856 | INFO     | app.utils.divorce_scraper:get_search_results:92 - Response Content Length: 279147
+2025-04-24 18:51:07.959 | INFO     | app.utils.divorce_scraper:scrape_case_ids:129 - Found 955 total rows in the table
+2025-04-24 18:51:07.961 | INFO     | app.utils.divorce_scraper:scrape_case_ids:160 - Found DRC case ID: 240228 with case number: 1999 DR 01319
+2025-04-24 18:51:07.962 | INFO     | app.utils.divorce_scraper:scrape_case_details:185 - Starting to scrape details for case ID: 240228
+2025-04-24 18:51:07.962 | INFO     | app.utils.divorce_scraper:scrape_case_details:204 - Making request for case details to https://pro.mcohio.org//Helpers/caseInformation.aspx
+2025-04-24 18:51:09.227 | INFO     | app.utils.divorce_scraper:scrape_case_details:207 - Successfully retrieved case details for case ID: 240228
+2025-04-24 18:51:09.239 | INFO     | app.utils.divorce_scraper:scrape_case_details:259 - Successfully scraped case ID 240228:
+2025-04-24 18:51:09.240 | INFO     | app.utils.divorce_scraper:scrape_case_details:260 - {
+  "id": null,
+  "case_id": "240228",
+  "case_number": "1999 DR 01319",
+  "filing_date": "8/18/1999",
+  "status": "CLOSED",
+  "plaintiff": "JILL FLEMING",
+  "defendant": "JUSTIN FLEMING",
+  "county": "Montgomery",
+  "property_address": "",
+  "created_at": null
+}
+2025-04-24 18:51:09.241 | INFO     | app.utils.divorce_scraper:scrape_case_ids:166 - Successfully scraped details for case ID: 240228
+2025-04-24 18:51:09.244 | INFO     | app.utils.divorce_scraper:scrape_case_ids:160 - Found DRC case ID: 1048832 with case number: 2009 DR 00059
+2025-04-24 18:51:09.244 | INFO     | app.utils.divorce_scraper:scrape_case_details:185 - Starting to scrape details for case ID: 1048832
+2025-04-24 18:51:09.244 | INFO     | app.utils.divorce_scraper:scrape_case_details:204 - Making request for case details to https://pro.mcohio.org//Helpers/caseInformation.aspx
+2025-04-24 18:51:10.472 | INFO     | app.utils.divorce_scraper:scrape_case_details:207 - Successfully retrieved case details for case ID: 1048832
+2025-04-24 18:51:10.482 | INFO     | app.utils.divorce_scraper:scrape_case_details:259 - Successfully scraped case ID 1048832:
+2025-04-24 18:51:10.482 | INFO     | app.utils.divorce_scraper:scrape_case_details:260 - {
+  "id": null,
+  "case_id": "1048832",
+  "case_number": "2009 DR 00059",
+  "filing_date": "1/22/2009",
+  "status": "CLOSED",
+  "plaintiff": "CHRISTIAN W. VALENTINE",
+  "defendant": "ALICIA VALENTINE",
+  "county": "Montgomery",
+  "property_address": "",
+  "created_at": null
+}
+2025-04-24 18:51:10.483 | INFO     | app.utils.divorce_scraper:scrape_case_ids:166 - Successfully scraped details for case ID: 1048832
+2025-04-24 18:51:10.485 | INFO     | app.utils.divorce_scraper:scrape_case_ids:160 - Found DRC case ID: 1241807 with case number: 2012 DR 00416
+2025-04-24 18:51:10.485 | INFO     | app.utils.divorce_scraper:scrape_case_details:185 - Starting to scrape details for case ID: 1241807
+2025-04-24 18:51:10.485 | INFO     | app.utils.divorce_scraper:scrape_case_details:204 - Making request for case details to https://pro.mcohio.org//Helpers/caseInformation.aspx
+2025-04-24 18:51:11.695 | INFO     | app.utils.divorce_scraper:scrape_case_details:207 - Successfully retrieved case details for case ID: 1241807
+2025-04-24 18:51:11.701 | INFO     | app.utils.divorce_scraper:scrape_case_details:259 - Successfully scraped case ID 1241807:
+2025-04-24 18:51:11.701 | INFO     | app.utils.divorce_scraper:scrape_case_details:260 - {
+  "id": null,
+  "case_id": "1241807",
+  "case_number": "2012 DR 00416",
+  "filing_date": "4/19/2012",
+  "status": "CLOSED",
+  "plaintiff": "BAHIA SALAH",
+  "defendant": "GHALEB M. SALAH",
+  "county": "Montgomery",
+  "property_address": "",
+  "created_at": null
+}
+2025-04-24 18:51:11.702 | INFO     | app.utils.divorce_scraper:scrape_case_ids:166 - Successfully scraped details for case ID: 1241807
+2025-04-24 18:51:11.702 | INFO     | app.utils.divorce_scraper:scrape_case_ids:172 - Scraping complete. Found and processed 3 DRC cases
+2025-04-24 18:51:11.702 | INFO     | app.services.divorce_scraper:scrape_new_cases:24 - Found 3 cases to process
+2025-04-24 18:51:11.702 | INFO     | app.services.divorce_scraper:scrape_new_cases:29 - Processing case ID: {'id': None, 'case_id': '240228', 'case_number': '1999 DR 01319', 'filing_date': '8/18/1999', 'status': 'CLOSED', 'plaintiff': 'JILL FLEMING', 'defendant': 'JUSTIN FLEMING', 'county': 'Montgomery', 'property_address': '', 'created_at': None}
+2025-04-24 18:51:11.702 | INFO     | app.utils.divorce_scraper:scrape_case_details:185 - Starting to scrape details for case ID: 240228
+2025-04-24 18:51:11.702 | INFO     | app.utils.divorce_scraper:scrape_case_details:204 - Making request for case details to https://pro.mcohio.org//Helpers/caseInformation.aspx
+2025-04-24 18:51:12.919 | INFO     | app.utils.divorce_scraper:scrape_case_details:207 - Successfully retrieved case details for case ID: 240228
+2025-04-24 18:51:12.929 | INFO     | app.utils.divorce_scraper:scrape_case_details:259 - Successfully scraped case ID 240228:
+2025-04-24 18:51:12.929 | INFO     | app.utils.divorce_scraper:scrape_case_details:260 - {
+  "id": null,
+  "case_id": "240228",
+  "case_number": "1999 DR 01319",
+  "filing_date": "8/18/1999",
+  "status": "CLOSED",
+  "plaintiff": "JILL FLEMING",
+  "defendant": "JUSTIN FLEMING",
+  "county": "Montgomery",
+  "property_address": "",
+  "created_at": null
+}
+2025-04-24 18:51:12.930 | INFO     | app.services.divorce_scraper:scrape_new_cases:29 - Processing case ID: {'id': None, 'case_id': '1048832', 'case_number': '2009 DR 00059', 'filing_date': '1/22/2009', 'status': 'CLOSED', 'plaintiff': 'CHRISTIAN W. VALENTINE', 'defendant': 'ALICIA VALENTINE', 'county': 'Montgomery', 'property_address': '', 'created_at': None}
+2025-04-24 18:51:12.931 | INFO     | app.utils.divorce_scraper:scrape_case_details:185 - Starting to scrape details for case ID: 1048832
+2025-04-24 18:51:12.931 | INFO     | app.utils.divorce_scraper:scrape_case_details:204 - Making request for case details to https://pro.mcohio.org//Helpers/caseInformation.aspx
+2025-04-24 18:51:14.139 | INFO     | app.utils.divorce_scraper:scrape_case_details:207 - Successfully retrieved case details for case ID: 1048832
+2025-04-24 18:51:14.179 | INFO     | app.utils.divorce_scraper:scrape_case_details:259 - Successfully scraped case ID 1048832:
+2025-04-24 18:51:14.180 | INFO     | app.utils.divorce_scraper:scrape_case_details:260 - {
+  "id": null,
+  "case_id": "1048832",
+  "case_number": "2009 DR 00059",
+  "filing_date": "1/22/2009",
+  "status": "CLOSED",
+  "plaintiff": "CHRISTIAN W. VALENTINE",
+  "defendant": "ALICIA VALENTINE",
+  "county": "Montgomery",
+  "property_address": "",
+  "created_at": null
+}
+2025-04-24 18:51:14.181 | INFO     | app.services.divorce_scraper:scrape_new_cases:29 - Processing case ID: {'id': None, 'case_id': '1241807', 'case_number': '2012 DR 00416', 'filing_date': '4/19/2012', 'status': 'CLOSED', 'plaintiff': 'BAHIA SALAH', 'defendant': 'GHALEB M. SALAH', 'county': 'Montgomery', 'property_address': '', 'created_at': None}
+2025-04-24 18:51:14.181 | INFO     | app.utils.divorce_scraper:scrape_case_details:185 - Starting to scrape details for case ID: 1241807
+2025-04-24 18:51:14.181 | INFO     | app.utils.divorce_scraper:scrape_case_details:204 - Making request for case details to https://pro.mcohio.org//Helpers/caseInformation.aspx
+2025-04-24 18:51:15.432 | INFO     | app.utils.divorce_scraper:scrape_case_details:207 - Successfully retrieved case details for case ID: 1241807
+2025-04-24 18:51:15.449 | INFO     | app.utils.divorce_scraper:scrape_case_details:259 - Successfully scraped case ID 1241807:
+2025-04-24 18:51:15.450 | INFO     | app.utils.divorce_scraper:scrape_case_details:260 - {
+  "id": null,
+  "case_id": "1241807",
+  "case_number": "2012 DR 00416",
+  "filing_date": "4/19/2012",
+  "status": "CLOSED",
+  "plaintiff": "BAHIA SALAH",
+  "defendant": "GHALEB M. SALAH",
+  "county": "Montgomery",
+  "property_address": "",
+  "created_at": null
+}
+2025-04-24 18:51:15.451 | INFO     | app.utils.divorce_scraper:save_to_database:277 - Starting to save data to database
+2025-04-24 18:51:15.452 | INFO     | app.utils.divorce_scraper:save_to_database:280 - Ensuring divorce_cases table exists
+2025-04-24 18:51:15.456 | INFO     | app.utils.divorce_scraper:save_to_database:282 - Divorce_cases table exists or was created successfully
+2025-04-24 18:51:15.466 | INFO     | app.utils.divorce_scraper:save_to_database:300 - Case ID 240228 already exists in database, skipping...
+2025-04-24 18:51:15.467 | INFO     | app.utils.divorce_scraper:save_to_database:300 - Case ID 1048832 already exists in database, skipping...
+2025-04-24 18:51:15.468 | INFO     | app.utils.divorce_scraper:save_to_database:300 - Case ID 1241807 already exists in database, skipping...
+2025-04-24 18:51:15.469 | INFO     | app.utils.divorce_scraper:save_to_database:303 - Successfully saved 0 new cases to database
+2025-04-24 18:51:15.469 | INFO     | app.services.divorce_scraper:scrape_new_cases:36 - Successfully saved 3 case details to PostgreSQL database
+2025-04-24 18:51:15.471 | ERROR    | app.services.divorce_scraper:scrape_new_cases:49 - Error scraping divorce cases: 1 validation error for DivorceCase
+property_address
+  Input should be a valid string [type=string_type, input_value=None, input_type=NoneType]
+    For further information visit https://errors.pydantic.dev/2.6/v/string_type
+2025-04-24 18:51:15.471 | ERROR    | app.api.v1.endpoints.divorce_cases:scrape_cases:34 - Error scraping divorce cases: 1 validation error for DivorceCase
+property_address
+  Input should be a valid string [type=string_type, input_value=None, input_type=NoneType]
+    For further information visit https://errors.pydantic.dev/2.6/v/string_type
+2025-04-24 18:56:11.863 | INFO     | app.core.database:init_db:34 - Tables already exist, skipping creation
+2025-04-24 18:56:20.726 | INFO     | app.core.database:init_db:34 - Tables already exist, skipping creation
+2025-04-24 18:57:47.036 | INFO     | app.utils.recaptcha:get_recaptcha_token:11 - Starting reCAPTCHA token generation
+2025-04-24 18:57:47.037 | INFO     | app.utils.recaptcha:get_recaptcha_token:26 - Creating reCAPTCHA task
+2025-04-24 18:57:49.000 | INFO     | app.utils.recaptcha:get_recaptcha_token:30 - Created task with ID: 576733932
+2025-04-24 18:57:49.000 | INFO     | app.utils.recaptcha:get_recaptcha_token:43 - Checking task result (attempt 1/30)
+2025-04-24 18:57:52.705 | INFO     | app.utils.recaptcha:get_recaptcha_token:43 - Checking task result (attempt 2/30)
+2025-04-24 18:57:56.473 | INFO     | app.utils.recaptcha:get_recaptcha_token:43 - Checking task result (attempt 3/30)
+2025-04-24 18:58:00.127 | INFO     | app.utils.recaptcha:get_recaptcha_token:43 - Checking task result (attempt 4/30)
+2025-04-24 18:58:01.828 | INFO     | app.utils.recaptcha:get_recaptcha_token:50 - Successfully obtained reCAPTCHA token
+2025-04-24 18:58:01.829 | INFO     | app.utils.divorce_scraper:scrape_case_ids:110 - Starting case ID scraping process...
+2025-04-24 18:58:01.829 | INFO     | app.utils.divorce_scraper:get_search_results:21 - Starting search request process...
+2025-04-24 18:58:01.829 | INFO     | app.utils.divorce_scraper:get_search_results:22 - Received reCAPTCHA token: 03AFcWeA6xHuM7mMaUu6...
+2025-04-24 18:58:01.830 | INFO     | app.utils.divorce_scraper:get_search_results:25 - Created new session
+2025-04-24 18:58:01.830 | INFO     | app.utils.divorce_scraper:get_search_results:49 - Fetching initial page from https://pro.mcohio.org
+2025-04-24 18:58:04.871 | INFO     | app.utils.divorce_scraper:get_search_results:52 - Successfully retrieved initial page
+2025-04-24 18:58:04.877 | INFO     | app.utils.divorce_scraper:get_search_results:79 - Sending search request with the following parameters:
+2025-04-24 18:58:04.877 | INFO     | app.utils.divorce_scraper:get_search_results:80 - Search Type: general
+2025-04-24 18:58:04.877 | INFO     | app.utils.divorce_scraper:get_search_results:81 - Case Type: DIVORCE WITH CHILDREN (DRC)
+2025-04-24 18:58:04.877 | INFO     | app.utils.divorce_scraper:get_search_results:82 - Case Status: OPEN
+2025-04-24 18:58:04.877 | INFO     | app.utils.divorce_scraper:get_search_results:85 - Making request to: https://pro.mcohio.org/Helpers/generalSearchResults.aspx
+2025-04-24 18:58:26.808 | INFO     | app.utils.divorce_scraper:get_search_results:90 - Response Status Code: 200
+2025-04-24 18:58:26.809 | INFO     | app.utils.divorce_scraper:get_search_results:91 - Response Headers: {'Cache-Control': 'private', 'Content-Type': 'text/html; charset=utf-8', 'Server': 'Microsoft-IIS/10.0', 'X-AspNet-Version': '4.0.30319', 'X-Powered-By': 'ASP.NET', 'Strict-Transport-Security': 'max-age=31536000', 'Date': 'Thu, 24 Apr 2025 22:58:26 GMT', 'Content-Length': '279147'}
+2025-04-24 18:58:26.809 | INFO     | app.utils.divorce_scraper:get_search_results:92 - Response Content Length: 279147
+2025-04-24 18:58:26.898 | INFO     | app.utils.divorce_scraper:scrape_case_ids:129 - Found 955 total rows in the table
+2025-04-24 18:58:26.900 | INFO     | app.utils.divorce_scraper:scrape_case_ids:160 - Found DRC case ID: 240228 with case number: 1999 DR 01319
+2025-04-24 18:58:26.900 | INFO     | app.utils.divorce_scraper:scrape_case_details:185 - Starting to scrape details for case ID: 240228
+2025-04-24 18:58:26.900 | INFO     | app.utils.divorce_scraper:scrape_case_details:204 - Making request for case details to https://pro.mcohio.org//Helpers/caseInformation.aspx
+2025-04-24 18:58:28.185 | INFO     | app.utils.divorce_scraper:scrape_case_details:207 - Successfully retrieved case details for case ID: 240228
+2025-04-24 18:58:28.205 | INFO     | app.utils.divorce_scraper:scrape_case_details:259 - Successfully scraped case ID 240228:
+2025-04-24 18:58:28.205 | INFO     | app.utils.divorce_scraper:scrape_case_details:260 - {
+  "id": null,
+  "case_id": "240228",
+  "case_number": "1999 DR 01319",
+  "filing_date": "8/18/1999",
+  "status": "CLOSED",
+  "plaintiff": "JILL FLEMING",
+  "defendant": "JUSTIN FLEMING",
+  "county": "Montgomery",
+  "property_address": "",
+  "created_at": null
+}
+2025-04-24 18:58:28.206 | INFO     | app.utils.divorce_scraper:scrape_case_ids:166 - Successfully scraped details for case ID: 240228
+2025-04-24 18:58:28.210 | INFO     | app.utils.divorce_scraper:scrape_case_ids:160 - Found DRC case ID: 1048832 with case number: 2009 DR 00059
+2025-04-24 18:58:28.210 | INFO     | app.utils.divorce_scraper:scrape_case_details:185 - Starting to scrape details for case ID: 1048832
+2025-04-24 18:58:28.210 | INFO     | app.utils.divorce_scraper:scrape_case_details:204 - Making request for case details to https://pro.mcohio.org//Helpers/caseInformation.aspx
+2025-04-24 18:58:29.417 | INFO     | app.utils.divorce_scraper:scrape_case_details:207 - Successfully retrieved case details for case ID: 1048832
+2025-04-24 18:58:29.430 | INFO     | app.utils.divorce_scraper:scrape_case_details:259 - Successfully scraped case ID 1048832:
+2025-04-24 18:58:29.430 | INFO     | app.utils.divorce_scraper:scrape_case_details:260 - {
+  "id": null,
+  "case_id": "1048832",
+  "case_number": "2009 DR 00059",
+  "filing_date": "1/22/2009",
+  "status": "CLOSED",
+  "plaintiff": "CHRISTIAN W. VALENTINE",
+  "defendant": "ALICIA VALENTINE",
+  "county": "Montgomery",
+  "property_address": "",
+  "created_at": null
+}
+2025-04-24 18:58:29.431 | INFO     | app.utils.divorce_scraper:scrape_case_ids:166 - Successfully scraped details for case ID: 1048832
+2025-04-24 18:58:29.433 | INFO     | app.utils.divorce_scraper:scrape_case_ids:160 - Found DRC case ID: 1241807 with case number: 2012 DR 00416
+2025-04-24 18:58:29.433 | INFO     | app.utils.divorce_scraper:scrape_case_details:185 - Starting to scrape details for case ID: 1241807
+2025-04-24 18:58:29.433 | INFO     | app.utils.divorce_scraper:scrape_case_details:204 - Making request for case details to https://pro.mcohio.org//Helpers/caseInformation.aspx
+2025-04-24 18:58:30.702 | INFO     | app.utils.divorce_scraper:scrape_case_details:207 - Successfully retrieved case details for case ID: 1241807
+2025-04-24 18:58:30.708 | INFO     | app.utils.divorce_scraper:scrape_case_details:259 - Successfully scraped case ID 1241807:
+2025-04-24 18:58:30.708 | INFO     | app.utils.divorce_scraper:scrape_case_details:260 - {
+  "id": null,
+  "case_id": "1241807",
+  "case_number": "2012 DR 00416",
+  "filing_date": "4/19/2012",
+  "status": "CLOSED",
+  "plaintiff": "BAHIA SALAH",
+  "defendant": "GHALEB M. SALAH",
+  "county": "Montgomery",
+  "property_address": "",
+  "created_at": null
+}
+2025-04-24 18:58:30.709 | INFO     | app.utils.divorce_scraper:scrape_case_ids:166 - Successfully scraped details for case ID: 1241807
+2025-04-24 18:58:30.709 | INFO     | app.utils.divorce_scraper:scrape_case_ids:172 - Scraping complete. Found and processed 3 DRC cases
+2025-04-24 18:58:30.710 | INFO     | app.services.divorce_scraper:scrape_new_cases:24 - Found 3 cases to process
+2025-04-24 18:58:30.710 | INFO     | app.services.divorce_scraper:scrape_new_cases:29 - Processing case ID: {'id': None, 'case_id': '240228', 'case_number': '1999 DR 01319', 'filing_date': '8/18/1999', 'status': 'CLOSED', 'plaintiff': 'JILL FLEMING', 'defendant': 'JUSTIN FLEMING', 'county': 'Montgomery', 'property_address': '', 'created_at': None}
+2025-04-24 18:58:30.710 | INFO     | app.utils.divorce_scraper:scrape_case_details:185 - Starting to scrape details for case ID: 240228
+2025-04-24 18:58:30.710 | INFO     | app.utils.divorce_scraper:scrape_case_details:204 - Making request for case details to https://pro.mcohio.org//Helpers/caseInformation.aspx
+2025-04-24 18:58:31.971 | INFO     | app.utils.divorce_scraper:scrape_case_details:207 - Successfully retrieved case details for case ID: 240228
+2025-04-24 18:58:31.989 | INFO     | app.utils.divorce_scraper:scrape_case_details:259 - Successfully scraped case ID 240228:
+2025-04-24 18:58:31.990 | INFO     | app.utils.divorce_scraper:scrape_case_details:260 - {
+  "id": null,
+  "case_id": "240228",
+  "case_number": "1999 DR 01319",
+  "filing_date": "8/18/1999",
+  "status": "CLOSED",
+  "plaintiff": "JILL FLEMING",
+  "defendant": "JUSTIN FLEMING",
+  "county": "Montgomery",
+  "property_address": "",
+  "created_at": null
+}
+2025-04-24 18:58:31.991 | INFO     | app.services.divorce_scraper:scrape_new_cases:29 - Processing case ID: {'id': None, 'case_id': '1048832', 'case_number': '2009 DR 00059', 'filing_date': '1/22/2009', 'status': 'CLOSED', 'plaintiff': 'CHRISTIAN W. VALENTINE', 'defendant': 'ALICIA VALENTINE', 'county': 'Montgomery', 'property_address': '', 'created_at': None}
+2025-04-24 18:58:31.992 | INFO     | app.utils.divorce_scraper:scrape_case_details:185 - Starting to scrape details for case ID: 1048832
+2025-04-24 18:58:31.992 | INFO     | app.utils.divorce_scraper:scrape_case_details:204 - Making request for case details to https://pro.mcohio.org//Helpers/caseInformation.aspx
+2025-04-24 18:58:33.585 | INFO     | app.utils.divorce_scraper:scrape_case_details:207 - Successfully retrieved case details for case ID: 1048832
+2025-04-24 18:58:33.625 | INFO     | app.utils.divorce_scraper:scrape_case_details:259 - Successfully scraped case ID 1048832:
+2025-04-24 18:58:33.625 | INFO     | app.utils.divorce_scraper:scrape_case_details:260 - {
+  "id": null,
+  "case_id": "1048832",
+  "case_number": "2009 DR 00059",
+  "filing_date": "1/22/2009",
+  "status": "CLOSED",
+  "plaintiff": "CHRISTIAN W. VALENTINE",
+  "defendant": "ALICIA VALENTINE",
+  "county": "Montgomery",
+  "property_address": "",
+  "created_at": null
+}
+2025-04-24 18:58:33.626 | INFO     | app.services.divorce_scraper:scrape_new_cases:29 - Processing case ID: {'id': None, 'case_id': '1241807', 'case_number': '2012 DR 00416', 'filing_date': '4/19/2012', 'status': 'CLOSED', 'plaintiff': 'BAHIA SALAH', 'defendant': 'GHALEB M. SALAH', 'county': 'Montgomery', 'property_address': '', 'created_at': None}
+2025-04-24 18:58:33.626 | INFO     | app.utils.divorce_scraper:scrape_case_details:185 - Starting to scrape details for case ID: 1241807
+2025-04-24 18:58:33.627 | INFO     | app.utils.divorce_scraper:scrape_case_details:204 - Making request for case details to https://pro.mcohio.org//Helpers/caseInformation.aspx
+2025-04-24 18:58:34.832 | INFO     | app.utils.divorce_scraper:scrape_case_details:207 - Successfully retrieved case details for case ID: 1241807
+2025-04-24 18:58:34.841 | INFO     | app.utils.divorce_scraper:scrape_case_details:259 - Successfully scraped case ID 1241807:
+2025-04-24 18:58:34.841 | INFO     | app.utils.divorce_scraper:scrape_case_details:260 - {
+  "id": null,
+  "case_id": "1241807",
+  "case_number": "2012 DR 00416",
+  "filing_date": "4/19/2012",
+  "status": "CLOSED",
+  "plaintiff": "BAHIA SALAH",
+  "defendant": "GHALEB M. SALAH",
+  "county": "Montgomery",
+  "property_address": "",
+  "created_at": null
+}
+2025-04-24 18:58:34.843 | INFO     | app.utils.divorce_scraper:save_to_database:277 - Starting to save data to database
+2025-04-24 18:58:34.843 | INFO     | app.utils.divorce_scraper:save_to_database:280 - Ensuring divorce_cases table exists
+2025-04-24 18:58:34.846 | INFO     | app.utils.divorce_scraper:save_to_database:282 - Divorce_cases table exists or was created successfully
+2025-04-24 18:58:34.857 | INFO     | app.utils.divorce_scraper:save_to_database:300 - Case ID 240228 already exists in database, skipping...
+2025-04-24 18:58:34.858 | INFO     | app.utils.divorce_scraper:save_to_database:300 - Case ID 1048832 already exists in database, skipping...
+2025-04-24 18:58:34.859 | INFO     | app.utils.divorce_scraper:save_to_database:300 - Case ID 1241807 already exists in database, skipping...
+2025-04-24 18:58:34.859 | INFO     | app.utils.divorce_scraper:save_to_database:303 - Successfully saved 0 new cases to database
+2025-04-24 18:58:34.859 | INFO     | app.services.divorce_scraper:scrape_new_cases:36 - Successfully saved 3 case details to PostgreSQL database
+2025-04-24 18:58:59.293 | INFO     | app.core.database:init_db:34 - Tables already exist, skipping creation
+2025-04-24 18:59:02.729 | INFO     | app.core.database:init_db:34 - Tables already exist, skipping creation
+2025-04-24 19:31:19.932 | INFO     | app.utils.recaptcha:get_recaptcha_token:11 - Starting reCAPTCHA token generation
+2025-04-24 19:31:19.933 | INFO     | app.utils.recaptcha:get_recaptcha_token:26 - Creating reCAPTCHA task
+2025-04-24 19:31:21.904 | INFO     | app.utils.recaptcha:get_recaptcha_token:30 - Created task with ID: 1728662217
+2025-04-24 19:31:21.904 | INFO     | app.utils.recaptcha:get_recaptcha_token:43 - Checking task result (attempt 1/30)
+2025-04-24 19:31:25.673 | INFO     | app.utils.recaptcha:get_recaptcha_token:43 - Checking task result (attempt 2/30)
+2025-04-24 19:31:29.402 | INFO     | app.utils.recaptcha:get_recaptcha_token:43 - Checking task result (attempt 3/30)
+2025-04-24 19:31:33.170 | INFO     | app.utils.recaptcha:get_recaptcha_token:43 - Checking task result (attempt 4/30)
+2025-04-24 19:31:34.810 | INFO     | app.utils.recaptcha:get_recaptcha_token:50 - Successfully obtained reCAPTCHA token
+2025-04-24 19:31:34.813 | INFO     | app.utils.divorce_scraper:scrape_case_ids:110 - Starting case ID scraping process...
+2025-04-24 19:31:34.814 | INFO     | app.utils.divorce_scraper:get_search_results:21 - Starting search request process...
+2025-04-24 19:31:34.814 | INFO     | app.utils.divorce_scraper:get_search_results:22 - Received reCAPTCHA token: 03AFcWeA4oIPfaOzE7v0...
+2025-04-24 19:31:34.815 | INFO     | app.utils.divorce_scraper:get_search_results:25 - Created new session
+2025-04-24 19:31:34.815 | INFO     | app.utils.divorce_scraper:get_search_results:49 - Fetching initial page from https://pro.mcohio.org
+2025-04-24 19:31:36.259 | INFO     | app.utils.divorce_scraper:get_search_results:52 - Successfully retrieved initial page
+2025-04-24 19:31:36.267 | INFO     | app.utils.divorce_scraper:get_search_results:79 - Sending search request with the following parameters:
+2025-04-24 19:31:36.267 | INFO     | app.utils.divorce_scraper:get_search_results:80 - Search Type: general
+2025-04-24 19:31:36.268 | INFO     | app.utils.divorce_scraper:get_search_results:81 - Case Type: DIVORCE WITH CHILDREN (DRC)
+2025-04-24 19:31:36.268 | INFO     | app.utils.divorce_scraper:get_search_results:82 - Case Status: OPEN
+2025-04-24 19:31:36.268 | INFO     | app.utils.divorce_scraper:get_search_results:85 - Making request to: https://pro.mcohio.org/Helpers/generalSearchResults.aspx
+2025-04-24 19:31:52.649 | INFO     | app.utils.divorce_scraper:get_search_results:90 - Response Status Code: 200
+2025-04-24 19:31:52.650 | INFO     | app.utils.divorce_scraper:get_search_results:91 - Response Headers: {'Cache-Control': 'private', 'Content-Type': 'text/html; charset=utf-8', 'Server': 'Microsoft-IIS/10.0', 'X-AspNet-Version': '4.0.30319', 'X-Powered-By': 'ASP.NET', 'Strict-Transport-Security': 'max-age=31536000', 'Date': 'Thu, 24 Apr 2025 23:31:51 GMT', 'Content-Length': '279147'}
+2025-04-24 19:31:52.651 | INFO     | app.utils.divorce_scraper:get_search_results:92 - Response Content Length: 279147
+2025-04-24 19:31:52.755 | INFO     | app.utils.divorce_scraper:scrape_case_ids:129 - Found 955 total rows in the table
+2025-04-24 19:31:52.758 | INFO     | app.utils.divorce_scraper:scrape_case_ids:160 - Found DRC case ID: 240228 with case number: 1999 DR 01319
+2025-04-24 19:31:52.758 | INFO     | app.utils.divorce_scraper:scrape_case_details:185 - Starting to scrape details for case ID: 240228
+2025-04-24 19:31:52.758 | INFO     | app.utils.divorce_scraper:scrape_case_details:204 - Making request for case details to https://pro.mcohio.org//Helpers/caseInformation.aspx
+2025-04-24 19:31:53.965 | INFO     | app.utils.divorce_scraper:scrape_case_details:207 - Successfully retrieved case details for case ID: 240228
+2025-04-24 19:31:53.976 | INFO     | app.utils.divorce_scraper:scrape_case_details:259 - Successfully scraped case ID 240228:
+2025-04-24 19:31:53.976 | INFO     | app.utils.divorce_scraper:scrape_case_details:260 - {
+  "id": null,
+  "case_id": "240228",
+  "case_number": "1999 DR 01319",
+  "filing_date": "8/18/1999",
+  "status": "CLOSED",
+  "plaintiff": "JILL FLEMING",
+  "defendant": "JUSTIN FLEMING",
+  "county": "Montgomery",
+  "property_address": "",
+  "created_at": null
+}
+2025-04-24 19:31:53.977 | INFO     | app.utils.divorce_scraper:scrape_case_ids:166 - Successfully scraped details for case ID: 240228
+2025-04-24 19:31:53.980 | INFO     | app.utils.divorce_scraper:scrape_case_ids:160 - Found DRC case ID: 1048832 with case number: 2009 DR 00059
+2025-04-24 19:31:53.980 | INFO     | app.utils.divorce_scraper:scrape_case_details:185 - Starting to scrape details for case ID: 1048832
+2025-04-24 19:31:53.980 | INFO     | app.utils.divorce_scraper:scrape_case_details:204 - Making request for case details to https://pro.mcohio.org//Helpers/caseInformation.aspx
+2025-04-24 19:31:55.195 | INFO     | app.utils.divorce_scraper:scrape_case_details:207 - Successfully retrieved case details for case ID: 1048832
+2025-04-24 19:31:55.204 | INFO     | app.utils.divorce_scraper:scrape_case_details:259 - Successfully scraped case ID 1048832:
+2025-04-24 19:31:55.204 | INFO     | app.utils.divorce_scraper:scrape_case_details:260 - {
+  "id": null,
+  "case_id": "1048832",
+  "case_number": "2009 DR 00059",
+  "filing_date": "1/22/2009",
+  "status": "CLOSED",
+  "plaintiff": "CHRISTIAN W. VALENTINE",
+  "defendant": "ALICIA VALENTINE",
+  "county": "Montgomery",
+  "property_address": "",
+  "created_at": null
+}
+2025-04-24 19:31:55.206 | INFO     | app.utils.divorce_scraper:scrape_case_ids:166 - Successfully scraped details for case ID: 1048832
+2025-04-24 19:31:55.207 | INFO     | app.utils.divorce_scraper:scrape_case_ids:160 - Found DRC case ID: 1241807 with case number: 2012 DR 00416
+2025-04-24 19:31:55.207 | INFO     | app.utils.divorce_scraper:scrape_case_details:185 - Starting to scrape details for case ID: 1241807
+2025-04-24 19:31:55.207 | INFO     | app.utils.divorce_scraper:scrape_case_details:204 - Making request for case details to https://pro.mcohio.org//Helpers/caseInformation.aspx
+2025-04-24 19:31:56.412 | INFO     | app.utils.divorce_scraper:scrape_case_details:207 - Successfully retrieved case details for case ID: 1241807
+2025-04-24 19:31:56.421 | INFO     | app.utils.divorce_scraper:scrape_case_details:259 - Successfully scraped case ID 1241807:
+2025-04-24 19:31:56.422 | INFO     | app.utils.divorce_scraper:scrape_case_details:260 - {
+  "id": null,
+  "case_id": "1241807",
+  "case_number": "2012 DR 00416",
+  "filing_date": "4/19/2012",
+  "status": "CLOSED",
+  "plaintiff": "BAHIA SALAH",
+  "defendant": "GHALEB M. SALAH",
+  "county": "Montgomery",
+  "property_address": "",
+  "created_at": null
+}
+2025-04-24 19:31:56.423 | INFO     | app.utils.divorce_scraper:scrape_case_ids:166 - Successfully scraped details for case ID: 1241807
+2025-04-24 19:31:56.423 | INFO     | app.utils.divorce_scraper:scrape_case_ids:172 - Scraping complete. Found and processed 3 DRC cases
+2025-04-24 19:31:56.424 | INFO     | app.services.divorce_scraper:scrape_new_cases:24 - Found 3 cases to process
+2025-04-24 19:31:56.424 | INFO     | app.services.divorce_scraper:scrape_new_cases:29 - Processing case ID: {'id': None, 'case_id': '240228', 'case_number': '1999 DR 01319', 'filing_date': '8/18/1999', 'status': 'CLOSED', 'plaintiff': 'JILL FLEMING', 'defendant': 'JUSTIN FLEMING', 'county': 'Montgomery', 'property_address': '', 'created_at': None}
+2025-04-24 19:31:56.424 | INFO     | app.utils.divorce_scraper:scrape_case_details:185 - Starting to scrape details for case ID: 240228
+2025-04-24 19:31:56.424 | INFO     | app.utils.divorce_scraper:scrape_case_details:204 - Making request for case details to https://pro.mcohio.org//Helpers/caseInformation.aspx
+2025-04-24 19:31:58.968 | INFO     | app.utils.divorce_scraper:scrape_case_details:207 - Successfully retrieved case details for case ID: 240228
+2025-04-24 19:31:58.987 | INFO     | app.utils.divorce_scraper:scrape_case_details:259 - Successfully scraped case ID 240228:
+2025-04-24 19:31:58.988 | INFO     | app.utils.divorce_scraper:scrape_case_details:260 - {
+  "id": null,
+  "case_id": "240228",
+  "case_number": "1999 DR 01319",
+  "filing_date": "8/18/1999",
+  "status": "CLOSED",
+  "plaintiff": "JILL FLEMING",
+  "defendant": "JUSTIN FLEMING",
+  "county": "Montgomery",
+  "property_address": "",
+  "created_at": null
+}
+2025-04-24 19:31:58.989 | INFO     | app.services.divorce_scraper:scrape_new_cases:29 - Processing case ID: {'id': None, 'case_id': '1048832', 'case_number': '2009 DR 00059', 'filing_date': '1/22/2009', 'status': 'CLOSED', 'plaintiff': 'CHRISTIAN W. VALENTINE', 'defendant': 'ALICIA VALENTINE', 'county': 'Montgomery', 'property_address': '', 'created_at': None}
+2025-04-24 19:31:58.989 | INFO     | app.utils.divorce_scraper:scrape_case_details:185 - Starting to scrape details for case ID: 1048832
+2025-04-24 19:31:58.990 | INFO     | app.utils.divorce_scraper:scrape_case_details:204 - Making request for case details to https://pro.mcohio.org//Helpers/caseInformation.aspx
+2025-04-24 19:32:00.559 | INFO     | app.utils.divorce_scraper:scrape_case_details:207 - Successfully retrieved case details for case ID: 1048832
+2025-04-24 19:32:00.597 | INFO     | app.utils.divorce_scraper:scrape_case_details:259 - Successfully scraped case ID 1048832:
+2025-04-24 19:32:00.597 | INFO     | app.utils.divorce_scraper:scrape_case_details:260 - {
+  "id": null,
+  "case_id": "1048832",
+  "case_number": "2009 DR 00059",
+  "filing_date": "1/22/2009",
+  "status": "CLOSED",
+  "plaintiff": "CHRISTIAN W. VALENTINE",
+  "defendant": "ALICIA VALENTINE",
+  "county": "Montgomery",
+  "property_address": "",
+  "created_at": null
+}
+2025-04-24 19:32:00.598 | INFO     | app.services.divorce_scraper:scrape_new_cases:29 - Processing case ID: {'id': None, 'case_id': '1241807', 'case_number': '2012 DR 00416', 'filing_date': '4/19/2012', 'status': 'CLOSED', 'plaintiff': 'BAHIA SALAH', 'defendant': 'GHALEB M. SALAH', 'county': 'Montgomery', 'property_address': '', 'created_at': None}
+2025-04-24 19:32:00.598 | INFO     | app.utils.divorce_scraper:scrape_case_details:185 - Starting to scrape details for case ID: 1241807
+2025-04-24 19:32:00.598 | INFO     | app.utils.divorce_scraper:scrape_case_details:204 - Making request for case details to https://pro.mcohio.org//Helpers/caseInformation.aspx
+2025-04-24 19:32:01.972 | INFO     | app.utils.divorce_scraper:scrape_case_details:207 - Successfully retrieved case details for case ID: 1241807
+2025-04-24 19:32:01.989 | INFO     | app.utils.divorce_scraper:scrape_case_details:259 - Successfully scraped case ID 1241807:
+2025-04-24 19:32:01.989 | INFO     | app.utils.divorce_scraper:scrape_case_details:260 - {
+  "id": null,
+  "case_id": "1241807",
+  "case_number": "2012 DR 00416",
+  "filing_date": "4/19/2012",
+  "status": "CLOSED",
+  "plaintiff": "BAHIA SALAH",
+  "defendant": "GHALEB M. SALAH",
+  "county": "Montgomery",
+  "property_address": "",
+  "created_at": null
+}
+2025-04-24 19:32:01.991 | INFO     | app.utils.divorce_scraper:save_to_database:277 - Starting to save data to database
+2025-04-24 19:32:01.992 | INFO     | app.utils.divorce_scraper:save_to_database:280 - Ensuring divorce_cases table exists
+2025-04-24 19:32:02.044 | INFO     | app.utils.divorce_scraper:save_to_database:282 - Divorce_cases table exists or was created successfully
+2025-04-24 19:32:02.054 | INFO     | app.utils.divorce_scraper:save_to_database:298 - Successfully saved case 240228 to database
+2025-04-24 19:32:02.055 | INFO     | app.utils.divorce_scraper:save_to_database:298 - Successfully saved case 1048832 to database
+2025-04-24 19:32:02.057 | INFO     | app.utils.divorce_scraper:save_to_database:298 - Successfully saved case 1241807 to database
+2025-04-24 19:32:02.062 | INFO     | app.utils.divorce_scraper:save_to_database:303 - Successfully saved 3 new cases to database
+2025-04-24 19:32:02.062 | INFO     | app.services.divorce_scraper:scrape_new_cases:36 - Successfully saved 3 case details to PostgreSQL database
+2025-04-24 20:12:41.851 | INFO     | app.core.database:init_db:34 - Tables already exist, skipping creation
+2025-04-24 20:12:50.241 | INFO     | app.core.database:init_db:34 - Tables already exist, skipping creation
+2025-04-24 20:14:34.839 | ERROR    | app.core.database:get_db:51 - Database session error: 500: (psycopg2.errors.UndefinedTable) relation "probate_cases" does not exist
+LINE 2: FROM probate_cases 
+             ^
+
+[SQL: SELECT probate_cases.id AS probate_cases_id, probate_cases.decedent_name AS probate_cases_decedent_name, probate_cases.filing_date AS probate_cases_filing_date, probate_cases.case_number AS probate_cases_case_number, probate_cases.source_url AS probate_cases_source_url, probate_cases.county AS probate_cases_county, probate_cases.property_address AS probate_cases_property_address, probate_cases.created_at AS probate_cases_created_at 
+FROM probate_cases 
+WHERE probate_cases.case_number = %(case_number_1)s 
+ LIMIT %(param_1)s]
+[parameters: {'case_number_1': '2025EST00005', 'param_1': 1}]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-04-24 20:15:10.041 | INFO     | app.core.database:init_db:34 - Tables already exist, skipping creation
+2025-04-24 20:15:31.034 | INFO     | app.core.database:init_db:34 - Tables already exist, skipping creation
+2025-04-24 20:15:31.876 | INFO     | app.core.database:init_db:34 - Tables already exist, skipping creation
+2025-04-24 20:15:32.716 | INFO     | app.core.database:init_db:34 - Tables already exist, skipping creation
+2025-04-24 20:16:19.371 | INFO     | app.core.database:init_db:39 - Database tables created successfully
+2025-04-24 20:16:23.946 | INFO     | app.core.database:init_db:34 - Tables already exist, skipping creation
+2025-04-24 20:16:24.818 | INFO     | app.core.database:init_db:34 - Tables already exist, skipping creation
+2025-04-24 20:21:04.589 | INFO     | app.utils.recaptcha:get_recaptcha_token:11 - Starting reCAPTCHA token generation
+2025-04-24 20:21:04.591 | INFO     | app.utils.recaptcha:get_recaptcha_token:26 - Creating reCAPTCHA task
+2025-04-24 20:21:06.526 | INFO     | app.utils.recaptcha:get_recaptcha_token:30 - Created task with ID: 316114162
+2025-04-24 20:21:06.527 | INFO     | app.utils.recaptcha:get_recaptcha_token:43 - Checking task result (attempt 1/30)
+2025-04-24 20:21:10.222 | INFO     | app.utils.recaptcha:get_recaptcha_token:43 - Checking task result (attempt 2/30)
+2025-04-24 20:21:14.013 | INFO     | app.utils.recaptcha:get_recaptcha_token:43 - Checking task result (attempt 3/30)
+2025-04-24 20:21:17.739 | INFO     | app.utils.recaptcha:get_recaptcha_token:43 - Checking task result (attempt 4/30)
+2025-04-24 20:21:19.517 | INFO     | app.utils.recaptcha:get_recaptcha_token:50 - Successfully obtained reCAPTCHA token
+2025-04-24 20:21:19.522 | INFO     | app.utils.divorce_scraper:scrape_case_ids:110 - Starting case ID scraping process...
+2025-04-24 20:21:19.522 | INFO     | app.utils.divorce_scraper:get_search_results:21 - Starting search request process...
+2025-04-24 20:21:19.523 | INFO     | app.utils.divorce_scraper:get_search_results:22 - Received reCAPTCHA token: 03AFcWeA4J762l4n6QYy...
+2025-04-24 20:21:19.523 | INFO     | app.utils.divorce_scraper:get_search_results:25 - Created new session
+2025-04-24 20:21:19.523 | INFO     | app.utils.divorce_scraper:get_search_results:49 - Fetching initial page from https://pro.mcohio.org
+2025-04-24 20:21:21.082 | INFO     | app.utils.divorce_scraper:get_search_results:52 - Successfully retrieved initial page
+2025-04-24 20:21:21.089 | INFO     | app.utils.divorce_scraper:get_search_results:79 - Sending search request with the following parameters:
+2025-04-24 20:21:21.089 | INFO     | app.utils.divorce_scraper:get_search_results:80 - Search Type: general
+2025-04-24 20:21:21.089 | INFO     | app.utils.divorce_scraper:get_search_results:81 - Case Type: DIVORCE WITH CHILDREN (DRC)
+2025-04-24 20:21:21.089 | INFO     | app.utils.divorce_scraper:get_search_results:82 - Case Status: OPEN
+2025-04-24 20:21:21.089 | INFO     | app.utils.divorce_scraper:get_search_results:85 - Making request to: https://pro.mcohio.org/Helpers/generalSearchResults.aspx
+2025-04-24 20:21:39.528 | INFO     | app.utils.divorce_scraper:get_search_results:90 - Response Status Code: 200
+2025-04-24 20:21:39.529 | INFO     | app.utils.divorce_scraper:get_search_results:91 - Response Headers: {'Cache-Control': 'private', 'Content-Type': 'text/html; charset=utf-8', 'Server': 'Microsoft-IIS/10.0', 'X-AspNet-Version': '4.0.30319', 'X-Powered-By': 'ASP.NET', 'Strict-Transport-Security': 'max-age=31536000', 'Date': 'Fri, 25 Apr 2025 00:21:38 GMT', 'Content-Length': '279147'}
+2025-04-24 20:21:39.529 | INFO     | app.utils.divorce_scraper:get_search_results:92 - Response Content Length: 279147
+2025-04-24 20:21:39.655 | INFO     | app.utils.divorce_scraper:scrape_case_ids:129 - Found 955 total rows in the table
+2025-04-24 20:21:39.657 | INFO     | app.utils.divorce_scraper:scrape_case_ids:160 - Found DRC case ID: 240228 with case number: 1999 DR 01319
+2025-04-24 20:21:39.657 | INFO     | app.utils.divorce_scraper:scrape_case_details:185 - Starting to scrape details for case ID: 240228
+2025-04-24 20:21:39.657 | INFO     | app.utils.divorce_scraper:scrape_case_details:204 - Making request for case details to https://pro.mcohio.org//Helpers/caseInformation.aspx
+2025-04-24 20:21:41.918 | INFO     | app.utils.divorce_scraper:scrape_case_details:207 - Successfully retrieved case details for case ID: 240228
+2025-04-24 20:21:41.927 | INFO     | app.utils.divorce_scraper:scrape_case_details:259 - Successfully scraped case ID 240228:
+2025-04-24 20:21:41.927 | INFO     | app.utils.divorce_scraper:scrape_case_details:260 - {
+  "id": null,
+  "case_id": "240228",
+  "case_number": "1999 DR 01319",
+  "filing_date": "8/18/1999",
+  "status": "CLOSED",
+  "plaintiff": "JILL FLEMING",
+  "defendant": "JUSTIN FLEMING",
+  "county": "Montgomery",
+  "property_address": "",
+  "created_at": null
+}
+2025-04-24 20:21:41.928 | INFO     | app.utils.divorce_scraper:scrape_case_ids:166 - Successfully scraped details for case ID: 240228
+2025-04-24 20:21:41.931 | INFO     | app.utils.divorce_scraper:scrape_case_ids:160 - Found DRC case ID: 1048832 with case number: 2009 DR 00059
+2025-04-24 20:21:41.931 | INFO     | app.utils.divorce_scraper:scrape_case_details:185 - Starting to scrape details for case ID: 1048832
+2025-04-24 20:21:41.931 | INFO     | app.utils.divorce_scraper:scrape_case_details:204 - Making request for case details to https://pro.mcohio.org//Helpers/caseInformation.aspx
+2025-04-24 20:21:44.805 | INFO     | app.utils.divorce_scraper:scrape_case_details:207 - Successfully retrieved case details for case ID: 1048832
+2025-04-24 20:21:44.821 | INFO     | app.utils.divorce_scraper:scrape_case_details:259 - Successfully scraped case ID 1048832:
+2025-04-24 20:21:44.822 | INFO     | app.utils.divorce_scraper:scrape_case_details:260 - {
+  "id": null,
+  "case_id": "1048832",
+  "case_number": "2009 DR 00059",
+  "filing_date": "1/22/2009",
+  "status": "CLOSED",
+  "plaintiff": "CHRISTIAN W. VALENTINE",
+  "defendant": "ALICIA VALENTINE",
+  "county": "Montgomery",
+  "property_address": "",
+  "created_at": null
+}
+2025-04-24 20:21:44.823 | INFO     | app.utils.divorce_scraper:scrape_case_ids:166 - Successfully scraped details for case ID: 1048832
+2025-04-24 20:21:44.825 | INFO     | app.utils.divorce_scraper:scrape_case_ids:160 - Found DRC case ID: 1241807 with case number: 2012 DR 00416
+2025-04-24 20:21:44.825 | INFO     | app.utils.divorce_scraper:scrape_case_details:185 - Starting to scrape details for case ID: 1241807
+2025-04-24 20:21:44.825 | INFO     | app.utils.divorce_scraper:scrape_case_details:204 - Making request for case details to https://pro.mcohio.org//Helpers/caseInformation.aspx
+2025-04-24 20:21:46.046 | INFO     | app.utils.divorce_scraper:scrape_case_details:207 - Successfully retrieved case details for case ID: 1241807
+2025-04-24 20:21:46.057 | INFO     | app.utils.divorce_scraper:scrape_case_details:259 - Successfully scraped case ID 1241807:
+2025-04-24 20:21:46.057 | INFO     | app.utils.divorce_scraper:scrape_case_details:260 - {
+  "id": null,
+  "case_id": "1241807",
+  "case_number": "2012 DR 00416",
+  "filing_date": "4/19/2012",
+  "status": "CLOSED",
+  "plaintiff": "BAHIA SALAH",
+  "defendant": "GHALEB M. SALAH",
+  "county": "Montgomery",
+  "property_address": "",
+  "created_at": null
+}
+2025-04-24 20:21:46.058 | INFO     | app.utils.divorce_scraper:scrape_case_ids:166 - Successfully scraped details for case ID: 1241807
+2025-04-24 20:21:46.058 | INFO     | app.utils.divorce_scraper:scrape_case_ids:172 - Scraping complete. Found and processed 3 DRC cases
+2025-04-24 20:21:46.058 | INFO     | app.services.divorce_scraper:scrape_new_cases:24 - Found 3 cases to process
+2025-04-24 20:21:46.058 | INFO     | app.services.divorce_scraper:scrape_new_cases:29 - Processing case ID: {'id': None, 'case_id': '240228', 'case_number': '1999 DR 01319', 'filing_date': '8/18/1999', 'status': 'CLOSED', 'plaintiff': 'JILL FLEMING', 'defendant': 'JUSTIN FLEMING', 'county': 'Montgomery', 'property_address': '', 'created_at': None}
+2025-04-24 20:21:46.058 | INFO     | app.utils.divorce_scraper:scrape_case_details:185 - Starting to scrape details for case ID: 240228
+2025-04-24 20:21:46.058 | INFO     | app.utils.divorce_scraper:scrape_case_details:204 - Making request for case details to https://pro.mcohio.org//Helpers/caseInformation.aspx
+2025-04-24 20:21:47.285 | INFO     | app.utils.divorce_scraper:scrape_case_details:207 - Successfully retrieved case details for case ID: 240228
+2025-04-24 20:21:47.297 | INFO     | app.utils.divorce_scraper:scrape_case_details:259 - Successfully scraped case ID 240228:
+2025-04-24 20:21:47.298 | INFO     | app.utils.divorce_scraper:scrape_case_details:260 - {
+  "id": null,
+  "case_id": "240228",
+  "case_number": "1999 DR 01319",
+  "filing_date": "8/18/1999",
+  "status": "CLOSED",
+  "plaintiff": "JILL FLEMING",
+  "defendant": "JUSTIN FLEMING",
+  "county": "Montgomery",
+  "property_address": "",
+  "created_at": null
+}
+2025-04-24 20:21:47.299 | INFO     | app.services.divorce_scraper:scrape_new_cases:29 - Processing case ID: {'id': None, 'case_id': '1048832', 'case_number': '2009 DR 00059', 'filing_date': '1/22/2009', 'status': 'CLOSED', 'plaintiff': 'CHRISTIAN W. VALENTINE', 'defendant': 'ALICIA VALENTINE', 'county': 'Montgomery', 'property_address': '', 'created_at': None}
+2025-04-24 20:21:47.299 | INFO     | app.utils.divorce_scraper:scrape_case_details:185 - Starting to scrape details for case ID: 1048832
+2025-04-24 20:21:47.299 | INFO     | app.utils.divorce_scraper:scrape_case_details:204 - Making request for case details to https://pro.mcohio.org//Helpers/caseInformation.aspx
+2025-04-24 20:21:48.526 | INFO     | app.utils.divorce_scraper:scrape_case_details:207 - Successfully retrieved case details for case ID: 1048832
+2025-04-24 20:21:48.531 | INFO     | app.utils.divorce_scraper:scrape_case_details:259 - Successfully scraped case ID 1048832:
+2025-04-24 20:21:48.532 | INFO     | app.utils.divorce_scraper:scrape_case_details:260 - {
+  "id": null,
+  "case_id": "1048832",
+  "case_number": "2009 DR 00059",
+  "filing_date": "1/22/2009",
+  "status": "CLOSED",
+  "plaintiff": "CHRISTIAN W. VALENTINE",
+  "defendant": "ALICIA VALENTINE",
+  "county": "Montgomery",
+  "property_address": "",
+  "created_at": null
+}
+2025-04-24 20:21:48.533 | INFO     | app.services.divorce_scraper:scrape_new_cases:29 - Processing case ID: {'id': None, 'case_id': '1241807', 'case_number': '2012 DR 00416', 'filing_date': '4/19/2012', 'status': 'CLOSED', 'plaintiff': 'BAHIA SALAH', 'defendant': 'GHALEB M. SALAH', 'county': 'Montgomery', 'property_address': '', 'created_at': None}
+2025-04-24 20:21:48.533 | INFO     | app.utils.divorce_scraper:scrape_case_details:185 - Starting to scrape details for case ID: 1241807
+2025-04-24 20:21:48.533 | INFO     | app.utils.divorce_scraper:scrape_case_details:204 - Making request for case details to https://pro.mcohio.org//Helpers/caseInformation.aspx
+2025-04-24 20:21:49.780 | INFO     | app.utils.divorce_scraper:scrape_case_details:207 - Successfully retrieved case details for case ID: 1241807
+2025-04-24 20:21:49.791 | INFO     | app.utils.divorce_scraper:scrape_case_details:259 - Successfully scraped case ID 1241807:
+2025-04-24 20:21:49.791 | INFO     | app.utils.divorce_scraper:scrape_case_details:260 - {
+  "id": null,
+  "case_id": "1241807",
+  "case_number": "2012 DR 00416",
+  "filing_date": "4/19/2012",
+  "status": "CLOSED",
+  "plaintiff": "BAHIA SALAH",
+  "defendant": "GHALEB M. SALAH",
+  "county": "Montgomery",
+  "property_address": "",
+  "created_at": null
+}
+2025-04-24 20:21:49.792 | INFO     | app.utils.divorce_scraper:save_to_database:277 - Starting to save data to database
+2025-04-24 20:21:52.559 | INFO     | app.core.database:init_db:34 - Tables already exist, skipping creation
+2025-04-24 20:21:52.559 | INFO     | app.utils.divorce_scraper:save_to_database:280 - Ensuring divorce_cases table exists
+2025-04-24 20:21:53.393 | INFO     | app.utils.divorce_scraper:save_to_database:282 - Divorce_cases table exists or was created successfully
+2025-04-24 20:21:53.983 | INFO     | app.utils.divorce_scraper:save_to_database:298 - Successfully saved case 240228 to database
+2025-04-24 20:21:54.347 | INFO     | app.utils.divorce_scraper:save_to_database:298 - Successfully saved case 1048832 to database
+2025-04-24 20:21:54.635 | INFO     | app.utils.divorce_scraper:save_to_database:298 - Successfully saved case 1241807 to database
+2025-04-24 20:21:55.213 | INFO     | app.utils.divorce_scraper:save_to_database:303 - Successfully saved 3 new cases to database
+2025-04-24 20:21:55.213 | INFO     | app.services.divorce_scraper:scrape_new_cases:36 - Successfully saved 3 case details to PostgreSQL database
+2025-04-24 20:21:56.062 | INFO     | app.core.database:init_db:34 - Tables already exist, skipping creation
+2025-04-24 20:23:30.814 | ERROR    | app.core.database:get_db:61 - Error getting database session: Method 'close()' can't be called here; method 'commit()' is already in progress and this would cause an unexpected state change to <SessionTransactionState.CLOSED: 5> (Background on this error at: https://sqlalche.me/e/20/isce)
+2025-04-24 20:23:59.378 | INFO     | app.core.database:init_db:34 - Tables already exist, skipping creation
+2025-04-24 20:24:36.798 | INFO     | app.utils.recaptcha:get_recaptcha_token:11 - Starting reCAPTCHA token generation
+2025-04-24 20:24:36.799 | INFO     | app.utils.recaptcha:get_recaptcha_token:26 - Creating reCAPTCHA task
+2025-04-24 20:24:38.516 | INFO     | app.utils.recaptcha:get_recaptcha_token:30 - Created task with ID: 583337414
+2025-04-24 20:24:38.517 | INFO     | app.utils.recaptcha:get_recaptcha_token:43 - Checking task result (attempt 1/30)
+2025-04-24 20:24:42.328 | INFO     | app.utils.recaptcha:get_recaptcha_token:43 - Checking task result (attempt 2/30)
+2025-04-24 20:24:46.123 | INFO     | app.utils.recaptcha:get_recaptcha_token:43 - Checking task result (attempt 3/30)
+2025-04-24 20:24:47.900 | INFO     | app.utils.recaptcha:get_recaptcha_token:50 - Successfully obtained reCAPTCHA token
+2025-04-24 20:24:47.901 | INFO     | app.utils.foreclosure_scraper:scrape_case_ids:129 - Starting case ID scraping process...
+2025-04-24 20:24:47.901 | INFO     | app.utils.foreclosure_scraper:scrape_case_ids:132 - Getting search results
+2025-04-24 20:24:47.901 | INFO     | app.utils.foreclosure_scraper:get_search_results:19 - Starting search request process...
+2025-04-24 20:24:47.901 | INFO     | app.utils.foreclosure_scraper:get_search_results:20 - Received reCAPTCHA token: 03AFcWeA6yH2Kfm7R5P_...
+2025-04-24 20:24:47.901 | INFO     | app.utils.foreclosure_scraper:get_search_results:24 - Created new session
+2025-04-24 20:24:47.902 | INFO     | app.utils.foreclosure_scraper:get_search_results:27 - Fetching initial page from https://pro.mcohio.org/
+2025-04-24 20:24:49.061 | INFO     | app.utils.foreclosure_scraper:get_search_results:30 - Successfully retrieved initial page
+2025-04-24 20:24:49.061 | INFO     | app.utils.foreclosure_scraper:get_search_results:31 - Initial page status code: 200
+2025-04-24 20:24:49.061 | INFO     | app.utils.foreclosure_scraper:get_search_results:32 - Initial page content length: 20623 bytes
+2025-04-24 20:24:49.069 | INFO     | app.utils.foreclosure_scraper:get_search_results:39 - Preparing search request with reCAPTCHA token
+2025-04-24 20:24:49.069 | INFO     | app.utils.foreclosure_scraper:get_search_results:75 - Sending search request with the following parameters:
+2025-04-24 20:24:49.069 | INFO     | app.utils.foreclosure_scraper:get_search_results:76 - Case Type: MORTGAGE FORECLOSURE (MF)
+2025-04-24 20:24:49.069 | INFO     | app.utils.foreclosure_scraper:get_search_results:77 - Case Status: OPEN
+2025-04-24 20:24:49.069 | INFO     | app.utils.foreclosure_scraper:get_search_results:78 - Search URL: https://pro.mcohio.org/Helpers/generalSearchResults.aspx
+2025-04-24 20:24:49.069 | INFO     | app.utils.foreclosure_scraper:get_search_results:79 - Request headers: {
+  "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
+  "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
+  "Accept-Language": "en-US,en;q=0.5",
+  "Accept-Encoding": "gzip, deflate, br",
+  "Content-Type": "application/x-www-form-urlencoded",
+  "Origin": "https://pro.mcohio.org",
+  "Referer": "https://pro.mcohio.org/",
+  "Connection": "keep-alive",
+  "Upgrade-Insecure-Requests": "1",
+  "Sec-Fetch-Dest": "document",
+  "Sec-Fetch-Mode": "navigate",
+  "Sec-Fetch-Site": "same-origin",
+  "Sec-Fetch-User": "?1"
+}
+2025-04-24 20:24:49.069 | INFO     | app.utils.foreclosure_scraper:get_search_results:80 - Request data: {
+  "__VIEWSTATE": "",
+  "__EVENTVALIDATION": "",
+  "__EVENTTARGET": "",
+  "__EVENTARGUMENT": "",
+  "searchType": "general",
+  "captchaToken": "03AFcWeA6yH2Kfm7R5P_z8ChFRwwBlXEPgxp8C6mAwnV8Mt65VShUwKB8ls7PUtBjWc2qRtCdaChqInheIto92dnojhzr4OZ-T8zgb_aYVQoP43STrDXL9eBgw3Rm1vtU6dIo9Y5_FH8h1DMrr-M-SOVLkP3rAAv7-TxYRT0jSQAQ3JZtOGxvIHJNRirJ-4TUrY_qGR_j9Sn5z8a5Tr3xcCK0IJghDxHA25j8SGV6x69KlxO95DC3hjgOAOc3BQdZq3x1aMqKebF6lrOdbuwqDi9U4i0i9A3qdhE-m36psb9RvCv6Puh3kslpt_dtLuOxayqNPS6Dgi3Ply0ztjo_aGe9sliezj4GITlslsM0cN011vE5R4sgNWPJg6Rgf0WeJgX-qAjVVmxAa9LZMQeht5sZp1q4Dqw7Mh0rncaMWn1wnc0b7kCpxobWCgNvT-0PGYYXvLWABJmantK2WVhxz5Ov2lVx7wuJ4LUqsH1A-cCZOBayr8RacOxQehVGihQbGLo0sJvmeUT8T6NNJjDyU-LOloEj_YwbVX8XzLOgSnAOimpqYcoLkuU1Ah9T32CCayeG_ysk687egl_18CNEZCEOSszwRn7JXgIUbf_GN_cusuImydYL12-hffKqdad4SAZtM260IE06RPQaFGdaUcqd1HXLvxPsw5u8sdaKzDc0PTlolvw0sUS97NXgUgYr9Bera6upquI4l2LmA8Y3-h_ermv0qtamEmqbqDJmow4dzfsNxBUcrqwmMD2a5Cnlqs4tugyk0bCNlCdqYDvM_YIlWqkn0uEtJOiSIJCrWDG16p3LPu42TqN2ACLuo7l75u1L3r1n0TinDLb4MDMm3iQcLNginSVvvIJFOl42A61qGU5MTk-KPZXAG2RSp2k3Zut7-pHZG-aArqAMT3OVcrWVXkNxeGLuy5OoZcXFFM0yqHFk3bw39D88",
+  "ctl00$ContentPlaceHolder1$txtCaseNumber": "",
+  "ctl00$ContentPlaceHolder1$txtPartyName": "",
+  "ctl00$ContentPlaceHolder1$txtAttorneyName": "",
+  "ctl00$ContentPlaceHolder1$txtAttorneyBarNumber": "",
+  "ctl00$ContentPlaceHolder1$txtCaseType": "MORTGAGE FORECLOSURE (MF)",
+  "ctl00$ContentPlaceHolder1$txtCaseStatus": "OPEN",
+  "ctl00$ContentPlaceHolder1$txtFilingDateFrom": "",
+  "ctl00$ContentPlaceHolder1$txtFilingDateTo": "",
+  "ctl00$ContentPlaceHolder1$btnSearch": "Search"
+}
+2025-04-24 20:24:49.070 | INFO     | app.utils.foreclosure_scraper:get_search_results:83 - Making POST request to https://pro.mcohio.org/Helpers/generalSearchResults.aspx
+2025-04-24 20:25:12.669 | INFO     | app.utils.foreclosure_scraper:get_search_results:87 - Search request completed with status code: 200
+2025-04-24 20:25:12.671 | INFO     | app.utils.foreclosure_scraper:get_search_results:88 - Response headers: {
+  "Cache-Control": "private",
+  "Content-Type": "text/html; charset=utf-8",
+  "Server": "Microsoft-IIS/10.0",
+  "X-AspNet-Version": "4.0.30319",
+  "X-Powered-By": "ASP.NET",
+  "Strict-Transport-Security": "max-age=31536000",
+  "Date": "Fri, 25 Apr 2025 00:25:11 GMT",
+  "Content-Length": "279129"
+}
+2025-04-24 20:25:12.671 | INFO     | app.utils.foreclosure_scraper:get_search_results:89 - Response content length: 279129 bytes
+2025-04-24 20:25:12.781 | INFO     | app.utils.foreclosure_scraper:get_search_results:100 - Successfully retrieved HTML table with search results
+2025-04-24 20:25:12.781 | INFO     | app.utils.foreclosure_scraper:get_search_results:102 - Found 3 rows in the results table
+2025-04-24 20:25:12.781 | INFO     | app.utils.foreclosure_scraper:get_search_results:105 - First row content: Search Parameters
+ Print Search Results
+2025-04-24 20:25:12.782 | INFO     | app.utils.foreclosure_scraper:scrape_case_ids:139 - Parsing HTML content for case IDs
+2025-04-24 20:25:12.882 | INFO     | app.utils.foreclosure_scraper:scrape_case_ids:144 - Found 966 total rows in the table
+2025-04-24 20:25:12.893 | INFO     | app.utils.foreclosure_scraper:scrape_case_ids:164 - Found foreclosure case ID: 1165132
+2025-04-24 20:25:12.893 | INFO     | app.utils.foreclosure_scraper:scrape_case_ids:165 - Case Status: REOPENED
+2025-04-24 20:25:12.903 | INFO     | app.utils.foreclosure_scraper:scrape_case_ids:164 - Found foreclosure case ID: 65660907
+2025-04-24 20:25:12.903 | INFO     | app.utils.foreclosure_scraper:scrape_case_ids:165 - Case Status: OPEN
+2025-04-24 20:25:12.903 | INFO     | app.utils.foreclosure_scraper:scrape_case_ids:164 - Found foreclosure case ID: 73134885
+2025-04-24 20:25:12.904 | INFO     | app.utils.foreclosure_scraper:scrape_case_ids:165 - Case Status: OPEN
+2025-04-24 20:25:12.904 | INFO     | app.utils.foreclosure_scraper:scrape_case_ids:164 - Found foreclosure case ID: 49020684
+2025-04-24 20:25:12.904 | INFO     | app.utils.foreclosure_scraper:scrape_case_ids:165 - Case Status: OPEN
+2025-04-24 20:25:12.905 | INFO     | app.utils.foreclosure_scraper:scrape_case_ids:164 - Found foreclosure case ID: 68092252
+2025-04-24 20:25:12.905 | INFO     | app.utils.foreclosure_scraper:scrape_case_ids:165 - Case Status: OPEN
+2025-04-24 20:25:12.905 | INFO     | app.utils.foreclosure_scraper:scrape_case_ids:164 - Found foreclosure case ID: 1122910
+2025-04-24 20:25:12.905 | INFO     | app.utils.foreclosure_scraper:scrape_case_ids:165 - Case Status: OPEN
+2025-04-24 20:25:12.906 | INFO     | app.utils.foreclosure_scraper:scrape_case_ids:164 - Found foreclosure case ID: 94270601
+2025-04-24 20:25:12.906 | INFO     | app.utils.foreclosure_scraper:scrape_case_ids:165 - Case Status: OPEN
+2025-04-24 20:25:12.913 | INFO     | app.utils.foreclosure_scraper:scrape_case_ids:164 - Found foreclosure case ID: 5006281
+2025-04-24 20:25:12.913 | INFO     | app.utils.foreclosure_scraper:scrape_case_ids:165 - Case Status: OPEN
+2025-04-24 20:25:12.932 | INFO     | app.utils.foreclosure_scraper:scrape_case_ids:169 - Scraping complete. Found 8 foreclosure case IDs
+2025-04-24 20:25:12.933 | INFO     | app.services.foreclosure_scraper:scrape_new_cases:23 - Found 8 cases to process
+2025-04-24 20:25:12.933 | INFO     | app.services.foreclosure_scraper:scrape_new_cases:28 - Processing case ID: 1165132
+2025-04-24 20:25:12.933 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:182 - Starting to scrape details for case ID: 1165132
+2025-04-24 20:25:12.933 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:201 - Making request for case details to https://pro.mcohio.org/Helpers/caseInformation.aspx
+2025-04-24 20:25:15.263 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:204 - Successfully retrieved case details for case ID: 1165132
+2025-04-24 20:25:15.268 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:238 - Found filing date: 12/22/2010
+2025-04-24 20:25:15.269 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:244 - Found status: REOPENED
+2025-04-24 20:25:15.269 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:232 - Found filing type: MORTGAGE FORECLOSURE (MF)
+2025-04-24 20:25:15.269 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:260 - Found plaintiff: CITIMORTGAGE INC.
+2025-04-24 20:25:15.269 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found defendant: GENEVIEVE M. GRAY
+2025-04-24 20:25:15.269 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found defendant: JEFFREY A. GRAY
+2025-04-24 20:25:15.269 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found defendant: CITYWIDE BUILDING FINANCE
+2025-04-24 20:25:15.269 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:255 - Found parcel number: R72060070013
+2025-04-24 20:25:15.269 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:272 - Found case filing ID: 797654_C
+2025-04-24 20:25:15.269 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Successfully scraped all details for case ID: 1165132
+2025-04-24 20:25:15.270 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:275 - Case details summary:
+2025-04-24 20:25:15.270 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:276 - {
+  "case_id": "1165132",
+  "filing_type": "MORTGAGE FORECLOSURE (MF)",
+  "filing_date": "12/22/2010",
+  "status": "REOPENED",
+  "plaintiff": "CITIMORTGAGE INC.",
+  "defendants": [
+    "GENEVIEVE M. GRAY",
+    "JEFFREY A. GRAY",
+    "CITYWIDE BUILDING FINANCE"
+  ],
+  "parcel_number": "R72060070013",
+  "case_filing_id": "797654_C",
+  "county": "Montgomery"
+}
+2025-04-24 20:25:15.270 | INFO     | app.services.foreclosure_scraper:scrape_new_cases:28 - Processing case ID: 65660907
+2025-04-24 20:25:15.270 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:182 - Starting to scrape details for case ID: 65660907
+2025-04-24 20:25:15.271 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:201 - Making request for case details to https://pro.mcohio.org/Helpers/caseInformation.aspx
+2025-04-24 20:25:16.520 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:204 - Successfully retrieved case details for case ID: 65660907
+2025-04-24 20:25:16.528 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:238 - Found filing date: 2/11/2025
+2025-04-24 20:25:16.528 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:244 - Found status: OPEN
+2025-04-24 20:25:16.528 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:232 - Found filing type: MORTGAGE FORECLOSURE (MF)
+2025-04-24 20:25:16.528 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:260 - Found plaintiff: MYCUMORTGAGE LLC
+2025-04-24 20:25:16.528 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found defendant: SARAH HUNTER
+2025-04-24 20:25:16.529 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found defendant: JOHN DOE UNKNOWN
+2025-04-24 20:25:16.529 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found defendant: ANDREW HUNTER
+2025-04-24 20:25:16.529 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found defendant: JANE DOE UNKNOWN
+2025-04-24 20:25:16.529 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found defendant: MATTHEW HUNTER
+2025-04-24 20:25:16.529 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found defendant: JILL DOE UNKNOWN
+2025-04-24 20:25:16.529 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found defendant: STATE OF OHIO DEPARTMENT OF MEDICAID
+2025-04-24 20:25:16.529 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found defendant: MONTGOMERY COUNTY TREASURER
+2025-04-24 20:25:16.529 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:255 - Found parcel number: R72148090005
+2025-04-24 20:25:16.529 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:272 - Found case filing ID: 6422069_CI
+2025-04-24 20:25:16.529 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Successfully scraped all details for case ID: 65660907
+2025-04-24 20:25:16.529 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:275 - Case details summary:
+2025-04-24 20:25:16.530 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:276 - {
+  "case_id": "65660907",
+  "filing_type": "MORTGAGE FORECLOSURE (MF)",
+  "filing_date": "2/11/2025",
+  "status": "OPEN",
+  "plaintiff": "MYCUMORTGAGE LLC",
+  "defendants": [
+    "SARAH HUNTER",
+    "JOHN DOE UNKNOWN",
+    "ANDREW HUNTER",
+    "JANE DOE UNKNOWN",
+    "MATTHEW HUNTER",
+    "JILL DOE UNKNOWN",
+    "STATE OF OHIO DEPARTMENT OF MEDICAID",
+    "MONTGOMERY COUNTY TREASURER"
+  ],
+  "parcel_number": "R72148090005",
+  "case_filing_id": "6422069_CI",
+  "county": "Montgomery"
+}
+2025-04-24 20:25:16.532 | INFO     | app.services.foreclosure_scraper:scrape_new_cases:28 - Processing case ID: 73134885
+2025-04-24 20:25:16.532 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:182 - Starting to scrape details for case ID: 73134885
+2025-04-24 20:25:16.532 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:201 - Making request for case details to https://pro.mcohio.org/Helpers/caseInformation.aspx
+2025-04-24 20:25:17.780 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:204 - Successfully retrieved case details for case ID: 73134885
+2025-04-24 20:25:17.788 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:238 - Found filing date: 2/28/2025
+2025-04-24 20:25:17.788 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:244 - Found status: OPEN
+2025-04-24 20:25:17.788 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:232 - Found filing type: MORTGAGE FORECLOSURE (MF)
+2025-04-24 20:25:17.788 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:260 - Found plaintiff: NAR OHIO LLC
+2025-04-24 20:25:17.789 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found defendant: LATHEDIA L PEAKE
+2025-04-24 20:25:17.789 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found defendant: UNKNOWN PEAKE UNK SPOUSE IF ANY OF LATHEDIA
+2025-04-24 20:25:17.789 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found defendant: SHONTAE L MCINTYRE
+2025-04-24 20:25:17.789 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found defendant: UNKNOWN MCINTYRE UNK SPOUSE IF ANY OF SHONTAE
+2025-04-24 20:25:17.789 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found defendant: KELLI CHRISTINA MAYS ABOAGYE
+2025-04-24 20:25:17.789 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found defendant: MONTGOMERY COUNTY TREASURER
+2025-04-24 20:25:17.789 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:255 - Found parcel number: H33002010001
+2025-04-24 20:25:17.789 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:272 - Found case filing ID: 6438816_CI
+2025-04-24 20:25:17.789 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Successfully scraped all details for case ID: 73134885
+2025-04-24 20:25:17.789 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:275 - Case details summary:
+2025-04-24 20:25:17.789 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:276 - {
+  "case_id": "73134885",
+  "filing_type": "MORTGAGE FORECLOSURE (MF)",
+  "filing_date": "2/28/2025",
+  "status": "OPEN",
+  "plaintiff": "NAR OHIO LLC",
+  "defendants": [
+    "LATHEDIA L PEAKE",
+    "UNKNOWN PEAKE UNK SPOUSE IF ANY OF LATHEDIA",
+    "SHONTAE L MCINTYRE",
+    "UNKNOWN MCINTYRE UNK SPOUSE IF ANY OF SHONTAE",
+    "KELLI CHRISTINA MAYS ABOAGYE",
+    "MONTGOMERY COUNTY TREASURER"
+  ],
+  "parcel_number": "H33002010001",
+  "case_filing_id": "6438816_CI",
+  "county": "Montgomery"
+}
+2025-04-24 20:25:17.791 | INFO     | app.services.foreclosure_scraper:scrape_new_cases:28 - Processing case ID: 49020684
+2025-04-24 20:25:17.791 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:182 - Starting to scrape details for case ID: 49020684
+2025-04-24 20:25:17.791 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:201 - Making request for case details to https://pro.mcohio.org/Helpers/caseInformation.aspx
+2025-04-24 20:25:19.028 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:204 - Successfully retrieved case details for case ID: 49020684
+2025-04-24 20:25:19.043 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:238 - Found filing date: 3/5/2025
+2025-04-24 20:25:19.044 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:244 - Found status: OPEN
+2025-04-24 20:25:19.044 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:232 - Found filing type: MORTGAGE FORECLOSURE (MF)
+2025-04-24 20:25:19.044 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:260 - Found plaintiff: NAR OHIO LLC
+2025-04-24 20:25:19.044 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found defendant: UNKNOWN BYRD HEIRS OF WALTER
+2025-04-24 20:25:19.044 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found defendant: VICKIE L BYRD INDIVIDUAL
+2025-04-24 20:25:19.045 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found defendant: UNKNOWN BYRD UNKNOWN SPOUSE OF VICKIE
+2025-04-24 20:25:19.045 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found defendant: THE UNKNOWN HEIRS OF WALTER BYRD JR
+2025-04-24 20:25:19.045 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found defendant: UNKNOWN BYRD HEIRS ET AL OF WILLIE C.
+2025-04-24 20:25:19.045 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found defendant: WALTER CLARK III
+2025-04-24 20:25:19.045 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found defendant: UNKNOWN SPOUSE IF ANY OF WALTER CLARK III
+2025-04-24 20:25:19.045 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found defendant: EMMANUEL CLARK
+2025-04-24 20:25:19.045 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found defendant: UNKNOWN SPOUSE IF ANY OF EMMANUEL CLARK
+2025-04-24 20:25:19.045 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found defendant: STATE OF OHIO
+2025-04-24 20:25:19.046 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found defendant: MONTGOMERY COUNTY TREASURER
+2025-04-24 20:25:19.046 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:255 - Found parcel number: H33014070001
+2025-04-24 20:25:19.046 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:272 - Found case filing ID: 6443697_CI
+2025-04-24 20:25:19.046 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Successfully scraped all details for case ID: 49020684
+2025-04-24 20:25:19.046 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:275 - Case details summary:
+2025-04-24 20:25:19.046 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:276 - {
+  "case_id": "49020684",
+  "filing_type": "MORTGAGE FORECLOSURE (MF)",
+  "filing_date": "3/5/2025",
+  "status": "OPEN",
+  "plaintiff": "NAR OHIO LLC",
+  "defendants": [
+    "UNKNOWN BYRD HEIRS OF WALTER",
+    "VICKIE L BYRD INDIVIDUAL",
+    "UNKNOWN BYRD UNKNOWN SPOUSE OF VICKIE",
+    "THE UNKNOWN HEIRS OF WALTER BYRD JR",
+    "UNKNOWN BYRD HEIRS ET AL OF WILLIE C.",
+    "WALTER CLARK III",
+    "UNKNOWN SPOUSE IF ANY OF WALTER CLARK III",
+    "EMMANUEL CLARK",
+    "UNKNOWN SPOUSE IF ANY OF EMMANUEL CLARK",
+    "STATE OF OHIO",
+    "MONTGOMERY COUNTY TREASURER"
+  ],
+  "parcel_number": "H33014070001",
+  "case_filing_id": "6443697_CI",
+  "county": "Montgomery"
+}
+2025-04-24 20:25:19.048 | INFO     | app.services.foreclosure_scraper:scrape_new_cases:28 - Processing case ID: 68092252
+2025-04-24 20:25:19.048 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:182 - Starting to scrape details for case ID: 68092252
+2025-04-24 20:25:19.048 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:201 - Making request for case details to https://pro.mcohio.org/Helpers/caseInformation.aspx
+2025-04-24 20:25:20.297 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:204 - Successfully retrieved case details for case ID: 68092252
+2025-04-24 20:25:20.315 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:238 - Found filing date: 3/19/2025
+2025-04-24 20:25:20.315 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:244 - Found status: OPEN
+2025-04-24 20:25:20.315 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:232 - Found filing type: MORTGAGE FORECLOSURE (MF)
+2025-04-24 20:25:20.316 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:260 - Found plaintiff: NAR OHIO LLC
+2025-04-24 20:25:20.316 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found defendant: UNKNOWN HEIRS OF TIMOTHY L HASTY
+2025-04-24 20:25:20.316 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found defendant: LYNNE M GOOD INDIVIDUAL
+2025-04-24 20:25:20.316 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found defendant: UNKNOWN SPOUSE IF ANY OF LYNNE M GOOD
+2025-04-24 20:25:20.316 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found defendant: JEFFREY ALAN HASTY
+2025-04-24 20:25:20.317 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found defendant: UNKNOWN SPOUSE IF ANY OF JEFFREY ALAN HASTY
+2025-04-24 20:25:20.317 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found defendant: TIMOTHY BRIAN HASTY
+2025-04-24 20:25:20.317 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found defendant: UNKNOWN SPOUSE IF ANY OF TIMOTHY BRIAN HASTY
+2025-04-24 20:25:20.317 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found defendant: MONTGOMERY COUNTY TREASURER
+2025-04-24 20:25:20.317 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:255 - Found parcel number: R72165090064
+2025-04-24 20:25:20.317 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:272 - Found case filing ID: 6458041_CI
+2025-04-24 20:25:20.317 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Successfully scraped all details for case ID: 68092252
+2025-04-24 20:25:20.318 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:275 - Case details summary:
+2025-04-24 20:25:20.318 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:276 - {
+  "case_id": "68092252",
+  "filing_type": "MORTGAGE FORECLOSURE (MF)",
+  "filing_date": "3/19/2025",
+  "status": "OPEN",
+  "plaintiff": "NAR OHIO LLC",
+  "defendants": [
+    "UNKNOWN HEIRS OF TIMOTHY L HASTY",
+    "LYNNE M GOOD INDIVIDUAL",
+    "UNKNOWN SPOUSE IF ANY OF LYNNE M GOOD",
+    "JEFFREY ALAN HASTY",
+    "UNKNOWN SPOUSE IF ANY OF JEFFREY ALAN HASTY",
+    "TIMOTHY BRIAN HASTY",
+    "UNKNOWN SPOUSE IF ANY OF TIMOTHY BRIAN HASTY",
+    "MONTGOMERY COUNTY TREASURER"
+  ],
+  "parcel_number": "R72165090064",
+  "case_filing_id": "6458041_CI",
+  "county": "Montgomery"
+}
+2025-04-24 20:25:20.319 | INFO     | app.services.foreclosure_scraper:scrape_new_cases:28 - Processing case ID: 1122910
+2025-04-24 20:25:20.320 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:182 - Starting to scrape details for case ID: 1122910
+2025-04-24 20:25:20.320 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:201 - Making request for case details to https://pro.mcohio.org/Helpers/caseInformation.aspx
+2025-04-24 20:25:25.863 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:204 - Successfully retrieved case details for case ID: 1122910
+2025-04-24 20:25:25.874 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:238 - Found filing date: 3/24/2025
+2025-04-24 20:25:25.874 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:244 - Found status: OPEN
+2025-04-24 20:25:25.874 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:232 - Found filing type: MORTGAGE FORECLOSURE (MF)
+2025-04-24 20:25:25.875 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:260 - Found plaintiff: MYCUMORTGAGE LLC
+2025-04-24 20:25:25.875 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found defendant: NATHAN WRAY
+2025-04-24 20:25:25.875 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found defendant: JANE DOE UNKNOWN
+2025-04-24 20:25:25.875 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found defendant: JAMES WRAY
+2025-04-24 20:25:25.875 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found defendant: JUNE DOE UNKNOWN
+2025-04-24 20:25:25.875 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found defendant: MONTGOMERY COUNTY TREASURER
+2025-04-24 20:25:25.876 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found defendant: UNKNOWN WRAY HEIRS ET AL OF DARELENE
+2025-04-24 20:25:25.876 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:255 - Found parcel number: O67219040010
+2025-04-24 20:25:25.876 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:272 - Found case filing ID: 6461686_CI
+2025-04-24 20:25:25.876 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Successfully scraped all details for case ID: 1122910
+2025-04-24 20:25:25.876 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:275 - Case details summary:
+2025-04-24 20:25:25.876 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:276 - {
+  "case_id": "1122910",
+  "filing_type": "MORTGAGE FORECLOSURE (MF)",
+  "filing_date": "3/24/2025",
+  "status": "OPEN",
+  "plaintiff": "MYCUMORTGAGE LLC",
+  "defendants": [
+    "NATHAN WRAY",
+    "JANE DOE UNKNOWN",
+    "JAMES WRAY",
+    "JUNE DOE UNKNOWN",
+    "MONTGOMERY COUNTY TREASURER",
+    "UNKNOWN WRAY HEIRS ET AL OF DARELENE"
+  ],
+  "parcel_number": "O67219040010",
+  "case_filing_id": "6461686_CI",
+  "county": "Montgomery"
+}
+2025-04-24 20:25:25.878 | INFO     | app.services.foreclosure_scraper:scrape_new_cases:28 - Processing case ID: 94270601
+2025-04-24 20:25:25.878 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:182 - Starting to scrape details for case ID: 94270601
+2025-04-24 20:25:25.878 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:201 - Making request for case details to https://pro.mcohio.org/Helpers/caseInformation.aspx
+2025-04-24 20:25:27.123 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:204 - Successfully retrieved case details for case ID: 94270601
+2025-04-24 20:25:27.143 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:238 - Found filing date: 4/22/2025
+2025-04-24 20:25:27.143 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:244 - Found status: OPEN
+2025-04-24 20:25:27.143 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:232 - Found filing type: MORTGAGE FORECLOSURE (MF)
+2025-04-24 20:25:27.144 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:260 - Found plaintiff: MYCUMORTGAGE LLC
+2025-04-24 20:25:27.144 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found defendant: RENEE MYERS
+2025-04-24 20:25:27.144 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found defendant: PETE MYERS
+2025-04-24 20:25:27.144 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found defendant: MONICA SLEMMER
+2025-04-24 20:25:27.144 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found defendant: JOHN DOE UNKNOWN
+2025-04-24 20:25:27.145 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found defendant: JENNIFER SNOWDEN
+2025-04-24 20:25:27.145 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found defendant: JOE DOE UNKNOWN
+2025-04-24 20:25:27.145 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found defendant: UNK HEIRS OF COLLEEN K ANDEL UNKNOWN
+2025-04-24 20:25:27.145 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found defendant: STATE OF OHIO DEPARTMENT OF MEDICAID
+2025-04-24 20:25:27.145 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found defendant: MONTGOMERY COUNTY TREASURER
+2025-04-24 20:25:27.146 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:255 - Found parcel number: R72154070143
+2025-04-24 20:25:27.146 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:272 - Found case filing ID: 6492146_CI
+2025-04-24 20:25:27.146 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Successfully scraped all details for case ID: 94270601
+2025-04-24 20:25:27.146 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:275 - Case details summary:
+2025-04-24 20:25:27.146 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:276 - {
+  "case_id": "94270601",
+  "filing_type": "MORTGAGE FORECLOSURE (MF)",
+  "filing_date": "4/22/2025",
+  "status": "OPEN",
+  "plaintiff": "MYCUMORTGAGE LLC",
+  "defendants": [
+    "RENEE MYERS",
+    "PETE MYERS",
+    "MONICA SLEMMER",
+    "JOHN DOE UNKNOWN",
+    "JENNIFER SNOWDEN",
+    "JOE DOE UNKNOWN",
+    "UNK HEIRS OF COLLEEN K ANDEL UNKNOWN",
+    "STATE OF OHIO DEPARTMENT OF MEDICAID",
+    "MONTGOMERY COUNTY TREASURER"
+  ],
+  "parcel_number": "R72154070143",
+  "case_filing_id": "6492146_CI",
+  "county": "Montgomery"
+}
+2025-04-24 20:25:27.148 | INFO     | app.services.foreclosure_scraper:scrape_new_cases:28 - Processing case ID: 5006281
+2025-04-24 20:25:27.148 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:182 - Starting to scrape details for case ID: 5006281
+2025-04-24 20:25:27.148 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:201 - Making request for case details to https://pro.mcohio.org/Helpers/caseInformation.aspx
+2025-04-24 20:25:29.192 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:204 - Successfully retrieved case details for case ID: 5006281
+2025-04-24 20:25:29.207 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:238 - Found filing date: 6/26/2024
+2025-04-24 20:25:29.208 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:244 - Found status: OPEN
+2025-04-24 20:25:29.208 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:232 - Found filing type: MORTGAGE FORECLOSURE (MF)
+2025-04-24 20:25:29.208 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:260 - Found plaintiff: TOWD POINT MORTGAGE TRUST 2015-4
+2025-04-24 20:25:29.208 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found defendant: MICHAEL P TALKINGTON
+2025-04-24 20:25:29.208 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found defendant: UNKNOWN SPOUSE OF JUDITH A. TALKINGTON IF ANY NA
+2025-04-24 20:25:29.209 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found defendant: MICHAEL P TALKINGTON
+2025-04-24 20:25:29.209 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found defendant: UNKNOWN SPOUSE OF MICHAEL P. TALKINGTON IF ANY N
+2025-04-24 20:25:29.209 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found defendant: ROGER E TALKINGTON
+2025-04-24 20:25:29.209 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found defendant: UNKNOWN SPOUSE OF ROGER E. TALKINGTON IF ANY NAM
+2025-04-24 20:25:29.209 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found defendant: SCOTT TALKINGTON
+2025-04-24 20:25:29.209 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found defendant: KIMBERLY L TALKINGTON
+2025-04-24 20:25:29.209 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found defendant: STATE OF OHIO DEPARTMENT OF MEDICAID
+2025-04-24 20:25:29.209 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found defendant: MONTGOMERY COUNTY TREASURER
+2025-04-24 20:25:29.209 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:255 - Found parcel number: R72147050049
+2025-04-24 20:25:29.210 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:272 - Found case filing ID: 6215630_CI
+2025-04-24 20:25:29.210 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Successfully scraped all details for case ID: 5006281
+2025-04-24 20:25:29.210 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:275 - Case details summary:
+2025-04-24 20:25:29.210 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:276 - {
+  "case_id": "5006281",
+  "filing_type": "MORTGAGE FORECLOSURE (MF)",
+  "filing_date": "6/26/2024",
+  "status": "OPEN",
+  "plaintiff": "TOWD POINT MORTGAGE TRUST 2015-4",
+  "defendants": [
+    "MICHAEL P TALKINGTON",
+    "UNKNOWN SPOUSE OF JUDITH A. TALKINGTON IF ANY NA",
+    "MICHAEL P TALKINGTON",
+    "UNKNOWN SPOUSE OF MICHAEL P. TALKINGTON IF ANY N",
+    "ROGER E TALKINGTON",
+    "UNKNOWN SPOUSE OF ROGER E. TALKINGTON IF ANY NAM",
+    "SCOTT TALKINGTON",
+    "KIMBERLY L TALKINGTON",
+    "STATE OF OHIO DEPARTMENT OF MEDICAID",
+    "MONTGOMERY COUNTY TREASURER"
+  ],
+  "parcel_number": "R72147050049",
+  "case_filing_id": "6215630_CI",
+  "county": "Montgomery"
+}
+2025-04-24 20:25:29.212 | INFO     | app.utils.foreclosure_scraper:save_to_database:291 - Starting to save data to database
+2025-04-24 20:25:29.217 | INFO     | app.core.database:init_db:34 - Tables already exist, skipping creation
+2025-04-24 20:25:29.217 | INFO     | app.utils.foreclosure_scraper:save_to_database:295 - Ensuring foreclosure_cases table exists
+2025-04-24 20:25:29.220 | INFO     | app.utils.foreclosure_scraper:save_to_database:297 - Foreclosure_cases table exists or was created successfully
+2025-04-24 20:25:29.233 | INFO     | app.utils.foreclosure_scraper:save_to_database:316 - Successfully saved case 1165132 to database
+2025-04-24 20:25:29.235 | INFO     | app.utils.foreclosure_scraper:save_to_database:316 - Successfully saved case 65660907 to database
+2025-04-24 20:25:29.235 | INFO     | app.utils.foreclosure_scraper:save_to_database:316 - Successfully saved case 73134885 to database
+2025-04-24 20:25:29.236 | INFO     | app.utils.foreclosure_scraper:save_to_database:316 - Successfully saved case 49020684 to database
+2025-04-24 20:25:29.237 | INFO     | app.utils.foreclosure_scraper:save_to_database:316 - Successfully saved case 68092252 to database
+2025-04-24 20:25:29.237 | INFO     | app.utils.foreclosure_scraper:save_to_database:316 - Successfully saved case 1122910 to database
+2025-04-24 20:25:29.238 | INFO     | app.utils.foreclosure_scraper:save_to_database:316 - Successfully saved case 94270601 to database
+2025-04-24 20:25:29.239 | INFO     | app.utils.foreclosure_scraper:save_to_database:316 - Successfully saved case 5006281 to database
+2025-04-24 20:25:29.248 | INFO     | app.utils.foreclosure_scraper:save_to_database:322 - Successfully saved 8 new cases to database
+2025-04-24 20:25:29.249 | INFO     | app.services.foreclosure_scraper:scrape_new_cases:35 - Successfully saved 8 case details to PostgreSQL database
+2025-04-24 20:26:39.957 | INFO     | app.core.database:init_db:34 - Tables already exist, skipping creation
+2025-04-24 20:27:57.223 | INFO     | app.core.database:init_db:34 - Tables already exist, skipping creation
+2025-04-24 20:28:07.184 | INFO     | app.utils.recaptcha:get_recaptcha_token:11 - Starting reCAPTCHA token generation
+2025-04-24 20:28:07.185 | INFO     | app.utils.recaptcha:get_recaptcha_token:26 - Creating reCAPTCHA task
+2025-04-24 20:28:09.242 | INFO     | app.utils.recaptcha:get_recaptcha_token:30 - Created task with ID: 1930528409
+2025-04-24 20:28:09.242 | INFO     | app.utils.recaptcha:get_recaptcha_token:43 - Checking task result (attempt 1/30)
+2025-04-24 20:28:13.014 | INFO     | app.utils.recaptcha:get_recaptcha_token:43 - Checking task result (attempt 2/30)
+2025-04-24 20:28:16.720 | INFO     | app.utils.recaptcha:get_recaptcha_token:43 - Checking task result (attempt 3/30)
+2025-04-24 20:28:20.441 | INFO     | app.utils.recaptcha:get_recaptcha_token:43 - Checking task result (attempt 4/30)
+2025-04-24 20:28:22.216 | INFO     | app.utils.recaptcha:get_recaptcha_token:50 - Successfully obtained reCAPTCHA token
+2025-04-24 20:28:22.221 | INFO     | app.utils.foreclosure_scraper:scrape_case_ids:129 - Starting case ID scraping process...
+2025-04-24 20:28:22.222 | INFO     | app.utils.foreclosure_scraper:scrape_case_ids:132 - Getting search results
+2025-04-24 20:28:22.222 | INFO     | app.utils.foreclosure_scraper:get_search_results:19 - Starting search request process...
+2025-04-24 20:28:22.222 | INFO     | app.utils.foreclosure_scraper:get_search_results:20 - Received reCAPTCHA token: 03AFcWeA6Ro9enMXnICc...
+2025-04-24 20:28:22.222 | INFO     | app.utils.foreclosure_scraper:get_search_results:24 - Created new session
+2025-04-24 20:28:22.222 | INFO     | app.utils.foreclosure_scraper:get_search_results:27 - Fetching initial page from https://pro.mcohio.org/
+2025-04-24 20:28:23.673 | INFO     | app.utils.foreclosure_scraper:get_search_results:30 - Successfully retrieved initial page
+2025-04-24 20:28:23.674 | INFO     | app.utils.foreclosure_scraper:get_search_results:31 - Initial page status code: 200
+2025-04-24 20:28:23.674 | INFO     | app.utils.foreclosure_scraper:get_search_results:32 - Initial page content length: 20623 bytes
+2025-04-24 20:28:23.686 | INFO     | app.utils.foreclosure_scraper:get_search_results:39 - Preparing search request with reCAPTCHA token
+2025-04-24 20:28:23.687 | INFO     | app.utils.foreclosure_scraper:get_search_results:75 - Sending search request with the following parameters:
+2025-04-24 20:28:23.687 | INFO     | app.utils.foreclosure_scraper:get_search_results:76 - Case Type: MORTGAGE FORECLOSURE (MF)
+2025-04-24 20:28:23.687 | INFO     | app.utils.foreclosure_scraper:get_search_results:77 - Case Status: OPEN
+2025-04-24 20:28:23.687 | INFO     | app.utils.foreclosure_scraper:get_search_results:78 - Search URL: https://pro.mcohio.org/Helpers/generalSearchResults.aspx
+2025-04-24 20:28:23.687 | INFO     | app.utils.foreclosure_scraper:get_search_results:79 - Request headers: {
+  "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
+  "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
+  "Accept-Language": "en-US,en;q=0.5",
+  "Accept-Encoding": "gzip, deflate, br",
+  "Content-Type": "application/x-www-form-urlencoded",
+  "Origin": "https://pro.mcohio.org",
+  "Referer": "https://pro.mcohio.org/",
+  "Connection": "keep-alive",
+  "Upgrade-Insecure-Requests": "1",
+  "Sec-Fetch-Dest": "document",
+  "Sec-Fetch-Mode": "navigate",
+  "Sec-Fetch-Site": "same-origin",
+  "Sec-Fetch-User": "?1"
+}
+2025-04-24 20:28:23.687 | INFO     | app.utils.foreclosure_scraper:get_search_results:80 - Request data: {
+  "__VIEWSTATE": "",
+  "__EVENTVALIDATION": "",
+  "__EVENTTARGET": "",
+  "__EVENTARGUMENT": "",
+  "searchType": "general",
+  "captchaToken": "03AFcWeA6Ro9enMXnICcAX6WnFCvwRZMtifgRUQTOeUbhI4_SQmUO7Es4H13O4YZuPaWFHAguLDtqSU2pASRCVb8-UOqIpGT0I6-9jmxDjH5alZ12TA8uAuwFSTQGnXxjKzF-St_nsLoxWF5kP6dDAVVOMaYT2M_9V0s_wu1lPfQkoHj4kscagJBpeU-KJJM-bcDadfee7DM1uLp62mesETxlAQV9Ym8_JCJDZ64QI3Sql1bivMXI4KPrX29tLhmKBhWec-PWU3yQrB3wM3TsD3-_BMQ1S2Gc8FIgDClleTwHpOvmdQ5GrFHOKfrHXMigNJhj7J-9ur5ncAi_7IVfhePZ2utKH0yIFuaCZXiPgmFIc5i3tWyGkDHfTyS7FW3xtof0UOwJ2LNEiQhesbe5IXO5HIQlWkGGf6g2GnfO5ukOc3FpM2527B1QVc7zthpNYf3wy4glKmq1yfB0maqxj1eCNAfHRatpSQ5h-26972xyNg3Rk2-I9Wps62twFzWD88aOOrHo3iVbvj2mi6yYdsd-f_nyXdWShP3vTyFQ1ZteYt5krKsDk7ljfT__qAqBplpunXNIL6LJWhC5UWJd4eGZ2z_-u7rxHIrhyMPuekFxyg6aEyzsaiz4PB2FZxvcoRyYD8NQUIrXNAZ-Q8cN-u45veqjof7hlYoKhajsmOHbkNHK3jKDpemiAFDTieWnY3Jks9Bm_jQiN3LZ1bbqdANkRk1krtMKCJ7qGfrGlI1wviUkp8TWhdejx3lAQqhFOQ9XOZxdz6Cpcl0UWylaREOdJu_Od8QTrXbV4yvHp9gXxh8sao5eLvFDeAGasJRKgAZu2bb0rMk_YbuhrBpHy2032ROgZgc_WR8OtXGyBgb8WkacJFPJddDi3FagtUrvAM_fVibE0KozfSL83xRb-bYoK9jUIZqpze5CW98AokuWx_C8nV9IkNZ4",
+  "ctl00$ContentPlaceHolder1$txtCaseNumber": "",
+  "ctl00$ContentPlaceHolder1$txtPartyName": "",
+  "ctl00$ContentPlaceHolder1$txtAttorneyName": "",
+  "ctl00$ContentPlaceHolder1$txtAttorneyBarNumber": "",
+  "ctl00$ContentPlaceHolder1$txtCaseType": "MORTGAGE FORECLOSURE (MF)",
+  "ctl00$ContentPlaceHolder1$txtCaseStatus": "OPEN",
+  "ctl00$ContentPlaceHolder1$txtFilingDateFrom": "",
+  "ctl00$ContentPlaceHolder1$txtFilingDateTo": "",
+  "ctl00$ContentPlaceHolder1$btnSearch": "Search"
+}
+2025-04-24 20:28:23.688 | INFO     | app.utils.foreclosure_scraper:get_search_results:83 - Making POST request to https://pro.mcohio.org/Helpers/generalSearchResults.aspx
+2025-04-24 20:28:47.242 | INFO     | app.utils.foreclosure_scraper:get_search_results:87 - Search request completed with status code: 200
+2025-04-24 20:28:47.244 | INFO     | app.utils.foreclosure_scraper:get_search_results:88 - Response headers: {
+  "Cache-Control": "private",
+  "Content-Type": "text/html; charset=utf-8",
+  "Server": "Microsoft-IIS/10.0",
+  "X-AspNet-Version": "4.0.30319",
+  "X-Powered-By": "ASP.NET",
+  "Strict-Transport-Security": "max-age=31536000",
+  "Date": "Fri, 25 Apr 2025 00:28:45 GMT",
+  "Content-Length": "279129"
+}
+2025-04-24 20:28:47.245 | INFO     | app.utils.foreclosure_scraper:get_search_results:89 - Response content length: 279129 bytes
+2025-04-24 20:28:47.364 | INFO     | app.utils.foreclosure_scraper:get_search_results:100 - Successfully retrieved HTML table with search results
+2025-04-24 20:28:47.364 | INFO     | app.utils.foreclosure_scraper:get_search_results:102 - Found 3 rows in the results table
+2025-04-24 20:28:47.365 | INFO     | app.utils.foreclosure_scraper:get_search_results:105 - First row content: Search Parameters
+ Print Search Results
+2025-04-24 20:28:47.365 | INFO     | app.utils.foreclosure_scraper:scrape_case_ids:139 - Parsing HTML content for case IDs
+2025-04-24 20:28:47.457 | INFO     | app.utils.foreclosure_scraper:scrape_case_ids:144 - Found 966 total rows in the table
+2025-04-24 20:28:47.467 | INFO     | app.utils.foreclosure_scraper:scrape_case_ids:164 - Found foreclosure case ID: 1165132
+2025-04-24 20:28:47.467 | INFO     | app.utils.foreclosure_scraper:scrape_case_ids:165 - Case Status: REOPENED
+2025-04-24 20:28:47.472 | INFO     | app.utils.foreclosure_scraper:scrape_case_ids:164 - Found foreclosure case ID: 65660907
+2025-04-24 20:28:47.472 | INFO     | app.utils.foreclosure_scraper:scrape_case_ids:165 - Case Status: OPEN
+2025-04-24 20:28:47.472 | INFO     | app.utils.foreclosure_scraper:scrape_case_ids:164 - Found foreclosure case ID: 73134885
+2025-04-24 20:28:47.473 | INFO     | app.utils.foreclosure_scraper:scrape_case_ids:165 - Case Status: OPEN
+2025-04-24 20:28:47.473 | INFO     | app.utils.foreclosure_scraper:scrape_case_ids:164 - Found foreclosure case ID: 49020684
+2025-04-24 20:28:47.473 | INFO     | app.utils.foreclosure_scraper:scrape_case_ids:165 - Case Status: OPEN
+2025-04-24 20:28:47.473 | INFO     | app.utils.foreclosure_scraper:scrape_case_ids:164 - Found foreclosure case ID: 68092252
+2025-04-24 20:28:47.473 | INFO     | app.utils.foreclosure_scraper:scrape_case_ids:165 - Case Status: OPEN
+2025-04-24 20:28:47.473 | INFO     | app.utils.foreclosure_scraper:scrape_case_ids:164 - Found foreclosure case ID: 1122910
+2025-04-24 20:28:47.473 | INFO     | app.utils.foreclosure_scraper:scrape_case_ids:165 - Case Status: OPEN
+2025-04-24 20:28:47.473 | INFO     | app.utils.foreclosure_scraper:scrape_case_ids:164 - Found foreclosure case ID: 94270601
+2025-04-24 20:28:47.473 | INFO     | app.utils.foreclosure_scraper:scrape_case_ids:165 - Case Status: OPEN
+2025-04-24 20:28:47.480 | INFO     | app.utils.foreclosure_scraper:scrape_case_ids:164 - Found foreclosure case ID: 5006281
+2025-04-24 20:28:47.480 | INFO     | app.utils.foreclosure_scraper:scrape_case_ids:165 - Case Status: OPEN
+2025-04-24 20:28:47.499 | INFO     | app.utils.foreclosure_scraper:scrape_case_ids:169 - Scraping complete. Found 8 foreclosure case IDs
+2025-04-24 20:28:47.499 | INFO     | app.services.foreclosure_scraper:scrape_new_cases:23 - Found 8 cases to process
+2025-04-24 20:28:47.499 | INFO     | app.services.foreclosure_scraper:scrape_new_cases:28 - Processing case ID: 1165132
+2025-04-24 20:28:47.499 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:182 - Starting to scrape details for case ID: 1165132
+2025-04-24 20:28:47.499 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:201 - Making request for case details to https://pro.mcohio.org/Helpers/caseInformation.aspx
+2025-04-24 20:28:49.824 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:204 - Successfully retrieved case details for case ID: 1165132
+2025-04-24 20:28:49.831 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:239 - Found filing date: 12/22/2010
+2025-04-24 20:28:49.831 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:245 - Found status: REOPENED
+2025-04-24 20:28:49.831 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:233 - Found filing type: MORTGAGE FORECLOSURE (MF)
+2025-04-24 20:28:49.831 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found plaintiff: CITIMORTGAGE INC.
+2025-04-24 20:28:49.832 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: GENEVIEVE M. GRAY
+2025-04-24 20:28:49.832 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: JEFFREY A. GRAY
+2025-04-24 20:28:49.832 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: CITYWIDE BUILDING FINANCE
+2025-04-24 20:28:49.832 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:262 - Found parcel number: R72060070013
+2025-04-24 20:28:49.832 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:279 - Found case filing ID: 797654_C
+2025-04-24 20:28:49.832 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:281 - Successfully scraped all details for case ID: 1165132
+2025-04-24 20:28:49.832 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:282 - Case details summary:
+2025-04-24 20:28:49.832 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:283 - {
+  "case_id": "1165132",
+  "filing_type": "MORTGAGE FORECLOSURE (MF)",
+  "filing_date": "12/22/2010",
+  "status": "REOPENED",
+  "plaintiff": "CITIMORTGAGE INC.",
+  "defendants": [
+    "GENEVIEVE M. GRAY",
+    "JEFFREY A. GRAY",
+    "CITYWIDE BUILDING FINANCE"
+  ],
+  "parcel_number": "R72060070013",
+  "case_filing_id": "797654_C",
+  "county": "Montgomery",
+  "property_address": ""
+}
+2025-04-24 20:28:49.833 | INFO     | app.services.foreclosure_scraper:scrape_new_cases:28 - Processing case ID: 65660907
+2025-04-24 20:28:49.833 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:182 - Starting to scrape details for case ID: 65660907
+2025-04-24 20:28:49.834 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:201 - Making request for case details to https://pro.mcohio.org/Helpers/caseInformation.aspx
+2025-04-24 20:28:51.441 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:204 - Successfully retrieved case details for case ID: 65660907
+2025-04-24 20:28:51.454 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:239 - Found filing date: 2/11/2025
+2025-04-24 20:28:51.454 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:245 - Found status: OPEN
+2025-04-24 20:28:51.454 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:233 - Found filing type: MORTGAGE FORECLOSURE (MF)
+2025-04-24 20:28:51.455 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found plaintiff: MYCUMORTGAGE LLC
+2025-04-24 20:28:51.455 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: SARAH HUNTER
+2025-04-24 20:28:51.455 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: JOHN DOE UNKNOWN
+2025-04-24 20:28:51.455 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: ANDREW HUNTER
+2025-04-24 20:28:51.456 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: JANE DOE UNKNOWN
+2025-04-24 20:28:51.456 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: MATTHEW HUNTER
+2025-04-24 20:28:51.456 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: JILL DOE UNKNOWN
+2025-04-24 20:28:51.456 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: STATE OF OHIO DEPARTMENT OF MEDICAID
+2025-04-24 20:28:51.456 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: MONTGOMERY COUNTY TREASURER
+2025-04-24 20:28:51.456 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:262 - Found parcel number: R72148090005
+2025-04-24 20:28:51.456 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:279 - Found case filing ID: 6422069_CI
+2025-04-24 20:28:51.457 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:281 - Successfully scraped all details for case ID: 65660907
+2025-04-24 20:28:51.457 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:282 - Case details summary:
+2025-04-24 20:28:51.457 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:283 - {
+  "case_id": "65660907",
+  "filing_type": "MORTGAGE FORECLOSURE (MF)",
+  "filing_date": "2/11/2025",
+  "status": "OPEN",
+  "plaintiff": "MYCUMORTGAGE LLC",
+  "defendants": [
+    "SARAH HUNTER",
+    "JOHN DOE UNKNOWN",
+    "ANDREW HUNTER",
+    "JANE DOE UNKNOWN",
+    "MATTHEW HUNTER",
+    "JILL DOE UNKNOWN",
+    "STATE OF OHIO DEPARTMENT OF MEDICAID",
+    "MONTGOMERY COUNTY TREASURER"
+  ],
+  "parcel_number": "R72148090005",
+  "case_filing_id": "6422069_CI",
+  "county": "Montgomery",
+  "property_address": ""
+}
+2025-04-24 20:28:51.459 | INFO     | app.services.foreclosure_scraper:scrape_new_cases:28 - Processing case ID: 73134885
+2025-04-24 20:28:51.459 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:182 - Starting to scrape details for case ID: 73134885
+2025-04-24 20:28:51.459 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:201 - Making request for case details to https://pro.mcohio.org/Helpers/caseInformation.aspx
+2025-04-24 20:28:52.681 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:204 - Successfully retrieved case details for case ID: 73134885
+2025-04-24 20:28:52.693 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:239 - Found filing date: 2/28/2025
+2025-04-24 20:28:52.693 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:245 - Found status: OPEN
+2025-04-24 20:28:52.693 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:233 - Found filing type: MORTGAGE FORECLOSURE (MF)
+2025-04-24 20:28:52.693 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found plaintiff: NAR OHIO LLC
+2025-04-24 20:28:52.693 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: LATHEDIA L PEAKE
+2025-04-24 20:28:52.693 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: UNKNOWN PEAKE UNK SPOUSE IF ANY OF LATHEDIA
+2025-04-24 20:28:52.693 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: SHONTAE L MCINTYRE
+2025-04-24 20:28:52.693 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: UNKNOWN MCINTYRE UNK SPOUSE IF ANY OF SHONTAE
+2025-04-24 20:28:52.694 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: KELLI CHRISTINA MAYS ABOAGYE
+2025-04-24 20:28:52.694 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: MONTGOMERY COUNTY TREASURER
+2025-04-24 20:28:52.694 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:262 - Found parcel number: H33002010001
+2025-04-24 20:28:52.694 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:279 - Found case filing ID: 6438816_CI
+2025-04-24 20:28:52.694 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:281 - Successfully scraped all details for case ID: 73134885
+2025-04-24 20:28:52.694 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:282 - Case details summary:
+2025-04-24 20:28:52.694 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:283 - {
+  "case_id": "73134885",
+  "filing_type": "MORTGAGE FORECLOSURE (MF)",
+  "filing_date": "2/28/2025",
+  "status": "OPEN",
+  "plaintiff": "NAR OHIO LLC",
+  "defendants": [
+    "LATHEDIA L PEAKE",
+    "UNKNOWN PEAKE UNK SPOUSE IF ANY OF LATHEDIA",
+    "SHONTAE L MCINTYRE",
+    "UNKNOWN MCINTYRE UNK SPOUSE IF ANY OF SHONTAE",
+    "KELLI CHRISTINA MAYS ABOAGYE",
+    "MONTGOMERY COUNTY TREASURER"
+  ],
+  "parcel_number": "H33002010001",
+  "case_filing_id": "6438816_CI",
+  "county": "Montgomery",
+  "property_address": ""
+}
+2025-04-24 20:28:52.695 | INFO     | app.services.foreclosure_scraper:scrape_new_cases:28 - Processing case ID: 49020684
+2025-04-24 20:28:52.695 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:182 - Starting to scrape details for case ID: 49020684
+2025-04-24 20:28:52.695 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:201 - Making request for case details to https://pro.mcohio.org/Helpers/caseInformation.aspx
+2025-04-24 20:28:53.917 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:204 - Successfully retrieved case details for case ID: 49020684
+2025-04-24 20:28:53.954 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:239 - Found filing date: 3/5/2025
+2025-04-24 20:28:53.954 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:245 - Found status: OPEN
+2025-04-24 20:28:53.954 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:233 - Found filing type: MORTGAGE FORECLOSURE (MF)
+2025-04-24 20:28:53.955 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found plaintiff: NAR OHIO LLC
+2025-04-24 20:28:53.955 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: UNKNOWN BYRD HEIRS OF WALTER
+2025-04-24 20:28:53.955 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: VICKIE L BYRD INDIVIDUAL
+2025-04-24 20:28:53.955 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: UNKNOWN BYRD UNKNOWN SPOUSE OF VICKIE
+2025-04-24 20:28:53.955 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: THE UNKNOWN HEIRS OF WALTER BYRD JR
+2025-04-24 20:28:53.955 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: UNKNOWN BYRD HEIRS ET AL OF WILLIE C.
+2025-04-24 20:28:53.955 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: WALTER CLARK III
+2025-04-24 20:28:53.955 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: UNKNOWN SPOUSE IF ANY OF WALTER CLARK III
+2025-04-24 20:28:53.955 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: EMMANUEL CLARK
+2025-04-24 20:28:53.955 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: UNKNOWN SPOUSE IF ANY OF EMMANUEL CLARK
+2025-04-24 20:28:53.956 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: STATE OF OHIO
+2025-04-24 20:28:53.956 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: MONTGOMERY COUNTY TREASURER
+2025-04-24 20:28:53.956 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:262 - Found parcel number: H33014070001
+2025-04-24 20:28:53.956 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:279 - Found case filing ID: 6443697_CI
+2025-04-24 20:28:53.956 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:281 - Successfully scraped all details for case ID: 49020684
+2025-04-24 20:28:53.956 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:282 - Case details summary:
+2025-04-24 20:28:53.956 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:283 - {
+  "case_id": "49020684",
+  "filing_type": "MORTGAGE FORECLOSURE (MF)",
+  "filing_date": "3/5/2025",
+  "status": "OPEN",
+  "plaintiff": "NAR OHIO LLC",
+  "defendants": [
+    "UNKNOWN BYRD HEIRS OF WALTER",
+    "VICKIE L BYRD INDIVIDUAL",
+    "UNKNOWN BYRD UNKNOWN SPOUSE OF VICKIE",
+    "THE UNKNOWN HEIRS OF WALTER BYRD JR",
+    "UNKNOWN BYRD HEIRS ET AL OF WILLIE C.",
+    "WALTER CLARK III",
+    "UNKNOWN SPOUSE IF ANY OF WALTER CLARK III",
+    "EMMANUEL CLARK",
+    "UNKNOWN SPOUSE IF ANY OF EMMANUEL CLARK",
+    "STATE OF OHIO",
+    "MONTGOMERY COUNTY TREASURER"
+  ],
+  "parcel_number": "H33014070001",
+  "case_filing_id": "6443697_CI",
+  "county": "Montgomery",
+  "property_address": ""
+}
+2025-04-24 20:28:53.957 | INFO     | app.services.foreclosure_scraper:scrape_new_cases:28 - Processing case ID: 68092252
+2025-04-24 20:28:53.957 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:182 - Starting to scrape details for case ID: 68092252
+2025-04-24 20:28:53.957 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:201 - Making request for case details to https://pro.mcohio.org/Helpers/caseInformation.aspx
+2025-04-24 20:28:55.227 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:204 - Successfully retrieved case details for case ID: 68092252
+2025-04-24 20:28:55.235 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:239 - Found filing date: 3/19/2025
+2025-04-24 20:28:55.236 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:245 - Found status: OPEN
+2025-04-24 20:28:55.236 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:233 - Found filing type: MORTGAGE FORECLOSURE (MF)
+2025-04-24 20:28:55.236 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found plaintiff: NAR OHIO LLC
+2025-04-24 20:28:55.236 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: UNKNOWN HEIRS OF TIMOTHY L HASTY
+2025-04-24 20:28:55.236 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: LYNNE M GOOD INDIVIDUAL
+2025-04-24 20:28:55.236 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: UNKNOWN SPOUSE IF ANY OF LYNNE M GOOD
+2025-04-24 20:28:55.236 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: JEFFREY ALAN HASTY
+2025-04-24 20:28:55.236 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: UNKNOWN SPOUSE IF ANY OF JEFFREY ALAN HASTY
+2025-04-24 20:28:55.236 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: TIMOTHY BRIAN HASTY
+2025-04-24 20:28:55.237 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: UNKNOWN SPOUSE IF ANY OF TIMOTHY BRIAN HASTY
+2025-04-24 20:28:55.237 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: MONTGOMERY COUNTY TREASURER
+2025-04-24 20:28:55.237 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:262 - Found parcel number: R72165090064
+2025-04-24 20:28:55.237 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:279 - Found case filing ID: 6458041_CI
+2025-04-24 20:28:55.237 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:281 - Successfully scraped all details for case ID: 68092252
+2025-04-24 20:28:55.237 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:282 - Case details summary:
+2025-04-24 20:28:55.237 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:283 - {
+  "case_id": "68092252",
+  "filing_type": "MORTGAGE FORECLOSURE (MF)",
+  "filing_date": "3/19/2025",
+  "status": "OPEN",
+  "plaintiff": "NAR OHIO LLC",
+  "defendants": [
+    "UNKNOWN HEIRS OF TIMOTHY L HASTY",
+    "LYNNE M GOOD INDIVIDUAL",
+    "UNKNOWN SPOUSE IF ANY OF LYNNE M GOOD",
+    "JEFFREY ALAN HASTY",
+    "UNKNOWN SPOUSE IF ANY OF JEFFREY ALAN HASTY",
+    "TIMOTHY BRIAN HASTY",
+    "UNKNOWN SPOUSE IF ANY OF TIMOTHY BRIAN HASTY",
+    "MONTGOMERY COUNTY TREASURER"
+  ],
+  "parcel_number": "R72165090064",
+  "case_filing_id": "6458041_CI",
+  "county": "Montgomery",
+  "property_address": ""
+}
+2025-04-24 20:28:55.239 | INFO     | app.services.foreclosure_scraper:scrape_new_cases:28 - Processing case ID: 1122910
+2025-04-24 20:28:55.239 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:182 - Starting to scrape details for case ID: 1122910
+2025-04-24 20:28:55.239 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:201 - Making request for case details to https://pro.mcohio.org/Helpers/caseInformation.aspx
+2025-04-24 20:28:56.906 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:204 - Successfully retrieved case details for case ID: 1122910
+2025-04-24 20:28:56.923 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:239 - Found filing date: 3/24/2025
+2025-04-24 20:28:56.923 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:245 - Found status: OPEN
+2025-04-24 20:28:56.923 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:233 - Found filing type: MORTGAGE FORECLOSURE (MF)
+2025-04-24 20:28:56.924 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found plaintiff: MYCUMORTGAGE LLC
+2025-04-24 20:28:56.924 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: NATHAN WRAY
+2025-04-24 20:28:56.924 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: JANE DOE UNKNOWN
+2025-04-24 20:28:56.924 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: JAMES WRAY
+2025-04-24 20:28:56.924 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: JUNE DOE UNKNOWN
+2025-04-24 20:28:56.925 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: MONTGOMERY COUNTY TREASURER
+2025-04-24 20:28:56.925 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: UNKNOWN WRAY HEIRS ET AL OF DARELENE
+2025-04-24 20:28:56.925 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:262 - Found parcel number: O67219040010
+2025-04-24 20:28:56.925 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:279 - Found case filing ID: 6461686_CI
+2025-04-24 20:28:56.925 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:281 - Successfully scraped all details for case ID: 1122910
+2025-04-24 20:28:56.925 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:282 - Case details summary:
+2025-04-24 20:28:56.926 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:283 - {
+  "case_id": "1122910",
+  "filing_type": "MORTGAGE FORECLOSURE (MF)",
+  "filing_date": "3/24/2025",
+  "status": "OPEN",
+  "plaintiff": "MYCUMORTGAGE LLC",
+  "defendants": [
+    "NATHAN WRAY",
+    "JANE DOE UNKNOWN",
+    "JAMES WRAY",
+    "JUNE DOE UNKNOWN",
+    "MONTGOMERY COUNTY TREASURER",
+    "UNKNOWN WRAY HEIRS ET AL OF DARELENE"
+  ],
+  "parcel_number": "O67219040010",
+  "case_filing_id": "6461686_CI",
+  "county": "Montgomery",
+  "property_address": ""
+}
+2025-04-24 20:28:56.927 | INFO     | app.services.foreclosure_scraper:scrape_new_cases:28 - Processing case ID: 94270601
+2025-04-24 20:28:56.927 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:182 - Starting to scrape details for case ID: 94270601
+2025-04-24 20:28:56.927 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:201 - Making request for case details to https://pro.mcohio.org/Helpers/caseInformation.aspx
+2025-04-24 20:28:58.162 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:204 - Successfully retrieved case details for case ID: 94270601
+2025-04-24 20:28:58.173 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:239 - Found filing date: 4/22/2025
+2025-04-24 20:28:58.173 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:245 - Found status: OPEN
+2025-04-24 20:28:58.173 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:233 - Found filing type: MORTGAGE FORECLOSURE (MF)
+2025-04-24 20:28:58.174 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found plaintiff: MYCUMORTGAGE LLC
+2025-04-24 20:28:58.174 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: RENEE MYERS
+2025-04-24 20:28:58.174 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: PETE MYERS
+2025-04-24 20:28:58.174 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: MONICA SLEMMER
+2025-04-24 20:28:58.174 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: JOHN DOE UNKNOWN
+2025-04-24 20:28:58.174 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: JENNIFER SNOWDEN
+2025-04-24 20:28:58.174 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: JOE DOE UNKNOWN
+2025-04-24 20:28:58.174 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: UNK HEIRS OF COLLEEN K ANDEL UNKNOWN
+2025-04-24 20:28:58.175 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: STATE OF OHIO DEPARTMENT OF MEDICAID
+2025-04-24 20:28:58.175 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: MONTGOMERY COUNTY TREASURER
+2025-04-24 20:28:58.175 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:262 - Found parcel number: R72154070143
+2025-04-24 20:28:58.175 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:279 - Found case filing ID: 6492146_CI
+2025-04-24 20:28:58.175 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:281 - Successfully scraped all details for case ID: 94270601
+2025-04-24 20:28:58.175 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:282 - Case details summary:
+2025-04-24 20:28:58.175 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:283 - {
+  "case_id": "94270601",
+  "filing_type": "MORTGAGE FORECLOSURE (MF)",
+  "filing_date": "4/22/2025",
+  "status": "OPEN",
+  "plaintiff": "MYCUMORTGAGE LLC",
+  "defendants": [
+    "RENEE MYERS",
+    "PETE MYERS",
+    "MONICA SLEMMER",
+    "JOHN DOE UNKNOWN",
+    "JENNIFER SNOWDEN",
+    "JOE DOE UNKNOWN",
+    "UNK HEIRS OF COLLEEN K ANDEL UNKNOWN",
+    "STATE OF OHIO DEPARTMENT OF MEDICAID",
+    "MONTGOMERY COUNTY TREASURER"
+  ],
+  "parcel_number": "R72154070143",
+  "case_filing_id": "6492146_CI",
+  "county": "Montgomery",
+  "property_address": ""
+}
+2025-04-24 20:28:58.176 | INFO     | app.services.foreclosure_scraper:scrape_new_cases:28 - Processing case ID: 5006281
+2025-04-24 20:28:58.176 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:182 - Starting to scrape details for case ID: 5006281
+2025-04-24 20:28:58.177 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:201 - Making request for case details to https://pro.mcohio.org/Helpers/caseInformation.aspx
+2025-04-24 20:28:59.794 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:204 - Successfully retrieved case details for case ID: 5006281
+2025-04-24 20:28:59.813 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:239 - Found filing date: 6/26/2024
+2025-04-24 20:28:59.814 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:245 - Found status: OPEN
+2025-04-24 20:28:59.814 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:233 - Found filing type: MORTGAGE FORECLOSURE (MF)
+2025-04-24 20:28:59.814 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found plaintiff: TOWD POINT MORTGAGE TRUST 2015-4
+2025-04-24 20:28:59.814 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: MICHAEL P TALKINGTON
+2025-04-24 20:28:59.814 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: UNKNOWN SPOUSE OF JUDITH A. TALKINGTON IF ANY NA
+2025-04-24 20:28:59.815 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: MICHAEL P TALKINGTON
+2025-04-24 20:28:59.815 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: UNKNOWN SPOUSE OF MICHAEL P. TALKINGTON IF ANY N
+2025-04-24 20:28:59.815 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: ROGER E TALKINGTON
+2025-04-24 20:28:59.815 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: UNKNOWN SPOUSE OF ROGER E. TALKINGTON IF ANY NAM
+2025-04-24 20:28:59.815 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: SCOTT TALKINGTON
+2025-04-24 20:28:59.815 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: KIMBERLY L TALKINGTON
+2025-04-24 20:28:59.815 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: STATE OF OHIO DEPARTMENT OF MEDICAID
+2025-04-24 20:28:59.816 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: MONTGOMERY COUNTY TREASURER
+2025-04-24 20:28:59.816 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:262 - Found parcel number: R72147050049
+2025-04-24 20:28:59.816 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:279 - Found case filing ID: 6215630_CI
+2025-04-24 20:28:59.816 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:281 - Successfully scraped all details for case ID: 5006281
+2025-04-24 20:28:59.816 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:282 - Case details summary:
+2025-04-24 20:28:59.817 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:283 - {
+  "case_id": "5006281",
+  "filing_type": "MORTGAGE FORECLOSURE (MF)",
+  "filing_date": "6/26/2024",
+  "status": "OPEN",
+  "plaintiff": "TOWD POINT MORTGAGE TRUST 2015-4",
+  "defendants": [
+    "MICHAEL P TALKINGTON",
+    "UNKNOWN SPOUSE OF JUDITH A. TALKINGTON IF ANY NA",
+    "MICHAEL P TALKINGTON",
+    "UNKNOWN SPOUSE OF MICHAEL P. TALKINGTON IF ANY N",
+    "ROGER E TALKINGTON",
+    "UNKNOWN SPOUSE OF ROGER E. TALKINGTON IF ANY NAM",
+    "SCOTT TALKINGTON",
+    "KIMBERLY L TALKINGTON",
+    "STATE OF OHIO DEPARTMENT OF MEDICAID",
+    "MONTGOMERY COUNTY TREASURER"
+  ],
+  "parcel_number": "R72147050049",
+  "case_filing_id": "6215630_CI",
+  "county": "Montgomery",
+  "property_address": ""
+}
+2025-04-24 20:28:59.818 | INFO     | app.utils.foreclosure_scraper:save_to_database:298 - Starting to save data to database
+2025-04-24 20:28:59.823 | INFO     | app.core.database:init_db:34 - Tables already exist, skipping creation
+2025-04-24 20:28:59.824 | INFO     | app.utils.foreclosure_scraper:save_to_database:302 - Ensuring foreclosure_cases table exists
+2025-04-24 20:28:59.827 | INFO     | app.utils.foreclosure_scraper:save_to_database:304 - Foreclosure_cases table exists or was created successfully
+2025-04-24 20:28:59.838 | INFO     | app.utils.foreclosure_scraper:save_to_database:325 - Case ID 1165132 already exists in database, skipping...
+2025-04-24 20:28:59.839 | INFO     | app.utils.foreclosure_scraper:save_to_database:325 - Case ID 65660907 already exists in database, skipping...
+2025-04-24 20:28:59.840 | INFO     | app.utils.foreclosure_scraper:save_to_database:325 - Case ID 73134885 already exists in database, skipping...
+2025-04-24 20:28:59.840 | INFO     | app.utils.foreclosure_scraper:save_to_database:325 - Case ID 49020684 already exists in database, skipping...
+2025-04-24 20:28:59.841 | INFO     | app.utils.foreclosure_scraper:save_to_database:325 - Case ID 68092252 already exists in database, skipping...
+2025-04-24 20:28:59.842 | INFO     | app.utils.foreclosure_scraper:save_to_database:325 - Case ID 1122910 already exists in database, skipping...
+2025-04-24 20:28:59.842 | INFO     | app.utils.foreclosure_scraper:save_to_database:325 - Case ID 94270601 already exists in database, skipping...
+2025-04-24 20:28:59.843 | INFO     | app.utils.foreclosure_scraper:save_to_database:325 - Case ID 5006281 already exists in database, skipping...
+2025-04-24 20:28:59.844 | INFO     | app.utils.foreclosure_scraper:save_to_database:329 - Successfully saved 0 new cases to database
+2025-04-24 20:28:59.844 | INFO     | app.services.foreclosure_scraper:scrape_new_cases:35 - Successfully saved 8 case details to PostgreSQL database
+2025-04-24 21:01:37.423 | INFO     | app.core.database:init_db:34 - Tables already exist, skipping creation
+2025-04-24 21:01:37.574 | INFO     | app.utils.recaptcha:get_recaptcha_token:11 - Starting reCAPTCHA token generation
+2025-04-24 21:01:37.574 | INFO     | app.utils.recaptcha:get_recaptcha_token:26 - Creating reCAPTCHA task
+2025-04-24 21:01:39.560 | INFO     | app.utils.recaptcha:get_recaptcha_token:30 - Created task with ID: 867995251
+2025-04-24 21:01:39.561 | INFO     | app.utils.recaptcha:get_recaptcha_token:43 - Checking task result (attempt 1/30)
+2025-04-24 21:01:43.307 | INFO     | app.utils.recaptcha:get_recaptcha_token:43 - Checking task result (attempt 2/30)
+2025-04-24 21:01:47.020 | INFO     | app.utils.recaptcha:get_recaptcha_token:43 - Checking task result (attempt 3/30)
+2025-04-24 21:01:50.707 | INFO     | app.utils.recaptcha:get_recaptcha_token:43 - Checking task result (attempt 4/30)
+2025-04-24 21:01:52.405 | INFO     | app.utils.recaptcha:get_recaptcha_token:50 - Successfully obtained reCAPTCHA token
+2025-04-24 21:01:52.406 | INFO     | app.utils.foreclosure_scraper:scrape_case_ids:129 - Starting case ID scraping process...
+2025-04-24 21:01:52.406 | INFO     | app.utils.foreclosure_scraper:scrape_case_ids:132 - Getting search results
+2025-04-24 21:01:52.406 | INFO     | app.utils.foreclosure_scraper:get_search_results:19 - Starting search request process...
+2025-04-24 21:01:52.406 | INFO     | app.utils.foreclosure_scraper:get_search_results:20 - Received reCAPTCHA token: 03AFcWeA4-AL4cU1Caqr...
+2025-04-24 21:01:52.407 | INFO     | app.utils.foreclosure_scraper:get_search_results:24 - Created new session
+2025-04-24 21:01:52.407 | INFO     | app.utils.foreclosure_scraper:get_search_results:27 - Fetching initial page from https://pro.mcohio.org/
+2025-04-24 21:01:53.836 | INFO     | app.utils.foreclosure_scraper:get_search_results:30 - Successfully retrieved initial page
+2025-04-24 21:01:53.836 | INFO     | app.utils.foreclosure_scraper:get_search_results:31 - Initial page status code: 200
+2025-04-24 21:01:53.837 | INFO     | app.utils.foreclosure_scraper:get_search_results:32 - Initial page content length: 20623 bytes
+2025-04-24 21:01:53.849 | INFO     | app.utils.foreclosure_scraper:get_search_results:39 - Preparing search request with reCAPTCHA token
+2025-04-24 21:01:53.850 | INFO     | app.utils.foreclosure_scraper:get_search_results:75 - Sending search request with the following parameters:
+2025-04-24 21:01:53.850 | INFO     | app.utils.foreclosure_scraper:get_search_results:76 - Case Type: MORTGAGE FORECLOSURE (MF)
+2025-04-24 21:01:53.850 | INFO     | app.utils.foreclosure_scraper:get_search_results:77 - Case Status: OPEN
+2025-04-24 21:01:53.850 | INFO     | app.utils.foreclosure_scraper:get_search_results:78 - Search URL: https://pro.mcohio.org/Helpers/generalSearchResults.aspx
+2025-04-24 21:01:53.850 | INFO     | app.utils.foreclosure_scraper:get_search_results:79 - Request headers: {
+  "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
+  "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
+  "Accept-Language": "en-US,en;q=0.5",
+  "Accept-Encoding": "gzip, deflate, br",
+  "Content-Type": "application/x-www-form-urlencoded",
+  "Origin": "https://pro.mcohio.org",
+  "Referer": "https://pro.mcohio.org/",
+  "Connection": "keep-alive",
+  "Upgrade-Insecure-Requests": "1",
+  "Sec-Fetch-Dest": "document",
+  "Sec-Fetch-Mode": "navigate",
+  "Sec-Fetch-Site": "same-origin",
+  "Sec-Fetch-User": "?1"
+}
+2025-04-24 21:01:53.850 | INFO     | app.utils.foreclosure_scraper:get_search_results:80 - Request data: {
+  "__VIEWSTATE": "",
+  "__EVENTVALIDATION": "",
+  "__EVENTTARGET": "",
+  "__EVENTARGUMENT": "",
+  "searchType": "general",
+  "captchaToken": "03AFcWeA4-AL4cU1Caqrouh77bCJCgWx_T3XkxUOe4uOI1O6OeUX4d3LP0fm6w3J-ibT9ecPOjpOwSt2DD_jv1x4wWeqdpbGetZz_vBHKcEd9K9BgoxFxWwVM7Bb2IshtlsiRzNuS0-pmTFnsU_sNN1mWlySH5WYo5ZuF1eIEf3ZHmBu4FrQelX3uJNK3z00vbduf8HEUtyQn7i3z1g3TbshEVMxXK14OMA7jLJWFz79paQW8wTTWu_WErMIf01h5gnnu9Cdhj9ckv4l2HFrtjz4-f8x6NAVRv34j6FfI20WkUEroXhm36JrUHdISX9icGHRXeM_04iTbNIXz1SqfoCHm6WjtRWI7kCYH8m-8FZXQTao0jZzXwGX6qITfzqw8YQdhxP-wzUZDCusUpSEZICAkDQOCPmexBGM3QgI27SpPXme5impr6FddHUlFB8_6o2bNZl-4oZv5o6_gPdSA17_zs9-ED-NW7mWDU1pTVxfLM4xMauQa-1tAocEu7Jonjrn24KmXRhVS65mfu_14VuqQ3FfLrMcye3eyiyDksX_wPsAiaI4LFKmCy2NuzE7H07OuMdmLNb7HHKRBDr0rBc-3YGPuJeHP7V8DKhBIHJVxT1VCLIcX-eY5CJJhQsQGA7pWhfTyuBUbVGFNWtKpXxLFRyqQKes1m5Fgy8iKHCz-ChDZpCniLsICMuG5VrzTlzt_BZTFFDSy0fu9RC5nQhlzOVW5vDN4pocNTyU4h8rlyJqFxjx0068gSKiDai-zXRxK9lXeyc6wrIN54rbTABdKIdBkIQN_X2NmqacaT1UicYYHopG_21y4l5K5HtGM8Kf2AOOB1zgjhtq_aaBp8khM4NwINgZGHNThBqMfYsHdZjaK395j5XQHghAvsiUs3g34Eh6xi5d1uhVyZjbLidjulju6ljaY5FhHLQHx1dKK6W2rwaI32EGA",
+  "ctl00$ContentPlaceHolder1$txtCaseNumber": "",
+  "ctl00$ContentPlaceHolder1$txtPartyName": "",
+  "ctl00$ContentPlaceHolder1$txtAttorneyName": "",
+  "ctl00$ContentPlaceHolder1$txtAttorneyBarNumber": "",
+  "ctl00$ContentPlaceHolder1$txtCaseType": "MORTGAGE FORECLOSURE (MF)",
+  "ctl00$ContentPlaceHolder1$txtCaseStatus": "OPEN",
+  "ctl00$ContentPlaceHolder1$txtFilingDateFrom": "",
+  "ctl00$ContentPlaceHolder1$txtFilingDateTo": "",
+  "ctl00$ContentPlaceHolder1$btnSearch": "Search"
+}
+2025-04-24 21:01:53.851 | INFO     | app.utils.foreclosure_scraper:get_search_results:83 - Making POST request to https://pro.mcohio.org/Helpers/generalSearchResults.aspx
+2025-04-24 21:02:21.508 | INFO     | app.utils.foreclosure_scraper:get_search_results:87 - Search request completed with status code: 200
+2025-04-24 21:02:21.510 | INFO     | app.utils.foreclosure_scraper:get_search_results:88 - Response headers: {
+  "Cache-Control": "private",
+  "Content-Type": "text/html; charset=utf-8",
+  "Server": "Microsoft-IIS/10.0",
+  "X-AspNet-Version": "4.0.30319",
+  "X-Powered-By": "ASP.NET",
+  "Strict-Transport-Security": "max-age=31536000",
+  "Date": "Fri, 25 Apr 2025 01:02:20 GMT",
+  "Content-Length": "279129"
+}
+2025-04-24 21:02:21.511 | INFO     | app.utils.foreclosure_scraper:get_search_results:89 - Response content length: 279129 bytes
+2025-04-24 21:02:21.635 | INFO     | app.utils.foreclosure_scraper:get_search_results:100 - Successfully retrieved HTML table with search results
+2025-04-24 21:02:21.636 | INFO     | app.utils.foreclosure_scraper:get_search_results:102 - Found 3 rows in the results table
+2025-04-24 21:02:21.636 | INFO     | app.utils.foreclosure_scraper:get_search_results:105 - First row content: Search Parameters
+ Print Search Results
+2025-04-24 21:02:21.637 | INFO     | app.utils.foreclosure_scraper:scrape_case_ids:139 - Parsing HTML content for case IDs
+2025-04-24 21:02:21.731 | INFO     | app.utils.foreclosure_scraper:scrape_case_ids:144 - Found 966 total rows in the table
+2025-04-24 21:02:21.742 | INFO     | app.utils.foreclosure_scraper:scrape_case_ids:164 - Found foreclosure case ID: 1165132
+2025-04-24 21:02:21.742 | INFO     | app.utils.foreclosure_scraper:scrape_case_ids:165 - Case Status: REOPENED
+2025-04-24 21:02:21.747 | INFO     | app.utils.foreclosure_scraper:scrape_case_ids:164 - Found foreclosure case ID: 65660907
+2025-04-24 21:02:21.747 | INFO     | app.utils.foreclosure_scraper:scrape_case_ids:165 - Case Status: OPEN
+2025-04-24 21:02:21.747 | INFO     | app.utils.foreclosure_scraper:scrape_case_ids:164 - Found foreclosure case ID: 73134885
+2025-04-24 21:02:21.747 | INFO     | app.utils.foreclosure_scraper:scrape_case_ids:165 - Case Status: OPEN
+2025-04-24 21:02:21.747 | INFO     | app.utils.foreclosure_scraper:scrape_case_ids:164 - Found foreclosure case ID: 49020684
+2025-04-24 21:02:21.747 | INFO     | app.utils.foreclosure_scraper:scrape_case_ids:165 - Case Status: OPEN
+2025-04-24 21:02:21.747 | INFO     | app.utils.foreclosure_scraper:scrape_case_ids:164 - Found foreclosure case ID: 68092252
+2025-04-24 21:02:21.747 | INFO     | app.utils.foreclosure_scraper:scrape_case_ids:165 - Case Status: OPEN
+2025-04-24 21:02:21.748 | INFO     | app.utils.foreclosure_scraper:scrape_case_ids:164 - Found foreclosure case ID: 1122910
+2025-04-24 21:02:21.748 | INFO     | app.utils.foreclosure_scraper:scrape_case_ids:165 - Case Status: OPEN
+2025-04-24 21:02:21.748 | INFO     | app.utils.foreclosure_scraper:scrape_case_ids:164 - Found foreclosure case ID: 94270601
+2025-04-24 21:02:21.748 | INFO     | app.utils.foreclosure_scraper:scrape_case_ids:165 - Case Status: OPEN
+2025-04-24 21:02:21.755 | INFO     | app.utils.foreclosure_scraper:scrape_case_ids:164 - Found foreclosure case ID: 5006281
+2025-04-24 21:02:21.755 | INFO     | app.utils.foreclosure_scraper:scrape_case_ids:165 - Case Status: OPEN
+2025-04-24 21:02:21.774 | INFO     | app.utils.foreclosure_scraper:scrape_case_ids:169 - Scraping complete. Found 8 foreclosure case IDs
+2025-04-24 21:02:21.774 | INFO     | app.services.foreclosure_scraper:scrape_new_cases:23 - Found 8 cases to process
+2025-04-24 21:02:21.774 | INFO     | app.services.foreclosure_scraper:scrape_new_cases:28 - Processing case ID: 1165132
+2025-04-24 21:02:21.774 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:182 - Starting to scrape details for case ID: 1165132
+2025-04-24 21:02:21.774 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:201 - Making request for case details to https://pro.mcohio.org/Helpers/caseInformation.aspx
+2025-04-24 21:02:24.096 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:204 - Successfully retrieved case details for case ID: 1165132
+2025-04-24 21:02:24.104 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:239 - Found filing date: 12/22/2010
+2025-04-24 21:02:24.104 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:245 - Found status: REOPENED
+2025-04-24 21:02:24.104 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:233 - Found filing type: MORTGAGE FORECLOSURE (MF)
+2025-04-24 21:02:24.104 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found plaintiff: CITIMORTGAGE INC.
+2025-04-24 21:02:24.104 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: GENEVIEVE M. GRAY
+2025-04-24 21:02:24.105 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: JEFFREY A. GRAY
+2025-04-24 21:02:24.105 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: CITYWIDE BUILDING FINANCE
+2025-04-24 21:02:24.105 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:262 - Found parcel number: R72060070013
+2025-04-24 21:02:24.105 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:279 - Found case filing ID: 797654_C
+2025-04-24 21:02:24.105 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:281 - Successfully scraped all details for case ID: 1165132
+2025-04-24 21:02:24.105 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:282 - Case details summary:
+2025-04-24 21:02:24.105 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:283 - {
+  "case_id": "1165132",
+  "filing_type": "MORTGAGE FORECLOSURE (MF)",
+  "filing_date": "12/22/2010",
+  "status": "REOPENED",
+  "plaintiff": "CITIMORTGAGE INC.",
+  "defendants": [
+    "GENEVIEVE M. GRAY",
+    "JEFFREY A. GRAY",
+    "CITYWIDE BUILDING FINANCE"
+  ],
+  "parcel_number": "R72060070013",
+  "case_filing_id": "797654_C",
+  "county": "Montgomery",
+  "property_address": ""
+}
+2025-04-24 21:02:24.106 | INFO     | app.services.foreclosure_scraper:scrape_new_cases:28 - Processing case ID: 65660907
+2025-04-24 21:02:24.107 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:182 - Starting to scrape details for case ID: 65660907
+2025-04-24 21:02:24.107 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:201 - Making request for case details to https://pro.mcohio.org/Helpers/caseInformation.aspx
+2025-04-24 21:02:27.959 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:204 - Successfully retrieved case details for case ID: 65660907
+2025-04-24 21:02:27.967 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:239 - Found filing date: 2/11/2025
+2025-04-24 21:02:27.967 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:245 - Found status: OPEN
+2025-04-24 21:02:27.968 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:233 - Found filing type: MORTGAGE FORECLOSURE (MF)
+2025-04-24 21:02:27.968 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found plaintiff: MYCUMORTGAGE LLC
+2025-04-24 21:02:27.968 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: SARAH HUNTER
+2025-04-24 21:02:27.968 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: JOHN DOE UNKNOWN
+2025-04-24 21:02:27.968 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: ANDREW HUNTER
+2025-04-24 21:02:27.968 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: JANE DOE UNKNOWN
+2025-04-24 21:02:27.968 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: MATTHEW HUNTER
+2025-04-24 21:02:27.968 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: JILL DOE UNKNOWN
+2025-04-24 21:02:27.969 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: STATE OF OHIO DEPARTMENT OF MEDICAID
+2025-04-24 21:02:27.969 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: MONTGOMERY COUNTY TREASURER
+2025-04-24 21:02:27.969 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:262 - Found parcel number: R72148090005
+2025-04-24 21:02:27.969 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:279 - Found case filing ID: 6422069_CI
+2025-04-24 21:02:27.969 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:281 - Successfully scraped all details for case ID: 65660907
+2025-04-24 21:02:27.969 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:282 - Case details summary:
+2025-04-24 21:02:27.970 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:283 - {
+  "case_id": "65660907",
+  "filing_type": "MORTGAGE FORECLOSURE (MF)",
+  "filing_date": "2/11/2025",
+  "status": "OPEN",
+  "plaintiff": "MYCUMORTGAGE LLC",
+  "defendants": [
+    "SARAH HUNTER",
+    "JOHN DOE UNKNOWN",
+    "ANDREW HUNTER",
+    "JANE DOE UNKNOWN",
+    "MATTHEW HUNTER",
+    "JILL DOE UNKNOWN",
+    "STATE OF OHIO DEPARTMENT OF MEDICAID",
+    "MONTGOMERY COUNTY TREASURER"
+  ],
+  "parcel_number": "R72148090005",
+  "case_filing_id": "6422069_CI",
+  "county": "Montgomery",
+  "property_address": ""
+}
+2025-04-24 21:02:27.971 | INFO     | app.services.foreclosure_scraper:scrape_new_cases:28 - Processing case ID: 73134885
+2025-04-24 21:02:27.971 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:182 - Starting to scrape details for case ID: 73134885
+2025-04-24 21:02:27.971 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:201 - Making request for case details to https://pro.mcohio.org/Helpers/caseInformation.aspx
+2025-04-24 21:02:29.488 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:204 - Successfully retrieved case details for case ID: 73134885
+2025-04-24 21:02:29.497 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:239 - Found filing date: 2/28/2025
+2025-04-24 21:02:29.497 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:245 - Found status: OPEN
+2025-04-24 21:02:29.498 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:233 - Found filing type: MORTGAGE FORECLOSURE (MF)
+2025-04-24 21:02:29.500 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found plaintiff: NAR OHIO LLC
+2025-04-24 21:02:29.500 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: LATHEDIA L PEAKE
+2025-04-24 21:02:29.501 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: UNKNOWN PEAKE UNK SPOUSE IF ANY OF LATHEDIA
+2025-04-24 21:02:29.501 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: SHONTAE L MCINTYRE
+2025-04-24 21:02:29.502 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: UNKNOWN MCINTYRE UNK SPOUSE IF ANY OF SHONTAE
+2025-04-24 21:02:29.502 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: KELLI CHRISTINA MAYS ABOAGYE
+2025-04-24 21:02:29.502 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: MONTGOMERY COUNTY TREASURER
+2025-04-24 21:02:29.503 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:262 - Found parcel number: H33002010001
+2025-04-24 21:02:29.503 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:279 - Found case filing ID: 6438816_CI
+2025-04-24 21:02:29.503 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:281 - Successfully scraped all details for case ID: 73134885
+2025-04-24 21:02:29.503 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:282 - Case details summary:
+2025-04-24 21:02:29.504 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:283 - {
+  "case_id": "73134885",
+  "filing_type": "MORTGAGE FORECLOSURE (MF)",
+  "filing_date": "2/28/2025",
+  "status": "OPEN",
+  "plaintiff": "NAR OHIO LLC",
+  "defendants": [
+    "LATHEDIA L PEAKE",
+    "UNKNOWN PEAKE UNK SPOUSE IF ANY OF LATHEDIA",
+    "SHONTAE L MCINTYRE",
+    "UNKNOWN MCINTYRE UNK SPOUSE IF ANY OF SHONTAE",
+    "KELLI CHRISTINA MAYS ABOAGYE",
+    "MONTGOMERY COUNTY TREASURER"
+  ],
+  "parcel_number": "H33002010001",
+  "case_filing_id": "6438816_CI",
+  "county": "Montgomery",
+  "property_address": ""
+}
+2025-04-24 21:02:29.505 | INFO     | app.services.foreclosure_scraper:scrape_new_cases:28 - Processing case ID: 49020684
+2025-04-24 21:02:29.506 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:182 - Starting to scrape details for case ID: 49020684
+2025-04-24 21:02:29.506 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:201 - Making request for case details to https://pro.mcohio.org/Helpers/caseInformation.aspx
+2025-04-24 21:02:31.012 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:204 - Successfully retrieved case details for case ID: 49020684
+2025-04-24 21:02:31.018 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:239 - Found filing date: 3/5/2025
+2025-04-24 21:02:31.018 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:245 - Found status: OPEN
+2025-04-24 21:02:31.018 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:233 - Found filing type: MORTGAGE FORECLOSURE (MF)
+2025-04-24 21:02:31.018 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found plaintiff: NAR OHIO LLC
+2025-04-24 21:02:31.019 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: UNKNOWN BYRD HEIRS OF WALTER
+2025-04-24 21:02:31.019 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: VICKIE L BYRD INDIVIDUAL
+2025-04-24 21:02:31.019 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: UNKNOWN BYRD UNKNOWN SPOUSE OF VICKIE
+2025-04-24 21:02:31.019 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: THE UNKNOWN HEIRS OF WALTER BYRD JR
+2025-04-24 21:02:31.019 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: UNKNOWN BYRD HEIRS ET AL OF WILLIE C.
+2025-04-24 21:02:31.019 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: WALTER CLARK III
+2025-04-24 21:02:31.019 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: UNKNOWN SPOUSE IF ANY OF WALTER CLARK III
+2025-04-24 21:02:31.019 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: EMMANUEL CLARK
+2025-04-24 21:02:31.019 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: UNKNOWN SPOUSE IF ANY OF EMMANUEL CLARK
+2025-04-24 21:02:31.019 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: STATE OF OHIO
+2025-04-24 21:02:31.019 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: MONTGOMERY COUNTY TREASURER
+2025-04-24 21:02:31.019 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:262 - Found parcel number: H33014070001
+2025-04-24 21:02:31.019 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:279 - Found case filing ID: 6443697_CI
+2025-04-24 21:02:31.020 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:281 - Successfully scraped all details for case ID: 49020684
+2025-04-24 21:02:31.020 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:282 - Case details summary:
+2025-04-24 21:02:31.020 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:283 - {
+  "case_id": "49020684",
+  "filing_type": "MORTGAGE FORECLOSURE (MF)",
+  "filing_date": "3/5/2025",
+  "status": "OPEN",
+  "plaintiff": "NAR OHIO LLC",
+  "defendants": [
+    "UNKNOWN BYRD HEIRS OF WALTER",
+    "VICKIE L BYRD INDIVIDUAL",
+    "UNKNOWN BYRD UNKNOWN SPOUSE OF VICKIE",
+    "THE UNKNOWN HEIRS OF WALTER BYRD JR",
+    "UNKNOWN BYRD HEIRS ET AL OF WILLIE C.",
+    "WALTER CLARK III",
+    "UNKNOWN SPOUSE IF ANY OF WALTER CLARK III",
+    "EMMANUEL CLARK",
+    "UNKNOWN SPOUSE IF ANY OF EMMANUEL CLARK",
+    "STATE OF OHIO",
+    "MONTGOMERY COUNTY TREASURER"
+  ],
+  "parcel_number": "H33014070001",
+  "case_filing_id": "6443697_CI",
+  "county": "Montgomery",
+  "property_address": ""
+}
+2025-04-24 21:02:31.020 | INFO     | app.services.foreclosure_scraper:scrape_new_cases:28 - Processing case ID: 68092252
+2025-04-24 21:02:31.020 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:182 - Starting to scrape details for case ID: 68092252
+2025-04-24 21:02:31.021 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:201 - Making request for case details to https://pro.mcohio.org/Helpers/caseInformation.aspx
+2025-04-24 21:02:32.279 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:204 - Successfully retrieved case details for case ID: 68092252
+2025-04-24 21:02:32.286 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:239 - Found filing date: 3/19/2025
+2025-04-24 21:02:32.286 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:245 - Found status: OPEN
+2025-04-24 21:02:32.286 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:233 - Found filing type: MORTGAGE FORECLOSURE (MF)
+2025-04-24 21:02:32.286 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found plaintiff: NAR OHIO LLC
+2025-04-24 21:02:32.287 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: UNKNOWN HEIRS OF TIMOTHY L HASTY
+2025-04-24 21:02:32.287 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: LYNNE M GOOD INDIVIDUAL
+2025-04-24 21:02:32.287 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: UNKNOWN SPOUSE IF ANY OF LYNNE M GOOD
+2025-04-24 21:02:32.287 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: JEFFREY ALAN HASTY
+2025-04-24 21:02:32.287 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: UNKNOWN SPOUSE IF ANY OF JEFFREY ALAN HASTY
+2025-04-24 21:02:32.287 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: TIMOTHY BRIAN HASTY
+2025-04-24 21:02:32.287 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: UNKNOWN SPOUSE IF ANY OF TIMOTHY BRIAN HASTY
+2025-04-24 21:02:32.287 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: MONTGOMERY COUNTY TREASURER
+2025-04-24 21:02:32.287 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:262 - Found parcel number: R72165090064
+2025-04-24 21:02:32.287 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:279 - Found case filing ID: 6458041_CI
+2025-04-24 21:02:32.287 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:281 - Successfully scraped all details for case ID: 68092252
+2025-04-24 21:02:32.287 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:282 - Case details summary:
+2025-04-24 21:02:32.287 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:283 - {
+  "case_id": "68092252",
+  "filing_type": "MORTGAGE FORECLOSURE (MF)",
+  "filing_date": "3/19/2025",
+  "status": "OPEN",
+  "plaintiff": "NAR OHIO LLC",
+  "defendants": [
+    "UNKNOWN HEIRS OF TIMOTHY L HASTY",
+    "LYNNE M GOOD INDIVIDUAL",
+    "UNKNOWN SPOUSE IF ANY OF LYNNE M GOOD",
+    "JEFFREY ALAN HASTY",
+    "UNKNOWN SPOUSE IF ANY OF JEFFREY ALAN HASTY",
+    "TIMOTHY BRIAN HASTY",
+    "UNKNOWN SPOUSE IF ANY OF TIMOTHY BRIAN HASTY",
+    "MONTGOMERY COUNTY TREASURER"
+  ],
+  "parcel_number": "R72165090064",
+  "case_filing_id": "6458041_CI",
+  "county": "Montgomery",
+  "property_address": ""
+}
+2025-04-24 21:02:32.288 | INFO     | app.services.foreclosure_scraper:scrape_new_cases:28 - Processing case ID: 1122910
+2025-04-24 21:02:32.288 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:182 - Starting to scrape details for case ID: 1122910
+2025-04-24 21:02:32.289 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:201 - Making request for case details to https://pro.mcohio.org/Helpers/caseInformation.aspx
+2025-04-24 21:02:34.374 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:204 - Successfully retrieved case details for case ID: 1122910
+2025-04-24 21:02:34.382 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:239 - Found filing date: 3/24/2025
+2025-04-24 21:02:34.382 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:245 - Found status: OPEN
+2025-04-24 21:02:34.382 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:233 - Found filing type: MORTGAGE FORECLOSURE (MF)
+2025-04-24 21:02:34.382 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found plaintiff: MYCUMORTGAGE LLC
+2025-04-24 21:02:34.382 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: NATHAN WRAY
+2025-04-24 21:02:34.383 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: JANE DOE UNKNOWN
+2025-04-24 21:02:34.383 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: JAMES WRAY
+2025-04-24 21:02:34.383 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: JUNE DOE UNKNOWN
+2025-04-24 21:02:34.383 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: MONTGOMERY COUNTY TREASURER
+2025-04-24 21:02:34.383 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: UNKNOWN WRAY HEIRS ET AL OF DARELENE
+2025-04-24 21:02:34.383 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:262 - Found parcel number: O67219040010
+2025-04-24 21:02:34.383 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:279 - Found case filing ID: 6461686_CI
+2025-04-24 21:02:34.384 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:281 - Successfully scraped all details for case ID: 1122910
+2025-04-24 21:02:34.384 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:282 - Case details summary:
+2025-04-24 21:02:34.384 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:283 - {
+  "case_id": "1122910",
+  "filing_type": "MORTGAGE FORECLOSURE (MF)",
+  "filing_date": "3/24/2025",
+  "status": "OPEN",
+  "plaintiff": "MYCUMORTGAGE LLC",
+  "defendants": [
+    "NATHAN WRAY",
+    "JANE DOE UNKNOWN",
+    "JAMES WRAY",
+    "JUNE DOE UNKNOWN",
+    "MONTGOMERY COUNTY TREASURER",
+    "UNKNOWN WRAY HEIRS ET AL OF DARELENE"
+  ],
+  "parcel_number": "O67219040010",
+  "case_filing_id": "6461686_CI",
+  "county": "Montgomery",
+  "property_address": ""
+}
+2025-04-24 21:02:34.385 | INFO     | app.services.foreclosure_scraper:scrape_new_cases:28 - Processing case ID: 94270601
+2025-04-24 21:02:34.385 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:182 - Starting to scrape details for case ID: 94270601
+2025-04-24 21:02:34.385 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:201 - Making request for case details to https://pro.mcohio.org/Helpers/caseInformation.aspx
+2025-04-24 21:02:36.672 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:204 - Successfully retrieved case details for case ID: 94270601
+2025-04-24 21:02:36.680 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:239 - Found filing date: 4/22/2025
+2025-04-24 21:02:36.680 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:245 - Found status: OPEN
+2025-04-24 21:02:36.680 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:233 - Found filing type: MORTGAGE FORECLOSURE (MF)
+2025-04-24 21:02:36.680 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found plaintiff: MYCUMORTGAGE LLC
+2025-04-24 21:02:36.681 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: RENEE MYERS
+2025-04-24 21:02:36.681 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: PETE MYERS
+2025-04-24 21:02:36.681 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: MONICA SLEMMER
+2025-04-24 21:02:36.681 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: JOHN DOE UNKNOWN
+2025-04-24 21:02:36.681 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: JENNIFER SNOWDEN
+2025-04-24 21:02:36.681 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: JOE DOE UNKNOWN
+2025-04-24 21:02:36.681 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: UNK HEIRS OF COLLEEN K ANDEL UNKNOWN
+2025-04-24 21:02:36.681 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: STATE OF OHIO DEPARTMENT OF MEDICAID
+2025-04-24 21:02:36.681 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: MONTGOMERY COUNTY TREASURER
+2025-04-24 21:02:36.681 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:262 - Found parcel number: R72154070143
+2025-04-24 21:02:36.681 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:279 - Found case filing ID: 6492146_CI
+2025-04-24 21:02:36.681 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:281 - Successfully scraped all details for case ID: 94270601
+2025-04-24 21:02:36.682 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:282 - Case details summary:
+2025-04-24 21:02:36.682 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:283 - {
+  "case_id": "94270601",
+  "filing_type": "MORTGAGE FORECLOSURE (MF)",
+  "filing_date": "4/22/2025",
+  "status": "OPEN",
+  "plaintiff": "MYCUMORTGAGE LLC",
+  "defendants": [
+    "RENEE MYERS",
+    "PETE MYERS",
+    "MONICA SLEMMER",
+    "JOHN DOE UNKNOWN",
+    "JENNIFER SNOWDEN",
+    "JOE DOE UNKNOWN",
+    "UNK HEIRS OF COLLEEN K ANDEL UNKNOWN",
+    "STATE OF OHIO DEPARTMENT OF MEDICAID",
+    "MONTGOMERY COUNTY TREASURER"
+  ],
+  "parcel_number": "R72154070143",
+  "case_filing_id": "6492146_CI",
+  "county": "Montgomery",
+  "property_address": ""
+}
+2025-04-24 21:02:36.683 | INFO     | app.services.foreclosure_scraper:scrape_new_cases:28 - Processing case ID: 5006281
+2025-04-24 21:02:36.683 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:182 - Starting to scrape details for case ID: 5006281
+2025-04-24 21:02:36.683 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:201 - Making request for case details to https://pro.mcohio.org/Helpers/caseInformation.aspx
+2025-04-24 21:02:37.953 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:204 - Successfully retrieved case details for case ID: 5006281
+2025-04-24 21:02:37.964 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:239 - Found filing date: 6/26/2024
+2025-04-24 21:02:37.965 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:245 - Found status: OPEN
+2025-04-24 21:02:37.965 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:233 - Found filing type: MORTGAGE FORECLOSURE (MF)
+2025-04-24 21:02:37.965 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:267 - Found plaintiff: TOWD POINT MORTGAGE TRUST 2015-4
+2025-04-24 21:02:37.966 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: MICHAEL P TALKINGTON
+2025-04-24 21:02:37.966 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: UNKNOWN SPOUSE OF JUDITH A. TALKINGTON IF ANY NA
+2025-04-24 21:02:37.966 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: MICHAEL P TALKINGTON
+2025-04-24 21:02:37.966 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: UNKNOWN SPOUSE OF MICHAEL P. TALKINGTON IF ANY N
+2025-04-24 21:02:37.966 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: ROGER E TALKINGTON
+2025-04-24 21:02:37.966 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: UNKNOWN SPOUSE OF ROGER E. TALKINGTON IF ANY NAM
+2025-04-24 21:02:37.966 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: SCOTT TALKINGTON
+2025-04-24 21:02:37.966 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: KIMBERLY L TALKINGTON
+2025-04-24 21:02:37.966 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: STATE OF OHIO DEPARTMENT OF MEDICAID
+2025-04-24 21:02:37.966 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:274 - Found defendant: MONTGOMERY COUNTY TREASURER
+2025-04-24 21:02:37.967 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:262 - Found parcel number: R72147050049
+2025-04-24 21:02:37.967 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:279 - Found case filing ID: 6215630_CI
+2025-04-24 21:02:37.967 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:281 - Successfully scraped all details for case ID: 5006281
+2025-04-24 21:02:37.967 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:282 - Case details summary:
+2025-04-24 21:02:37.967 | INFO     | app.utils.foreclosure_scraper:scrape_case_details:283 - {
+  "case_id": "5006281",
+  "filing_type": "MORTGAGE FORECLOSURE (MF)",
+  "filing_date": "6/26/2024",
+  "status": "OPEN",
+  "plaintiff": "TOWD POINT MORTGAGE TRUST 2015-4",
+  "defendants": [
+    "MICHAEL P TALKINGTON",
+    "UNKNOWN SPOUSE OF JUDITH A. TALKINGTON IF ANY NA",
+    "MICHAEL P TALKINGTON",
+    "UNKNOWN SPOUSE OF MICHAEL P. TALKINGTON IF ANY N",
+    "ROGER E TALKINGTON",
+    "UNKNOWN SPOUSE OF ROGER E. TALKINGTON IF ANY NAM",
+    "SCOTT TALKINGTON",
+    "KIMBERLY L TALKINGTON",
+    "STATE OF OHIO DEPARTMENT OF MEDICAID",
+    "MONTGOMERY COUNTY TREASURER"
+  ],
+  "parcel_number": "R72147050049",
+  "case_filing_id": "6215630_CI",
+  "county": "Montgomery",
+  "property_address": ""
+}
+2025-04-24 21:02:37.968 | INFO     | app.utils.foreclosure_scraper:save_to_database:298 - Starting to save data to database
+2025-04-24 21:02:38.775 | INFO     | app.core.database:init_db:34 - Tables already exist, skipping creation
+2025-04-24 21:02:38.775 | INFO     | app.utils.foreclosure_scraper:save_to_database:302 - Ensuring foreclosure_cases table exists
+2025-04-24 21:02:39.603 | INFO     | app.utils.foreclosure_scraper:save_to_database:304 - Foreclosure_cases table exists or was created successfully
+2025-04-24 21:02:40.276 | INFO     | app.utils.foreclosure_scraper:save_to_database:323 - Successfully saved case 1165132 to database
+2025-04-24 21:02:40.625 | INFO     | app.utils.foreclosure_scraper:save_to_database:323 - Successfully saved case 65660907 to database
+2025-04-24 21:02:40.910 | INFO     | app.utils.foreclosure_scraper:save_to_database:323 - Successfully saved case 73134885 to database
+2025-04-24 21:02:41.182 | INFO     | app.utils.foreclosure_scraper:save_to_database:323 - Successfully saved case 49020684 to database
+2025-04-24 21:02:41.453 | INFO     | app.utils.foreclosure_scraper:save_to_database:323 - Successfully saved case 68092252 to database
+2025-04-24 21:02:41.723 | INFO     | app.utils.foreclosure_scraper:save_to_database:323 - Successfully saved case 1122910 to database
+2025-04-24 21:02:41.992 | INFO     | app.utils.foreclosure_scraper:save_to_database:323 - Successfully saved case 94270601 to database
+2025-04-24 21:02:42.268 | INFO     | app.utils.foreclosure_scraper:save_to_database:323 - Successfully saved case 5006281 to database
+2025-04-24 21:02:42.885 | INFO     | app.utils.foreclosure_scraper:save_to_database:329 - Successfully saved 8 new cases to database
+2025-04-24 21:02:42.887 | INFO     | app.services.foreclosure_scraper:scrape_new_cases:35 - Successfully saved 8 case details to PostgreSQL database

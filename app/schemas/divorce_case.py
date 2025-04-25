@@ -10,6 +10,7 @@ class DivorceCaseBase(BaseModel):
     filing_date: str
     status: str
     county: str
+    property_address: Optional[str] = None
 
 class DivorceCaseCreate(DivorceCaseBase):
     pass

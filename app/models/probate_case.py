@@ -11,4 +11,5 @@ class ProbateCase(Base):
     case_number = Column(String, nullable=False, unique=True)
     source_url = Column(String, nullable=False)
     county = Column(String, nullable=False)
+    property_address = Column(String)
     created_at = Column(DateTime(timezone=True), server_default=func.now())

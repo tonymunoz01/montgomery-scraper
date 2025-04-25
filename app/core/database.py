@@ -34,6 +34,7 @@ def init_db(recreate: bool = False):
             logger.info("Tables already exist, skipping creation")
             return
             
+        # Create all tables
         Base.metadata.create_all(bind=engine)
         logger.info("Database tables created successfully")
     except Exception as e:
@@ -42,13 +43,20 @@ def init_db(recreate: bool = False):
 
 def get_db():
     """
-    Get database session
+    Get database session and ensure tables exist
     """
-    db = SessionLocal()
     try:
-        yield db
+        # Ensure tables exist before getting session
+        init_db(recreate=False)
+        
+        db = SessionLocal()
+        try:
+            yield db
+        except Exception as e:
+            logger.error(f"Database session error: {e}")
+            raise
+        finally:
+            db.close()
     except Exception as e:
-        logger.error(f"Database session error: {e}")
+        logger.error(f"Error getting database session: {e}")
         raise
-    finally:
-        db.close()
