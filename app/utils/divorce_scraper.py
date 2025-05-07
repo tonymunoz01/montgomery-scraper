@@ -212,7 +212,6 @@ def scrape_case_details(case_data: Dict) -> Dict:
         case_details = {
             'id': None,  # Will be set by the database
             'case_id': case_data['case_id'],
-            'case_number': case_data['case_number'],
             'filing_date': '',
             'status': '',
             'plaintiff': '',
@@ -275,6 +274,7 @@ def save_to_database(data: List[Dict[str, str]]) -> None:
     """
     try:
         logger.info("Starting to save data to database")
+        logger.info(f"Number of cases to save: {len(data)}")
         db = next(get_db())
         
         logger.info("Ensuring divorce_cases table exists")
@@ -285,17 +285,24 @@ def save_to_database(data: List[Dict[str, str]]) -> None:
         
         for case in data:
             if not case:
+                logger.warning("Skipping empty case data")
                 continue
                 
+            logger.info(f"Processing case: {case.get('case_id', 'No case ID')}")
+            
             existing_case = db.query(DivorceCase).filter(
                 DivorceCase.case_id == case['case_id']
             ).first()
             
             if not existing_case:
-                new_case = DivorceCase(**case)
-                db.add(new_case)
-                new_cases_added += 1
-                logger.info(f"Successfully saved case {case['case_id']} to database")
+                try:
+                    new_case = DivorceCase(**case)
+                    db.add(new_case)
+                    new_cases_added += 1
+                    logger.info(f"Successfully saved case {case['case_id']} to database")
+                except Exception as e:
+                    logger.error(f"Error saving case {case.get('case_id', 'No case ID')}: {str(e)}")
+                    logger.error(f"Case data: {json.dumps(case, indent=2)}")
             else:
                 logger.info(f"Case ID {case['case_id']} already exists in database, skipping...")
         

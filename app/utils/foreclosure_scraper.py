@@ -5,6 +5,7 @@ from typing import List, Dict
 import re
 from loguru import logger
 from datetime import datetime
+import uuid
 
 from app.core.config import settings
 from app.core.database import get_db
@@ -65,8 +66,8 @@ def get_search_results(captcha_token: str) -> str:
             'ctl00$ContentPlaceHolder1$txtPartyName': '',
             'ctl00$ContentPlaceHolder1$txtAttorneyName': '',
             'ctl00$ContentPlaceHolder1$txtAttorneyBarNumber': '',
-            'ctl00$ContentPlaceHolder1$txtCaseType': 'MORTGAGE FORECLOSURE (MF)',
-            'ctl00$ContentPlaceHolder1$txtCaseStatus': 'OPEN',
+            'ctl00$ContentPlaceHolder1$txtCaseType': '',  # Remove case type filter
+            'ctl00$ContentPlaceHolder1$txtCaseStatus': 'OPEN',  # Only filter by OPEN status
             'ctl00$ContentPlaceHolder1$txtFilingDateFrom': '',
             'ctl00$ContentPlaceHolder1$txtFilingDateTo': '',
             'ctl00$ContentPlaceHolder1$btnSearch': 'Search'
@@ -122,8 +123,8 @@ def get_search_results(captcha_token: str) -> str:
 
 def scrape_case_ids(captcha_token: str) -> List[str]:
     """
-    Scrape case IDs from the HTML response where the row contains both MORTGAGE FORECLOSURE (MF)
-    and OPEN status with text-success class. Extracts case_id from onclick attribute.
+    Scrape case IDs from the HTML response where the row contains OPEN status.
+    Extracts case_id from onclick attribute.
     """
     try:
         logger.info("Starting case ID scraping process...")
@@ -147,12 +148,12 @@ def scrape_case_ids(captcha_token: str) -> List[str]:
         case_data = []
         
         for row in rows:
-            # Check if the row contains both required elements
-            mf_cell = row.find('td', string='MORTGAGE FORECLOSURE (MF)')
-            open_cell = row.find('td', class_='text-success', string='OPEN')
+            # Check for OPEN status
+            status_cell = row.find('td', string='OPEN')
             reopen_cell = row.find('td', string='REOPENED')
             
-            if mf_cell and (open_cell or reopen_cell):
+            # If we find either OPEN or REOPENED status
+            if status_cell or reopen_cell:
                 # Extract case_id from onclick attribute
                 onclick_attr = row.get('onclick', '')
                 # Look for case_id in the onclick attribute
@@ -161,12 +162,13 @@ def scrape_case_ids(captcha_token: str) -> List[str]:
                 if case_id_match:
                     case_id = case_id_match.group(1)
                     case_data.append(case_id)
-                    logger.info(f"Found foreclosure case ID: {case_id}")
-                    logger.info(f"Case Status: {'OPEN' if open_cell else 'REOPENED'}")
+                    status = status_cell.text.strip() if status_cell else reopen_cell.text.strip()
+                    logger.info(f"Found case ID: {case_id}")
+                    logger.info(f"Case Status: {status}")
                 else:
                     logger.warning(f"Found matching row but could not extract case_id from: {onclick_attr}")
         
-        logger.info(f"Scraping complete. Found {len(case_data)} foreclosure case IDs")
+        logger.info(f"Scraping complete. Found {len(case_data)} case IDs")
         return case_data
     
     except Exception as e:
@@ -211,12 +213,14 @@ def scrape_case_details(case_id: str) -> Dict:
             'filing_type': '',
             'filing_date': '',
             'status': '',
+            'case_status': '',  # Add case_status field
             'plaintiff': '',
             'defendants': [],
             'parcel_number': '',
             'case_filing_id': '',
             'county': 'Montgomery',
-            'property_address': ''
+            'property_address': '',
+            'source_url': f"{settings.PAGE_URL.rstrip('/')}{settings.CASE_INFORMATION_URL}?case_id={case_id}"
         }
         
         # Find all table cells that might contain our data
@@ -238,11 +242,18 @@ def scrape_case_details(case_id: str) -> Dict:
                     case_details['filing_date'] = next_cell.text.strip()
                     logger.info(f"Found filing date: {case_details['filing_date']}")
             
-            elif 'Status:' in cell_text:
+            elif 'Case Status' in cell_text:
                 next_cell = cells[i + 1] if i + 1 < len(cells) else None
                 if next_cell:
-                    case_details['status'] = next_cell.text.strip()
-                    logger.info(f"Found status: {case_details['status']}")
+                    status_text = next_cell.text.strip()
+                    # Extract status and date if present
+                    status_parts = status_text.split()
+                    if status_parts:
+                        case_details['case_status'] = status_parts[0]  # First word is the status
+                        case_details['status'] = status_parts[0]  # Keep both fields in sync
+                        logger.info(f"Found case status: {case_details['case_status']}")
+                        if len(status_parts) > 1:
+                            logger.info(f"Status date: {' '.join(status_parts[1:])}")
             
             elif 'Property Address:' in cell_text:
                 next_cell = cells[i + 1] if i + 1 < len(cells) else None
@@ -294,6 +305,7 @@ def save_to_database(data: List[Dict[str, str]]) -> None:
     """
     Save the scraped data to the database.
     """
+    db = None
     try:
         logger.info("Starting to save data to database")
         db = next(get_db())
@@ -310,31 +322,60 @@ def save_to_database(data: List[Dict[str, str]]) -> None:
             if not case:
                 continue
                 
-            # Check if case_id already exists
-            existing_case = db.query(ForeclosureCase).filter(
-                ForeclosureCase.case_id == case['case_id']
-            ).first()
-            
-            if not existing_case:
-                # Create new case
-                new_case = ForeclosureCase(**case)
-                db.add(new_case)
-                new_cases_added += 1
-                logger.info(f"Successfully saved case {case['case_id']} to database")
-            else:
-                logger.info(f"Case ID {case['case_id']} already exists in database, skipping...")
+            try:
+                # Check if case_id already exists
+                existing_case = db.query(ForeclosureCase).filter(
+                    ForeclosureCase.case_id == case['case_id']
+                ).first()
+                
+                if not existing_case:
+                    # Generate UUID for id field
+                    case_id = str(uuid.uuid4())
+                    
+                    # Create new case
+                    new_case = ForeclosureCase(
+                        id=case_id,  # Set id explicitly
+                        case_id=case['case_id'],  # Save the original case_id
+                        property_address=case.get('property_address', ''),
+                        filing_date=datetime.strptime(case['filing_date'], '%m/%d/%Y').date() if case.get('filing_date') else None,
+                        source_url=case.get('source_url', ''),
+                        county=case.get('county', 'Montgomery'),
+                        case_status=case.get('status'),
+                        filing_type=case.get('filing_type', ''),
+                        plaintiff=case.get('plaintiff', ''),
+                        defendants=json.dumps(case.get('defendants', [])),  # Convert list to JSON string
+                        parcel_number=case.get('parcel_number', ''),
+                        case_filing_id=case.get('case_filing_id', ''),
+                    )
+                    
+                    # Add the new case to the session
+                    db.add(new_case)
+                    # Flush to get any database errors before commit
+                    db.flush()
+                    new_cases_added += 1
+                    logger.info(f"Successfully saved case {case['case_id']} to database")
+                else:
+                    logger.info(f"Case {case['case_id']} already exists in database, skipping...")
+                    
+            except Exception as case_error:
+                logger.error(f"Error processing case {case.get('case_id', 'unknown')}: {str(case_error)}")
+                # Continue with next case instead of failing the entire batch
+                continue
         
-        # Commit the transaction
-        db.commit()
-        logger.info(f"Successfully saved {new_cases_added} new cases to database")
+        # Commit all successful cases
+        if new_cases_added > 0:
+            db.commit()
+            logger.info(f"Successfully saved {new_cases_added} new cases to database")
+        else:
+            logger.info("No new cases to save")
         
     except Exception as e:
         logger.error(f"Error saving to database: {e}")
-        if 'db' in locals():
+        if db:
             db.rollback()
         raise
     finally:
-        if 'db' in locals():
+        if db:
             db.close()
 
 def run_scraper() -> None:
