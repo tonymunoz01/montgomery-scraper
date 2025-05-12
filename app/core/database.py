@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker
 from loguru import logger
 from sqlalchemy import inspect, Column, String
@@ -47,7 +47,13 @@ def init_db(recreate: bool = False):
                     column_type = column.type.compile(engine.dialect)
                     nullable = "NULL" if column.nullable else "NOT NULL"
                     default = f"DEFAULT {column.default.arg}" if column.default else ""
-                    engine.execute(f"ALTER TABLE {table_name} ADD COLUMN {column.name} {column_type} {nullable} {default}")
+                    
+                    # Use text() and execute() with a connection
+                    with engine.connect() as connection:
+                        sql = text(f"ALTER TABLE {table_name} ADD COLUMN {column.name} {column_type} {nullable} {default}")
+                        connection.execute(sql)
+                        connection.commit()
+                    
                     logger.info(f"Successfully added column {column.name} to table {table_name}")
         
     except Exception as e:

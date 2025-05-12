@@ -8,10 +8,12 @@ from dotenv import load_dotenv
 from loguru import logger
 from datetime import datetime
 import uuid
+from sqlalchemy import inspect
 
 from app.core.config import settings
 from app.core.database import get_db
 from app.models.montgomery_divorce_case import MontgomeryDivorceCase
+from app.models.scraping_log import ScrapingLog
 from app.utils.recaptcha import get_recaptcha_token
 
 def get_search_results(captcha_token: str) -> str:
@@ -105,7 +107,7 @@ def get_search_results(captcha_token: str) -> str:
 def scrape_case_ids(captcha_token: str) -> List[Dict]:
     """
     Scrape case IDs from the HTML response where the case type is DIVORCE WITH CHILDREN (DRC)
-    and directly scrape case details for each case.
+    and case status is either OPEN or REOPENED.
     """
     try:
         logger.info("Starting case ID scraping process...")
@@ -132,13 +134,19 @@ def scrape_case_ids(captcha_token: str) -> List[Dict]:
         case_details_list = []
         
         for row in rows:
-            # Get the case type from the second column
+            # Get the case type and status from the columns
             cells = row.find_all('td')
-            if len(cells) < 2:
+            if len(cells) < 3:  # We need at least 3 columns for case type and status
                 continue
                 
             case_type = cells[1].text.strip()
+            case_status = cells[2].text.strip().upper()  # Get case status and convert to uppercase
+            
+            # Check both case type and status
             if case_type != 'DIVORCE WITH CHILDREN (DRC)':
+                continue
+                
+            if case_status not in ['OPEN', 'REOPENED']:
                 continue
                 
             # Get the onclick attribute
@@ -158,7 +166,7 @@ def scrape_case_ids(captcha_token: str) -> List[Dict]:
                     'case_id': case_id,
                     'case_number': case_number
                 }
-                logger.info(f"Found DRC case ID: {case_id} with case number: {case_number}")
+                logger.info(f"Found DRC case ID: {case_id} with case number: {case_number} and status: {case_status}")
                 
                 # Directly scrape case details
                 case_details = scrape_case_details(case_data)
@@ -170,7 +178,7 @@ def scrape_case_ids(captcha_token: str) -> List[Dict]:
             else:
                 logger.warning(f"Could not extract case_id or case_number from: {onclick_attr}")
         
-        logger.info(f"Scraping complete. Found and processed {len(case_details_list)} DRC cases")
+        logger.info(f"Scraping complete. Found and processed {len(case_details_list)} DRC cases with OPEN or REOPENED status")
         return case_details_list
     
     except Exception as e:
@@ -220,6 +228,7 @@ def scrape_case_details(case_data: Dict) -> Dict:
             'county': 'Montgomery',
             'case_status': '',  # Changed from status
             'parcel_number': '',
+            'filing_type': 'DIVORCE WITH CHILDREN (DRC)',  # Added filing type
             'created_at': None  # Will be set by the database
         }
         
@@ -244,6 +253,11 @@ def scrape_case_details(case_data: Dict) -> Dict:
                 next_cell = cells[i + 1] if i + 1 < len(cells) else None
                 if next_cell:
                     case_details['parcel_number'] = next_cell.text.strip()
+            
+            elif 'Case Type:' in cell_text:
+                next_cell = cells[i + 1] if i + 1 < len(cells) else None
+                if next_cell:
+                    case_details['filing_type'] = next_cell.text.strip()
         
         # Special handling for plaintiff and defendant information
         for row in soup.find_all('tr'):
@@ -281,6 +295,24 @@ def save_to_database(data: List[Dict[str, str]]) -> None:
     """
     try:
         db = next(get_db())
+        
+        # Check if data is empty
+        if not data:
+            # Create log entry for no data
+            current_time = datetime.now().strftime("%m/%d/%Y %H:%M")
+            log_entry = ScrapingLog(
+                id=str(uuid.uuid4()),
+                date_time=datetime.strptime(current_time, "%m/%d/%Y %H:%M"),
+                source="Montgomery Divorce",
+                total_records=0,
+                success_status=False,
+                error_message="No data"
+            )
+            db.add(log_entry)
+            db.commit()
+            logger.info("Created log entry for no data")
+            return
+            
         for case_data in data:
             # Create a new case record
             case = MontgomeryDivorceCase(
@@ -292,18 +324,101 @@ def save_to_database(data: List[Dict[str, str]]) -> None:
                 case_status=case_data['case_status'],
                 county=case_data['county'],
                 parcel_number=case_data['parcel_number'],
-                source_url=case_data['source_url']
+                source_url=case_data['source_url'],
+                filing_type=case_data['filing_type']
             )
             db.add(case)
         
         db.commit()
         logger.info(f"Successfully saved {len(data)} cases to database")
+        
+        # Create a single log entry after saving cases
+        try:
+            current_time = datetime.now().strftime("%m/%d/%Y %H:%M")
+            log_entry = ScrapingLog(
+                id=str(uuid.uuid4()),
+                date_time=datetime.strptime(current_time, "%m/%d/%Y %H:%M"),
+                source="Montgomery Divorce",
+                total_records=len(data),
+                success_status=True,
+                error_message=""
+            )
+            db.add(log_entry)
+            db.commit()
+            logger.info(f"Created scraping log entry with {len(data)} records")
+            
+            # Verify the save
+            saved_log = db.query(ScrapingLog).filter(ScrapingLog.id == log_entry.id).first()
+            if saved_log:
+                logger.info(f"Successfully verified log entry in database with ID: {saved_log.id}")
+            else:
+                logger.error("Failed to verify log entry in database after save")
+                
+        except Exception as log_error:
+            db.rollback()
+            logger.error(f"Error creating scraping log entry: {str(log_error)}")
+            logger.exception("Full traceback:")
+            
     except Exception as e:
         db.rollback()
         logger.error(f"Error saving to database: {str(e)}")
+        # Create error log entry
+        try:
+            current_time = datetime.now().strftime("%m/%d/%Y %H:%M")
+            log_entry = ScrapingLog(
+                id=str(uuid.uuid4()),
+                date_time=datetime.strptime(current_time, "%m/%d/%Y %H:%M"),
+                source="Montgomery Divorce",
+                total_records=0,
+                success_status=False,
+                error_message=str(e)
+            )
+            db.add(log_entry)
+            db.commit()
+            logger.info("Created error log entry")
+        except Exception as log_error:
+            db.rollback()
+            logger.error(f"Error creating error log entry: {str(log_error)}")
         raise
     finally:
         db.close()
+
+def verify_scraping_log_table():
+    """Verify that the scraping_log table exists and has the correct structure"""
+    try:
+        db = next(get_db())
+        try:
+            # Check if table exists
+            inspector = inspect(db.get_bind())
+            if 'scraping_log' not in inspector.get_table_names():
+                logger.error("scraping_log table does not exist!")
+                # Try to create the table
+                from app.models.scraping_log import ScrapingLog
+                ScrapingLog.__table__.create(bind=db.get_bind())
+                logger.info("Created scraping_log table")
+            
+            # Check table structure
+            columns = inspector.get_columns('scraping_log')
+            required_columns = {'id', 'date_time', 'source', 'total_records', 'success_status', 'error_message', 'created_at'}
+            existing_columns = {col['name'] for col in columns}
+            
+            if not required_columns.issubset(existing_columns):
+                missing_columns = required_columns - existing_columns
+                logger.error(f"scraping_log table is missing columns: {missing_columns}")
+                return False
+            
+            logger.info("scraping_log table exists and has correct structure")
+            return True
+            
+        except Exception as e:
+            logger.error(f"Error verifying scraping_log table: {str(e)}")
+            logger.exception("Full traceback:")
+            return False
+        finally:
+            db.close()
+    except Exception as e:
+        logger.error(f"Error getting database connection: {str(e)}")
+        return False
 
 def run_scraper() -> None:
     """
@@ -311,6 +426,11 @@ def run_scraper() -> None:
     """
     try:
         logger.info("Starting divorce case scraper")
+        
+        # Verify scraping log table exists and has correct structure
+        if not verify_scraping_log_table():
+            logger.error("Failed to verify scraping_log table structure")
+            return
         
         captcha_token = get_recaptcha_token()
         if not captcha_token:
@@ -325,10 +445,14 @@ def run_scraper() -> None:
         case_details_list = scrape_case_ids(captcha_token)
         logger.info(f"Found {len(case_details_list)} cases to process")
         
+        if not case_details_list:
+            logger.info("No cases found to process")
+            return
+        
         logger.info("Starting to save cases to database")
         save_to_database(case_details_list)
         logger.info("Scraping process completed successfully")
         
     except Exception as e:
         logger.error(f"Error running scraper: {str(e)}")
-        raise 
+        raise

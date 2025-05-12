@@ -27174,3 +27174,211 @@
 2025-05-12 02:26:27.035 | INFO     | app.services.montgomery_probate_case_service:create_probate_case:30 - Successfully created probate case: 2025EST00873
 2025-05-12 02:26:27.035 | INFO     | app.api.v1.endpoints.montgomery_probate_cases:scrape_probate_cases:61 - Successfully created case: 2025EST00873
 2025-05-12 02:26:27.035 | INFO     | app.api.v1.endpoints.montgomery_probate_cases:scrape_probate_cases:74 - Scraping completed. Added 323 new cases, updated 0 cases, skipped 0 cases
+2025-05-12 02:38:28.430 | INFO     | app.core.database:init_db:36 - Database tables created successfully
+2025-05-12 02:38:28.451 | INFO     | app.core.database:init_db:46 - Adding missing column filing_type to table montgomery_divorce_cases
+2025-05-12 02:38:28.451 | ERROR    | app.core.database:init_db:54 - Error creating database tables: 'Engine' object has no attribute 'execute'
+2025-05-12 02:40:01.798 | INFO     | app.core.database:init_db:36 - Database tables created successfully
+2025-05-12 02:40:10.560 | INFO     | app.utils.recaptcha:get_recaptcha_token:11 - Starting reCAPTCHA token generation
+2025-05-12 02:40:10.560 | INFO     | app.utils.recaptcha:get_recaptcha_token:26 - Creating reCAPTCHA task
+2025-05-12 02:40:12.600 | INFO     | app.utils.recaptcha:get_recaptcha_token:30 - Created task with ID: 1216339404
+2025-05-12 02:40:12.601 | INFO     | app.utils.recaptcha:get_recaptcha_token:43 - Checking task result (attempt 1/30)
+2025-05-12 02:40:16.396 | INFO     | app.utils.recaptcha:get_recaptcha_token:43 - Checking task result (attempt 2/30)
+2025-05-12 02:40:20.202 | INFO     | app.utils.recaptcha:get_recaptcha_token:43 - Checking task result (attempt 3/30)
+2025-05-12 02:40:21.997 | INFO     | app.utils.recaptcha:get_recaptcha_token:50 - Successfully obtained reCAPTCHA token
+2025-05-12 02:40:22.000 | INFO     | app.utils.montgomery_divorce_scraper:scrape_case_ids:111 - Starting case ID scraping process...
+2025-05-12 02:40:22.000 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:22 - Starting search request process...
+2025-05-12 02:40:22.001 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:23 - Received reCAPTCHA token: 03AFcWeA6h5oLG956iWt...
+2025-05-12 02:40:22.001 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:26 - Created new session
+2025-05-12 02:40:22.001 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:50 - Fetching initial page from https://pro.mcohio.org
+2025-05-12 02:40:23.633 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:53 - Successfully retrieved initial page
+2025-05-12 02:40:23.647 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:80 - Sending search request with the following parameters:
+2025-05-12 02:40:23.647 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:81 - Search Type: general
+2025-05-12 02:40:23.648 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:82 - Case Type: DIVORCE WITH CHILDREN (DRC)
+2025-05-12 02:40:23.648 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:83 - Case Status: OPEN
+2025-05-12 02:40:23.648 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:86 - Making request to: https://pro.mcohio.org/Helpers/generalSearchResults.aspx
+2025-05-12 02:40:36.078 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:91 - Response Status Code: 200
+2025-05-12 02:40:36.079 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:92 - Response Headers: {'Cache-Control': 'private', 'Content-Type': 'text/html; charset=utf-8', 'Server': 'Microsoft-IIS/10.0', 'X-AspNet-Version': '4.0.30319', 'X-Powered-By': 'ASP.NET', 'Strict-Transport-Security': 'max-age=31536000', 'Date': 'Mon, 12 May 2025 06:40:35 GMT', 'Content-Length': '79099'}
+2025-05-12 02:40:36.080 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:93 - Response Content Length: 79099
+2025-05-12 02:40:36.136 | INFO     | app.utils.montgomery_divorce_scraper:scrape_case_ids:130 - Found 246 total rows in the table
+2025-05-12 02:40:36.138 | INFO     | app.utils.montgomery_divorce_scraper:scrape_case_ids:179 - Scraping complete. Found and processed 0 DRC cases with OPEN or REOPENED status
+2025-05-12 02:40:36.138 | INFO     | app.services.montgomery_divorce_scraper:scrape_new_cases:24 - Found 0 cases to process
+2025-05-12 02:40:36.144 | INFO     | app.core.database:init_db:36 - Database tables created successfully
+2025-05-12 02:40:36.155 | INFO     | app.utils.montgomery_divorce_scraper:save_to_database:313 - Successfully saved 0 cases to database
+2025-05-12 02:40:36.156 | INFO     | app.services.montgomery_divorce_scraper:scrape_new_cases:36 - Successfully saved 0 case details to PostgreSQL database
+2025-05-12 02:40:36.159 | INFO     | app.core.database:init_db:36 - Database tables created successfully
+2025-05-12 02:44:58.867 | INFO     | app.core.database:init_db:36 - Database tables created successfully
+2025-05-12 02:45:01.070 | INFO     | app.utils.recaptcha:get_recaptcha_token:11 - Starting reCAPTCHA token generation
+2025-05-12 02:45:01.070 | INFO     | app.utils.recaptcha:get_recaptcha_token:26 - Creating reCAPTCHA task
+2025-05-12 02:45:02.927 | INFO     | app.utils.recaptcha:get_recaptcha_token:30 - Created task with ID: 1189601007
+2025-05-12 02:45:02.928 | INFO     | app.utils.recaptcha:get_recaptcha_token:43 - Checking task result (attempt 1/30)
+2025-05-12 02:45:06.697 | INFO     | app.utils.recaptcha:get_recaptcha_token:43 - Checking task result (attempt 2/30)
+2025-05-12 02:45:10.502 | INFO     | app.utils.recaptcha:get_recaptcha_token:43 - Checking task result (attempt 3/30)
+2025-05-12 02:45:12.290 | INFO     | app.utils.recaptcha:get_recaptcha_token:50 - Successfully obtained reCAPTCHA token
+2025-05-12 02:45:12.292 | INFO     | app.utils.montgomery_divorce_scraper:scrape_case_ids:111 - Starting case ID scraping process...
+2025-05-12 02:45:12.292 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:22 - Starting search request process...
+2025-05-12 02:45:12.292 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:23 - Received reCAPTCHA token: 03AFcWeA4sV5VVBjn7D8...
+2025-05-12 02:45:12.293 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:26 - Created new session
+2025-05-12 02:45:12.293 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:50 - Fetching initial page from https://pro.mcohio.org
+2025-05-12 02:45:13.569 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:53 - Successfully retrieved initial page
+2025-05-12 02:45:13.579 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:80 - Sending search request with the following parameters:
+2025-05-12 02:45:13.579 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:81 - Search Type: general
+2025-05-12 02:45:13.579 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:82 - Case Type: DIVORCE WITH CHILDREN (DRC)
+2025-05-12 02:45:13.579 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:83 - Case Status: OPEN
+2025-05-12 02:45:13.580 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:86 - Making request to: https://pro.mcohio.org/Helpers/generalSearchResults.aspx
+2025-05-12 02:45:26.259 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:91 - Response Status Code: 200
+2025-05-12 02:45:26.261 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:92 - Response Headers: {'Cache-Control': 'private', 'Content-Type': 'text/html; charset=utf-8', 'Server': 'Microsoft-IIS/10.0', 'X-AspNet-Version': '4.0.30319', 'X-Powered-By': 'ASP.NET', 'Strict-Transport-Security': 'max-age=31536000', 'Date': 'Mon, 12 May 2025 06:45:25 GMT', 'Content-Length': '79099'}
+2025-05-12 02:45:26.261 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:93 - Response Content Length: 79099
+2025-05-12 02:45:26.316 | INFO     | app.utils.montgomery_divorce_scraper:scrape_case_ids:130 - Found 246 total rows in the table
+2025-05-12 02:45:26.318 | INFO     | app.utils.montgomery_divorce_scraper:scrape_case_ids:179 - Scraping complete. Found and processed 0 DRC cases with OPEN or REOPENED status
+2025-05-12 02:45:26.319 | INFO     | app.services.montgomery_divorce_scraper:scrape_new_cases:24 - Found 0 cases to process
+2025-05-12 02:45:26.325 | INFO     | app.core.database:init_db:36 - Database tables created successfully
+2025-05-12 02:45:26.332 | INFO     | app.utils.montgomery_divorce_scraper:save_to_database:313 - Successfully saved 0 cases to database
+2025-05-12 02:45:26.332 | INFO     | app.services.montgomery_divorce_scraper:scrape_new_cases:36 - Successfully saved 0 case details to PostgreSQL database
+2025-05-12 02:45:26.336 | INFO     | app.core.database:init_db:36 - Database tables created successfully
+2025-05-12 02:50:32.578 | INFO     | app.core.database:init_db:36 - Database tables created successfully
+2025-05-12 02:50:34.620 | INFO     | app.utils.recaptcha:get_recaptcha_token:11 - Starting reCAPTCHA token generation
+2025-05-12 02:50:34.620 | INFO     | app.utils.recaptcha:get_recaptcha_token:26 - Creating reCAPTCHA task
+2025-05-12 02:50:36.710 | INFO     | app.utils.recaptcha:get_recaptcha_token:30 - Created task with ID: 1207263293
+2025-05-12 02:50:36.710 | INFO     | app.utils.recaptcha:get_recaptcha_token:43 - Checking task result (attempt 1/30)
+2025-05-12 02:50:40.511 | INFO     | app.utils.recaptcha:get_recaptcha_token:43 - Checking task result (attempt 2/30)
+2025-05-12 02:50:44.307 | INFO     | app.utils.recaptcha:get_recaptcha_token:43 - Checking task result (attempt 3/30)
+2025-05-12 02:50:46.117 | INFO     | app.utils.recaptcha:get_recaptcha_token:50 - Successfully obtained reCAPTCHA token
+2025-05-12 02:50:46.120 | INFO     | app.utils.montgomery_divorce_scraper:scrape_case_ids:112 - Starting case ID scraping process...
+2025-05-12 02:50:46.121 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:23 - Starting search request process...
+2025-05-12 02:50:46.121 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:24 - Received reCAPTCHA token: 03AFcWeA5ta_LIduPz5J...
+2025-05-12 02:50:46.121 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:27 - Created new session
+2025-05-12 02:50:46.121 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:51 - Fetching initial page from https://pro.mcohio.org
+2025-05-12 02:50:47.748 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:54 - Successfully retrieved initial page
+2025-05-12 02:50:47.764 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:81 - Sending search request with the following parameters:
+2025-05-12 02:50:47.764 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:82 - Search Type: general
+2025-05-12 02:50:47.765 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:83 - Case Type: DIVORCE WITH CHILDREN (DRC)
+2025-05-12 02:50:47.765 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:84 - Case Status: OPEN
+2025-05-12 02:50:47.765 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:87 - Making request to: https://pro.mcohio.org/Helpers/generalSearchResults.aspx
+2025-05-12 02:51:00.515 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:92 - Response Status Code: 200
+2025-05-12 02:51:00.516 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:93 - Response Headers: {'Cache-Control': 'private', 'Content-Type': 'text/html; charset=utf-8', 'Server': 'Microsoft-IIS/10.0', 'X-AspNet-Version': '4.0.30319', 'X-Powered-By': 'ASP.NET', 'Strict-Transport-Security': 'max-age=31536000', 'Date': 'Mon, 12 May 2025 06:51:00 GMT', 'Content-Length': '79099'}
+2025-05-12 02:51:00.516 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:94 - Response Content Length: 79099
+2025-05-12 02:51:00.573 | INFO     | app.utils.montgomery_divorce_scraper:scrape_case_ids:131 - Found 246 total rows in the table
+2025-05-12 02:51:00.576 | INFO     | app.utils.montgomery_divorce_scraper:scrape_case_ids:180 - Scraping complete. Found and processed 0 DRC cases with OPEN or REOPENED status
+2025-05-12 02:51:00.576 | INFO     | app.services.montgomery_divorce_scraper:scrape_new_cases:24 - Found 0 cases to process
+2025-05-12 02:51:00.582 | INFO     | app.core.database:init_db:36 - Database tables created successfully
+2025-05-12 02:51:00.592 | INFO     | app.utils.montgomery_divorce_scraper:save_to_database:314 - Successfully saved 0 cases to database
+2025-05-12 02:51:00.592 | INFO     | app.services.montgomery_divorce_scraper:scrape_new_cases:36 - Successfully saved 0 case details to PostgreSQL database
+2025-05-12 02:51:00.595 | INFO     | app.core.database:init_db:36 - Database tables created successfully
+2025-05-12 02:52:47.991 | INFO     | app.core.database:init_db:36 - Database tables created successfully
+2025-05-12 02:52:57.402 | INFO     | app.core.database:init_db:36 - Database tables created successfully
+2025-05-12 02:53:01.922 | INFO     | app.utils.recaptcha:get_recaptcha_token:11 - Starting reCAPTCHA token generation
+2025-05-12 02:53:01.922 | INFO     | app.utils.recaptcha:get_recaptcha_token:26 - Creating reCAPTCHA task
+2025-05-12 02:53:03.732 | INFO     | app.utils.recaptcha:get_recaptcha_token:30 - Created task with ID: 2006507728
+2025-05-12 02:53:03.733 | INFO     | app.utils.recaptcha:get_recaptcha_token:43 - Checking task result (attempt 1/30)
+2025-05-12 02:53:07.520 | INFO     | app.utils.recaptcha:get_recaptcha_token:43 - Checking task result (attempt 2/30)
+2025-05-12 02:53:11.306 | INFO     | app.utils.recaptcha:get_recaptcha_token:43 - Checking task result (attempt 3/30)
+2025-05-12 02:53:13.112 | INFO     | app.utils.recaptcha:get_recaptcha_token:50 - Successfully obtained reCAPTCHA token
+2025-05-12 02:53:13.115 | INFO     | app.utils.montgomery_divorce_scraper:scrape_case_ids:113 - Starting case ID scraping process...
+2025-05-12 02:53:13.116 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:24 - Starting search request process...
+2025-05-12 02:53:13.116 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:25 - Received reCAPTCHA token: 03AFcWeA7vL-4A7MGFdI...
+2025-05-12 02:53:13.116 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:28 - Created new session
+2025-05-12 02:53:13.117 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:52 - Fetching initial page from https://pro.mcohio.org
+2025-05-12 02:53:14.386 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:55 - Successfully retrieved initial page
+2025-05-12 02:53:14.400 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:82 - Sending search request with the following parameters:
+2025-05-12 02:53:14.401 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:83 - Search Type: general
+2025-05-12 02:53:14.401 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:84 - Case Type: DIVORCE WITH CHILDREN (DRC)
+2025-05-12 02:53:14.401 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:85 - Case Status: OPEN
+2025-05-12 02:53:14.401 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:88 - Making request to: https://pro.mcohio.org/Helpers/generalSearchResults.aspx
+2025-05-12 02:53:26.898 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:93 - Response Status Code: 200
+2025-05-12 02:53:26.899 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:94 - Response Headers: {'Cache-Control': 'private', 'Content-Type': 'text/html; charset=utf-8', 'Server': 'Microsoft-IIS/10.0', 'X-AspNet-Version': '4.0.30319', 'X-Powered-By': 'ASP.NET', 'Strict-Transport-Security': 'max-age=31536000', 'Date': 'Mon, 12 May 2025 06:53:26 GMT', 'Content-Length': '79099'}
+2025-05-12 02:53:26.899 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:95 - Response Content Length: 79099
+2025-05-12 02:53:26.954 | INFO     | app.utils.montgomery_divorce_scraper:scrape_case_ids:132 - Found 246 total rows in the table
+2025-05-12 02:53:26.957 | INFO     | app.utils.montgomery_divorce_scraper:scrape_case_ids:181 - Scraping complete. Found and processed 0 DRC cases with OPEN or REOPENED status
+2025-05-12 02:53:26.957 | INFO     | app.services.montgomery_divorce_scraper:scrape_new_cases:24 - Found 0 cases to process
+2025-05-12 02:53:26.962 | INFO     | app.core.database:init_db:36 - Database tables created successfully
+2025-05-12 02:53:26.975 | INFO     | app.utils.montgomery_divorce_scraper:save_to_database:315 - Successfully saved 0 cases to database
+2025-05-12 02:53:26.975 | INFO     | app.services.montgomery_divorce_scraper:scrape_new_cases:36 - Successfully saved 0 case details to PostgreSQL database
+2025-05-12 02:53:26.979 | INFO     | app.core.database:init_db:36 - Database tables created successfully
+2025-05-12 02:54:44.164 | INFO     | app.utils.recaptcha:get_recaptcha_token:11 - Starting reCAPTCHA token generation
+2025-05-12 02:54:44.165 | INFO     | app.utils.recaptcha:get_recaptcha_token:26 - Creating reCAPTCHA task
+2025-05-12 02:54:45.909 | INFO     | app.utils.recaptcha:get_recaptcha_token:30 - Created task with ID: 1272340790
+2025-05-12 02:54:45.909 | INFO     | app.utils.recaptcha:get_recaptcha_token:43 - Checking task result (attempt 1/30)
+2025-05-12 02:54:49.719 | INFO     | app.utils.recaptcha:get_recaptcha_token:43 - Checking task result (attempt 2/30)
+2025-05-12 02:54:53.511 | INFO     | app.utils.recaptcha:get_recaptcha_token:43 - Checking task result (attempt 3/30)
+2025-05-12 02:54:55.389 | INFO     | app.utils.recaptcha:get_recaptcha_token:50 - Successfully obtained reCAPTCHA token
+2025-05-12 02:54:55.390 | INFO     | app.utils.montgomery_divorce_scraper:scrape_case_ids:113 - Starting case ID scraping process...
+2025-05-12 02:54:55.390 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:24 - Starting search request process...
+2025-05-12 02:54:55.390 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:25 - Received reCAPTCHA token: 03AFcWeA6jkkdeon3wzc...
+2025-05-12 02:54:55.391 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:28 - Created new session
+2025-05-12 02:54:55.391 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:52 - Fetching initial page from https://pro.mcohio.org
+2025-05-12 02:54:56.674 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:55 - Successfully retrieved initial page
+2025-05-12 02:54:56.684 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:82 - Sending search request with the following parameters:
+2025-05-12 02:54:56.684 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:83 - Search Type: general
+2025-05-12 02:54:56.685 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:84 - Case Type: DIVORCE WITH CHILDREN (DRC)
+2025-05-12 02:54:56.685 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:85 - Case Status: OPEN
+2025-05-12 02:54:56.685 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:88 - Making request to: https://pro.mcohio.org/Helpers/generalSearchResults.aspx
+2025-05-12 02:55:09.552 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:93 - Response Status Code: 200
+2025-05-12 02:55:09.553 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:94 - Response Headers: {'Cache-Control': 'private', 'Content-Type': 'text/html; charset=utf-8', 'Server': 'Microsoft-IIS/10.0', 'X-AspNet-Version': '4.0.30319', 'X-Powered-By': 'ASP.NET', 'Strict-Transport-Security': 'max-age=31536000', 'Date': 'Mon, 12 May 2025 06:55:09 GMT', 'Content-Length': '79099'}
+2025-05-12 02:55:09.553 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:95 - Response Content Length: 79099
+2025-05-12 02:55:09.586 | INFO     | app.utils.montgomery_divorce_scraper:scrape_case_ids:132 - Found 246 total rows in the table
+2025-05-12 02:55:09.588 | INFO     | app.utils.montgomery_divorce_scraper:scrape_case_ids:181 - Scraping complete. Found and processed 0 DRC cases with OPEN or REOPENED status
+2025-05-12 02:55:09.588 | INFO     | app.services.montgomery_divorce_scraper:scrape_new_cases:24 - Found 0 cases to process
+2025-05-12 02:55:09.594 | INFO     | app.core.database:init_db:36 - Database tables created successfully
+2025-05-12 02:55:09.603 | INFO     | app.utils.montgomery_divorce_scraper:save_to_database:315 - Successfully saved 0 cases to database
+2025-05-12 02:55:09.604 | INFO     | app.services.montgomery_divorce_scraper:scrape_new_cases:36 - Successfully saved 0 case details to PostgreSQL database
+2025-05-12 02:55:09.607 | INFO     | app.core.database:init_db:36 - Database tables created successfully
+2025-05-12 03:00:49.804 | INFO     | app.core.database:init_db:36 - Database tables created successfully
+2025-05-12 03:00:51.396 | INFO     | app.utils.recaptcha:get_recaptcha_token:11 - Starting reCAPTCHA token generation
+2025-05-12 03:00:51.396 | INFO     | app.utils.recaptcha:get_recaptcha_token:26 - Creating reCAPTCHA task
+2025-05-12 03:00:53.518 | INFO     | app.utils.recaptcha:get_recaptcha_token:30 - Created task with ID: 1290724005
+2025-05-12 03:00:53.518 | INFO     | app.utils.recaptcha:get_recaptcha_token:43 - Checking task result (attempt 1/30)
+2025-05-12 03:00:57.334 | INFO     | app.utils.recaptcha:get_recaptcha_token:43 - Checking task result (attempt 2/30)
+2025-05-12 03:01:01.214 | INFO     | app.utils.recaptcha:get_recaptcha_token:43 - Checking task result (attempt 3/30)
+2025-05-12 03:01:04.212 | INFO     | app.utils.recaptcha:get_recaptcha_token:50 - Successfully obtained reCAPTCHA token
+2025-05-12 03:01:04.215 | INFO     | app.utils.montgomery_divorce_scraper:scrape_case_ids:113 - Starting case ID scraping process...
+2025-05-12 03:01:04.216 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:24 - Starting search request process...
+2025-05-12 03:01:04.216 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:25 - Received reCAPTCHA token: 03AFcWeA5NOIlb8c1xWV...
+2025-05-12 03:01:04.216 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:28 - Created new session
+2025-05-12 03:01:04.217 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:52 - Fetching initial page from https://pro.mcohio.org
+2025-05-12 03:01:05.937 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:55 - Successfully retrieved initial page
+2025-05-12 03:01:05.952 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:82 - Sending search request with the following parameters:
+2025-05-12 03:01:05.952 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:83 - Search Type: general
+2025-05-12 03:01:05.952 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:84 - Case Type: DIVORCE WITH CHILDREN (DRC)
+2025-05-12 03:01:05.952 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:85 - Case Status: OPEN
+2025-05-12 03:01:05.953 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:88 - Making request to: https://pro.mcohio.org/Helpers/generalSearchResults.aspx
+2025-05-12 03:01:21.516 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:93 - Response Status Code: 200
+2025-05-12 03:01:21.517 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:94 - Response Headers: {'Cache-Control': 'private', 'Content-Type': 'text/html; charset=utf-8', 'Server': 'Microsoft-IIS/10.0', 'X-AspNet-Version': '4.0.30319', 'X-Powered-By': 'ASP.NET', 'Strict-Transport-Security': 'max-age=31536000', 'Date': 'Mon, 12 May 2025 07:01:21 GMT', 'Content-Length': '79099'}
+2025-05-12 03:01:21.517 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:95 - Response Content Length: 79099
+2025-05-12 03:01:21.553 | INFO     | app.utils.montgomery_divorce_scraper:scrape_case_ids:132 - Found 246 total rows in the table
+2025-05-12 03:01:21.555 | INFO     | app.utils.montgomery_divorce_scraper:scrape_case_ids:181 - Scraping complete. Found and processed 0 DRC cases with OPEN or REOPENED status
+2025-05-12 03:01:21.555 | INFO     | app.services.montgomery_divorce_scraper:scrape_new_cases:24 - Found 0 cases to process
+2025-05-12 03:01:21.560 | INFO     | app.core.database:init_db:36 - Database tables created successfully
+2025-05-12 03:01:21.567 | INFO     | app.utils.montgomery_divorce_scraper:save_to_database:315 - Successfully saved 0 cases to database
+2025-05-12 03:01:21.573 | INFO     | app.utils.montgomery_divorce_scraper:save_to_database:330 - Created scraping log entry with 0 records
+2025-05-12 03:01:21.577 | INFO     | app.utils.montgomery_divorce_scraper:save_to_database:335 - Successfully verified log entry in database with ID: 897431be-2fe2-4cab-9ca8-f3f4e812113b
+2025-05-12 03:01:21.577 | INFO     | app.services.montgomery_divorce_scraper:scrape_new_cases:36 - Successfully saved 0 case details to PostgreSQL database
+2025-05-12 03:01:21.580 | INFO     | app.core.database:init_db:36 - Database tables created successfully
+2025-05-12 03:04:35.939 | INFO     | app.core.database:init_db:36 - Database tables created successfully
+2025-05-12 03:04:37.986 | INFO     | app.utils.recaptcha:get_recaptcha_token:11 - Starting reCAPTCHA token generation
+2025-05-12 03:04:37.987 | INFO     | app.utils.recaptcha:get_recaptcha_token:26 - Creating reCAPTCHA task
+2025-05-12 03:04:39.775 | INFO     | app.utils.recaptcha:get_recaptcha_token:30 - Created task with ID: 706569096
+2025-05-12 03:04:39.776 | INFO     | app.utils.recaptcha:get_recaptcha_token:43 - Checking task result (attempt 1/30)
+2025-05-12 03:04:43.583 | INFO     | app.utils.recaptcha:get_recaptcha_token:43 - Checking task result (attempt 2/30)
+2025-05-12 03:04:47.470 | INFO     | app.utils.recaptcha:get_recaptcha_token:43 - Checking task result (attempt 3/30)
+2025-05-12 03:04:49.281 | INFO     | app.utils.recaptcha:get_recaptcha_token:50 - Successfully obtained reCAPTCHA token
+2025-05-12 03:04:49.284 | INFO     | app.utils.montgomery_divorce_scraper:scrape_case_ids:113 - Starting case ID scraping process...
+2025-05-12 03:04:49.285 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:24 - Starting search request process...
+2025-05-12 03:04:49.285 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:25 - Received reCAPTCHA token: 03AFcWeA5ikgok_0IrSX...
+2025-05-12 03:04:49.285 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:28 - Created new session
+2025-05-12 03:04:49.285 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:52 - Fetching initial page from https://pro.mcohio.org
+2025-05-12 03:04:50.554 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:55 - Successfully retrieved initial page
+2025-05-12 03:04:50.567 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:82 - Sending search request with the following parameters:
+2025-05-12 03:04:50.568 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:83 - Search Type: general
+2025-05-12 03:04:50.568 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:84 - Case Type: DIVORCE WITH CHILDREN (DRC)
+2025-05-12 03:04:50.568 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:85 - Case Status: OPEN
+2025-05-12 03:04:50.568 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:88 - Making request to: https://pro.mcohio.org/Helpers/generalSearchResults.aspx
+2025-05-12 03:05:07.165 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:93 - Response Status Code: 200
+2025-05-12 03:05:07.166 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:94 - Response Headers: {'Cache-Control': 'private', 'Content-Type': 'text/html; charset=utf-8', 'Server': 'Microsoft-IIS/10.0', 'X-AspNet-Version': '4.0.30319', 'X-Powered-By': 'ASP.NET', 'Strict-Transport-Security': 'max-age=31536000', 'Date': 'Mon, 12 May 2025 07:05:07 GMT', 'Content-Length': '79099'}
+2025-05-12 03:05:07.166 | INFO     | app.utils.montgomery_divorce_scraper:get_search_results:95 - Response Content Length: 79099
+2025-05-12 03:05:07.221 | INFO     | app.utils.montgomery_divorce_scraper:scrape_case_ids:132 - Found 246 total rows in the table
+2025-05-12 03:05:07.224 | INFO     | app.utils.montgomery_divorce_scraper:scrape_case_ids:181 - Scraping complete. Found and processed 0 DRC cases with OPEN or REOPENED status
+2025-05-12 03:05:07.224 | INFO     | app.services.montgomery_divorce_scraper:scrape_new_cases:24 - Found 0 cases to process
+2025-05-12 03:05:07.228 | INFO     | app.core.database:init_db:36 - Database tables created successfully
+2025-05-12 03:05:07.243 | INFO     | app.utils.montgomery_divorce_scraper:save_to_database:313 - Created log entry for no data
+2025-05-12 03:05:07.243 | INFO     | app.services.montgomery_divorce_scraper:scrape_new_cases:36 - Successfully saved 0 case details to PostgreSQL database
+2025-05-12 03:05:07.246 | INFO     | app.core.database:init_db:36 - Database tables created successfully
