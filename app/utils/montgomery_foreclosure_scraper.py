@@ -10,6 +10,7 @@ import uuid
 from app.core.config import settings
 from app.core.database import get_db
 from app.models.montgomery_foreclosure_case import MontgomeryForeclosureCase
+from app.models.scraping_log import ScrapingLog
 from app.utils.recaptcha import get_recaptcha_token
 
 def get_search_results(captcha_token: str) -> str:
@@ -332,6 +333,17 @@ def save_to_database(data: List[Dict[str, str]]) -> None:
         
         if not valid_cases:
             logger.warning("No valid cases found to save to database")
+            # Create log entry for no valid cases
+            log_entry = ScrapingLog(
+                id=str(uuid.uuid4()),
+                date_time=datetime.now(),
+                source="Montgomery Foreclosure",
+                total_records=0,
+                success_status=True,
+                error_message="No valid cases found to save"
+            )
+            db.add(log_entry)
+            db.commit()
             return
             
         for case_data in valid_cases:
@@ -354,9 +366,36 @@ def save_to_database(data: List[Dict[str, str]]) -> None:
         
         db.commit()
         logger.info(f"Successfully saved {len(valid_cases)} valid cases to database")
+        
+        # Create log entry for successful save
+        log_entry = ScrapingLog(
+            id=str(uuid.uuid4()),
+            date_time=datetime.now(),
+            source="Montgomery Foreclosure",
+            total_records=len(valid_cases),
+            success_status=True,
+            error_message=""
+        )
+        db.add(log_entry)
+        db.commit()
+        
     except Exception as e:
         db.rollback()
         logger.error(f"Error saving to database: {str(e)}")
+        # Create log entry for error
+        try:
+            log_entry = ScrapingLog(
+                id=str(uuid.uuid4()),
+                date_time=datetime.now(),
+                source="Montgomery Foreclosure",
+                total_records=0,
+                success_status=False,
+                error_message=str(e)
+            )
+            db.add(log_entry)
+            db.commit()
+        except Exception as log_error:
+            logger.error(f"Error creating error log entry: {str(log_error)}")
         raise
     finally:
         db.close()
