@@ -19,11 +19,19 @@ def init_db(recreate: bool = False):
     """
     try:
         # Import all models here to avoid circular imports
-        from app.models.probate_case import ProbateCase
-        from app.models.foreclosure_case import ForeclosureCase
-        from app.models.divorce_case import DivorceCase
+        from app.models.montgomery_probate_case import MontgomeryProbateCase
+        from app.models.montgomery_foreclosure_case import MontgomeryForeclosureCase
+        from app.models.montgomery_divorce_case import MontgomeryDivorceCase
         
-        # Create all tables if they don't exist
+        # Check if scraping_log table exists
+        inspector = inspect(engine)
+        if 'scraping_log' not in inspector.get_table_names():
+            from app.models.scraping_log import ScrapingLog
+            logger.info("Creating scraping_log table...")
+            ScrapingLog.__table__.create(bind=engine)
+            logger.info("scraping_log table created successfully")
+        
+        # Create all other tables if they don't exist
         Base.metadata.create_all(bind=engine)
         logger.info("Database tables created successfully")
         
@@ -43,7 +51,7 @@ def init_db(recreate: bool = False):
                     logger.info(f"Successfully added column {column.name} to table {table_name}")
         
     except Exception as e:
-        logger.error(f"Error creating database tables: {e}")
+        logger.error(f"Error creating database tables: {str(e)}")
         raise
 
 def get_db():

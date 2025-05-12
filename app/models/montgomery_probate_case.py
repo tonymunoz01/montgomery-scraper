@@ -2,7 +2,7 @@ from sqlalchemy import Column, String, Date, DateTime
 from sqlalchemy.sql import func
 from app.core.base import Base
 
-class ProbateCase(Base):
+class MontgomeryProbateCase(Base):
     __tablename__ = "montgomery_probate_cases"
 
     id = Column(String, primary_key=True, index=True)

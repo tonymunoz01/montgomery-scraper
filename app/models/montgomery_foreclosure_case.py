@@ -2,7 +2,7 @@ from sqlalchemy import Column, String, Date, DateTime, JSON
 from sqlalchemy.sql import func
 from app.core.base import Base
 
-class ForeclosureCase(Base):
+class MontgomeryForeclosureCase(Base):
     __tablename__ = "montgomery_foreclosure_cases"
     id = Column(String, primary_key=True, index=True)
     property_address = Column(String, index=True)

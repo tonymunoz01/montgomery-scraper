@@ -2,15 +2,14 @@ from typing import List
 from loguru import logger
 from app.core.config import settings
 from app.core.database import get_db
-from app.models.divorce_case import DivorceCase
-from app.schemas.divorce_case import DivorceCase as DivorceCaseSchema
+from app.schemas.montgomery_foreclosure_case import MontgomeryForeclosureCaseCreate
 from app.utils.recaptcha import get_recaptcha_token
-from app.utils.divorce_scraper import scrape_case_ids, scrape_case_details, save_to_database
+from app.utils.montgomery_foreclosure_scraper import scrape_case_ids, scrape_case_details, save_to_database
 
-class DivorceScraperService:
-    async def scrape_new_cases(self) -> List[DivorceCaseSchema]:
+class MontgomeryForeclosureScraperService:
+    async def scrape_new_cases(self) -> List[MontgomeryForeclosureCaseCreate]:
         """
-        Scrape new divorce cases and save them to the database
+        Scrape new foreclosure cases and save them to the database
         """
         try:
             # Get recaptcha token
@@ -35,16 +34,8 @@ class DivorceScraperService:
             save_to_database(case_details_list)
             logger.info(f"Successfully saved {len(case_details_list)} case details to PostgreSQL database")
 
-            # Get the saved cases from the database to return with proper id and created_at
-            db = next(get_db())
-            saved_cases = db.query(DivorceCase).filter(
-                DivorceCase.case_id.in_([case['case_id'] for case in case_details_list])
-            ).all()
-            db.close()
-
-            # Convert SQLAlchemy models to Pydantic schemas
-            return [DivorceCaseSchema.from_orm(case) for case in saved_cases]
+            return case_details_list
 
         except Exception as e:
-            logger.error(f"Error scraping divorce cases: {e}")
+            logger.error(f"Error scraping foreclosure cases: {e}")
             raise 

@@ -5,17 +5,19 @@ from datetime import datetime
 from typing import List, Dict
 import logging
 import urllib.parse
-from app.schemas.probate_case import ProbateCaseCreate
+from app.schemas.montgomery_probate_case import MontgomeryProbateCaseCreate
 import json
 import os
 from urllib.parse import urljoin
 import time
 from sqlalchemy.orm import Session
-from app.models.probate_case import ProbateCase
-from app.core.database import SessionLocal
+from app.models.montgomery_probate_case import MontgomeryProbateCase
+from app.models.scraping_log import ScrapingLog
+from app.core.database import SessionLocal, get_db
 import uuid
 from app.core.config import settings
 import re
+from sqlalchemy import inspect
 
 # Configure logging
 logging.basicConfig(
@@ -26,10 +28,12 @@ logger = logging.getLogger(__name__)
 
 BASE_URL = settings.PROBATE_CASE_SEARCH_URL
 
-class ProbateCaseScraper:
+class MontgomeryProbateCaseScraper:
     def __init__(self):
         self.session = None
         self.db = SessionLocal()
+        # Verify scraping log table exists and has correct structure
+        self.verify_scraping_log_table()
     
     def __del__(self):
         """Close database session when scraper is destroyed"""
@@ -277,42 +281,97 @@ class ProbateCaseScraper:
     async def save_case_to_db(self, case_details: Dict) -> None:
         """Save case details to the database"""
         try:
-            # Double check case status is OPEN or REOPEN
-            if case_details.get('case_status') not in ["OPEN", "REOPEN"]:
-                logger.info(f"Skipping case {case_details.get('case_number')} with status: {case_details.get('case_status')}")
-                return
-            
-            # Check if case already exists
-            existing_case = self.db.query(ProbateCase).filter(
-                ProbateCase.case_number == case_details['case_number']
-            ).first()
-            
-            if existing_case:
-                logger.info(f"Case {case_details['case_number']} already exists in database")
-                return
-            
-            # Create new case
-            new_case = ProbateCase(
+            # Create a new case record
+            case = MontgomeryProbateCase(
                 id=str(uuid.uuid4()),
                 decedent_name=case_details['decedent_name'],
                 filing_date=datetime.strptime(case_details['filing_date'], '%Y-%m-%d').date(),
                 case_number=case_details['case_number'],
+                case_status=case_details['case_status'],
                 source_url=case_details['source_url'],
                 county=case_details['county'],
-                fiduciary_name=case_details.get('fiduciary_name'),
-                fiduciary_address=case_details.get('fiduciary_address'),
-                fiduciary_city=case_details.get('fiduciary_city'),
-                fiduciary_zip=case_details.get('fiduciary_zip')
+                property_address=case_details['property_address'],
+                fiduciary_name=case_details['fiduciary_name'],
+                fiduciary_address=case_details['fiduciary_address'],
+                fiduciary_city=case_details['fiduciary_city'],
+                fiduciary_zip=case_details['fiduciary_zip']
             )
-            
-            self.db.add(new_case)
+            self.db.add(case)
             self.db.commit()
-            logger.info(f"Saved OPEN/REOPEN case {case_details['case_number']} to database")
-            
+            logger.info(f"Successfully saved case {case_details['case_number']} to database")
         except Exception as e:
             self.db.rollback()
             logger.error(f"Error saving case to database: {str(e)}")
+            raise
+
+    def verify_scraping_log_table(self):
+        """Verify that the scraping_log table exists and has the correct structure"""
+        try:
+            # Check if table exists
+            inspector = inspect(self.db.get_bind())
+            if 'scraping_log' not in inspector.get_table_names():
+                logger.error("scraping_log table does not exist!")
+                # Try to create the table
+                from app.models.scraping_log import ScrapingLog
+                ScrapingLog.__table__.create(bind=self.db.get_bind())
+                logger.info("Created scraping_log table")
+            
+            # Check table structure
+            columns = inspector.get_columns('scraping_log')
+            required_columns = {'id', 'date_time', 'source', 'total_records', 'success_status', 'error_message', 'created_at'}
+            existing_columns = {col['name'] for col in columns}
+            
+            if not required_columns.issubset(existing_columns):
+                missing_columns = required_columns - existing_columns
+                logger.error(f"scraping_log table is missing columns: {missing_columns}")
+                return False
+            
+            logger.info("scraping_log table exists and has correct structure")
+            return True
+            
+        except Exception as e:
+            logger.error(f"Error verifying scraping_log table: {str(e)}")
             logger.exception("Full traceback:")
+            return False
+
+    async def create_scraping_log(self, total_records: int, success_status: bool, error_message: str = "") -> None:
+        """Create a log entry for the scraping operation"""
+        try:
+            # Get a fresh database session
+            db = next(get_db())
+            try:
+                # Create new log entry
+                log_entry = ScrapingLog(
+                    id=str(uuid.uuid4()),
+                    date_time=datetime.now(),
+                    source="Montgomery Probate",
+                    total_records=total_records,
+                    success_status=success_status,
+                    error_message=error_message
+                )
+                
+                # Save to database
+                db.add(log_entry)
+                db.commit()
+                
+                # Verify the save
+                saved_log = db.query(ScrapingLog).filter(ScrapingLog.id == log_entry.id).first()
+                if saved_log:
+                    logger.info(f"Successfully saved log entry to database with ID: {saved_log.id}")
+                else:
+                    logger.error("Failed to verify log entry in database after save")
+                
+            except Exception as db_error:
+                db.rollback()
+                logger.error(f"Database error while saving log: {str(db_error)}")
+                raise
+            finally:
+                db.close()
+                
+        except Exception as e:
+            logger.error(f"Error creating scraping log: {str(e)}")
+            logger.exception("Full traceback:")
+            raise
 
     async def scrape_all_case_details(self) -> None:
         """Scrape details for all OPEN and REOPEN cases and save to database"""
@@ -321,6 +380,29 @@ class ProbateCaseScraper:
             urls = await self.get_case_list()
             logger.info(f"Processing {len(urls)} URLs for OPEN and REOPEN cases")
             
+            if not urls:
+                # Create log for CAPTCHA block
+                db = SessionLocal()
+                try:
+                    log_entry = ScrapingLog(
+                        id=str(uuid.uuid4()),
+                        date_time=datetime.now(),
+                        source="Montgomery Probate",
+                        total_records=0,
+                        success_status=False,
+                        error_message="CAPTCHA block"
+                    )
+                    db.add(log_entry)
+                    db.commit()
+                    logger.info("Created log entry for CAPTCHA block")
+                except Exception as e:
+                    db.rollback()
+                    logger.error(f"Error creating log entry: {str(e)}")
+                finally:
+                    db.close()
+                return
+            
+            total_saved = 0
             # Process cases in batches to avoid overwhelming the server
             batch_size = 5
             for i in range(0, len(urls), batch_size):
@@ -336,51 +418,165 @@ class ProbateCaseScraper:
                 for details in results:
                     if details:
                         await self.save_case_to_db(details)
+                        total_saved += 1
                 
                 # Add a small delay between batches
                 await asyncio.sleep(1)
             
-            logger.info("Scraping completed")
+            # Create final success log entry after all cases are saved
+            db = SessionLocal()
+            try:
+                log_entry = ScrapingLog(
+                    id=str(uuid.uuid4()),
+                    date_time=datetime.now(),
+                    source="Montgomery Probate",
+                    total_records=total_saved,
+                    success_status=True,
+                    error_message=""
+                )
+                db.add(log_entry)
+                db.commit()
+                logger.info(f"Created final scraping log entry with {total_saved} records saved to database")
+            except Exception as e:
+                db.rollback()
+                logger.error(f"Error creating final scraping log entry: {str(e)}")
+            finally:
+                db.close()
+            
+            logger.info(f"Scraping completed. Added {total_saved} new cases")
             
         except Exception as e:
-            logger.error(f"Error in scrape_all_case_details: {str(e)}")
+            error_msg = str(e)
+            logger.error(f"Error in scrape_all_case_details: {error_msg}")
             logger.exception("Full traceback:")
+            
+            # Create error log entry
+            db = SessionLocal()
+            try:
+                log_entry = ScrapingLog(
+                    id=str(uuid.uuid4()),
+                    date_time=datetime.now(),
+                    source="Montgomery Probate",
+                    total_records=0,
+                    success_status=False,
+                    error_message=error_msg
+                )
+                db.add(log_entry)
+                db.commit()
+                logger.info("Created error log entry")
+            except Exception as log_error:
+                db.rollback()
+                logger.error(f"Error creating error log entry: {str(log_error)}")
+            finally:
+                db.close()
         finally:
             await self.close_session()
     
-    async def scrape_all_cases(self) -> List[ProbateCaseCreate]:
+    async def save_scraping_log(self, total_records: int, success_status: bool, error_message: str = "") -> None:
+        """Save scraping log to database"""
+        try:
+            # Save to database
+            db = SessionLocal()
+            try:
+                # Create new log entry
+                db_log_entry = ScrapingLog(
+                    id=str(uuid.uuid4()),
+                    date_time=datetime.now(),
+                    source="Montgomery Probate",
+                    total_records=total_records,
+                    success_status=success_status,
+                    error_message=error_message
+                )
+                
+                # Add and commit
+                db.add(db_log_entry)
+                db.commit()
+                
+                # Verify the save
+                saved_log = db.query(ScrapingLog).filter(ScrapingLog.id == db_log_entry.id).first()
+                if saved_log:
+                    logger.info(f"Successfully saved log entry to database with ID: {saved_log.id}")
+                    logger.info(f"Log details - Records: {saved_log.total_records}, Status: {saved_log.success_status}")
+                else:
+                    logger.error("Failed to verify log entry in database after save")
+                    raise Exception("Log entry not found in database after save")
+                
+            except Exception as e:
+                db.rollback()
+                logger.error(f"Database error while saving log: {str(e)}")
+                raise
+            finally:
+                db.close()
+            
+        except Exception as e:
+            logger.error(f"Error in save_scraping_log: {str(e)}")
+            logger.exception("Full traceback:")
+            raise
+
+    async def scrape_all_cases(self) -> List[MontgomeryProbateCaseCreate]:
         """Scrape all available cases that are OPEN or REOPEN"""
         logger.info("Starting scraping process for OPEN and REOPEN cases")
         cases = []
-        case_list = await self.get_case_list()
-        logger.info(f"Retrieved {len(case_list)} cases from search page")
+        try:
+            case_list = await self.get_case_list()
+            logger.info(f"Retrieved {len(case_list)} cases from search page")
+            
+            if not case_list:
+                # Create log for CAPTCHA block
+                await self.save_scraping_log(
+                    total_records=0,
+                    success_status=False,
+                    error_message="CAPTCHA block"
+                )
+                return cases
+            
+            # Process cases in batches
+            batch_size = 5
+            total_processed = 0
+            for i in range(0, len(case_list), batch_size):
+                batch = case_list[i:i + batch_size]
+                tasks = []
+                for case in batch:
+                    tasks.append(self.get_case_details(case))
+                
+                # Wait for all tasks in the batch to complete
+                results = await asyncio.gather(*tasks)
+                
+                # Process results
+                for details in results:
+                    if details:
+                        try:
+                            probate_case = MontgomeryProbateCaseCreate(**details)
+                            cases.append(probate_case)
+                            total_processed += 1
+                            logger.info(f"Successfully created ProbateCase object: {probate_case}")
+                        except Exception as e:
+                            logger.error(f"Error creating probate case from details: {str(e)}")
+                            logger.error(f"Problem details: {details}")
+                            logger.exception("Full traceback:")
+                
+                # Add a small delay between batches
+                await asyncio.sleep(1)
+            
+            # Create final scraping log entry
+            await self.save_scraping_log(
+                total_records=total_processed,
+                success_status=True,
+                error_message=""
+            )
+            
+        except Exception as e:
+            error_msg = str(e)
+            logger.error(f"Error in scrape_all_cases: {error_msg}")
+            logger.exception("Full traceback:")
+            
+            # Create error log entry
+            await self.save_scraping_log(
+                total_records=0,
+                success_status=False,
+                error_message=error_msg
+            )
         
-        # Process cases in batches
-        batch_size = 5
-        for i in range(0, len(case_list), batch_size):
-            batch = case_list[i:i + batch_size]
-            tasks = []
-            for case in batch:
-                tasks.append(self.get_case_details(case))
-            
-            # Wait for all tasks in the batch to complete
-            results = await asyncio.gather(*tasks)
-            
-            # Process results
-            for details in results:
-                if details:
-                    try:
-                        probate_case = ProbateCaseCreate(**details)
-                        cases.append(probate_case)
-                        logger.info(f"Successfully created ProbateCase object: {probate_case}")
-                    except Exception as e:
-                        logger.error(f"Error creating probate case from details: {str(e)}")
-                        logger.error(f"Problem details: {details}")
-                        logger.exception("Full traceback:")
-            
-            # Add a small delay between batches
-            await asyncio.sleep(1)
-        
-        logger.info(f"Scraping completed. Found {len(cases)} OPEN/REOPEN cases out of {len(case_list)} total cases")
+        logger.info(f"Scraping completed. Processed {len(cases)} cases out of {len(case_list) if 'case_list' in locals() else 0} total cases")
         await self.close_session()
         return cases 

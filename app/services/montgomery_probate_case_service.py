@@ -1,14 +1,14 @@
 from sqlalchemy.orm import Session
-from app.models.probate_case import ProbateCase
-from app.schemas.probate_case import ProbateCaseCreate
+from app.models.montgomery_probate_case import MontgomeryProbateCase
+from app.schemas.montgomery_probate_case import MontgomeryProbateCaseCreate
 import uuid
 from loguru import logger
 
-class ProbateCaseService:
+class MontgomeryProbateCaseService:
     def __init__(self, db: Session):
         self.db = db
     
-    def create_probate_case(self, probate_case: ProbateCaseCreate) -> ProbateCase:
+    def create_probate_case(self, probate_case: MontgomeryProbateCaseCreate) -> MontgomeryProbateCase:
         """Create a new probate case in the database"""
         try:
             logger.info(f"Creating new probate case: {probate_case.case_number}")
@@ -17,7 +17,7 @@ class ProbateCaseService:
             case_data = probate_case.model_dump()
             
             # Create new case
-            db_case = ProbateCase(
+            db_case = MontgomeryProbateCase(
                 id=str(uuid.uuid4()),
                 **case_data
             )
@@ -36,14 +36,14 @@ class ProbateCaseService:
             logger.exception("Full traceback:")
             raise
     
-    def update_probate_case(self, probate_case: ProbateCaseCreate) -> ProbateCase:
+    def update_probate_case(self, probate_case: MontgomeryProbateCaseCreate) -> MontgomeryProbateCase:
         """Update an existing probate case in the database"""
         try:
             logger.info(f"Updating probate case: {probate_case.case_number}")
             
             # Get existing case
-            db_case = self.db.query(ProbateCase).filter(
-                ProbateCase.case_number == probate_case.case_number
+            db_case = self.db.query(MontgomeryProbateCase).filter(
+                MontgomeryProbateCase.case_number == probate_case.case_number
             ).first()
             
             if not db_case:
@@ -70,11 +70,11 @@ class ProbateCaseService:
             logger.exception("Full traceback:")
             raise
     
-    def get_probate_case(self, case_number: str) -> ProbateCase:
+    def get_probate_case(self, case_number: str) -> MontgomeryProbateCase:
         """Get a probate case by case number"""
         try:
             logger.info(f"Fetching probate case: {case_number}")
-            case = self.db.query(ProbateCase).filter(ProbateCase.case_number == case_number).first()
+            case = self.db.query(MontgomeryProbateCase).filter(MontgomeryProbateCase.case_number == case_number).first()
             if case:
                 logger.info(f"Found probate case: {case_number}")
             else:
@@ -85,11 +85,11 @@ class ProbateCaseService:
             logger.exception("Full traceback:")
             raise
     
-    def get_all_probate_cases(self) -> list[ProbateCase]:
+    def get_all_probate_cases(self) -> list[MontgomeryProbateCase]:
         """Get all probate cases"""
         try:
             logger.info("Fetching all probate cases")
-            cases = self.db.query(ProbateCase).all()
+            cases = self.db.query(MontgomeryProbateCase).all()
             logger.info(f"Found {len(cases)} probate cases")
             return cases
         except Exception as e:
@@ -101,7 +101,7 @@ class ProbateCaseService:
         """Check if a case already exists in the database"""
         try:
             logger.info(f"Checking if case exists: {case_number}")
-            exists = self.db.query(ProbateCase).filter(ProbateCase.case_number == case_number).first() is not None
+            exists = self.db.query(MontgomeryProbateCase).filter(MontgomeryProbateCase.case_number == case_number).first() is not None
             logger.info(f"Case {case_number} {'exists' if exists else 'does not exist'}")
             return exists
         except Exception as e:

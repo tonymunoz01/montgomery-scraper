@@ -2,7 +2,7 @@ from typing import List, Optional
 from pydantic import BaseModel
 from datetime import datetime
 
-class ForeclosureCaseBase(BaseModel):
+class MontgomeryForeclosureCaseBase(BaseModel):
     case_id: str
     filing_type: str
     filing_date: str
@@ -14,10 +14,10 @@ class ForeclosureCaseBase(BaseModel):
     county: str
     property_address: str
 
-class ForeclosureCaseCreate(ForeclosureCaseBase):
+class MontgomeryForeclosureCaseCreate(MontgomeryForeclosureCaseBase):
     pass
 
-class ForeclosureCase(ForeclosureCaseBase):
+class MontgomeryForeclosureCase(MontgomeryForeclosureCaseBase):
     id: Optional[int] = None
     created_at: Optional[datetime] = None
 

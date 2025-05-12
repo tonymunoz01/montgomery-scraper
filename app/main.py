@@ -9,10 +9,9 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from app.core.config import settings
 from app.api.v1.api import api_router
-from app.utils.probate_case_scraper import ProbateCaseScraper
-from app.services.probate_case_service import ProbateCaseService
+from app.utils.montgomery_probate_case_scraper import MontgomeryProbateCaseScraper
+from app.services.montgomery_probate_case_service import MontgomeryProbateCaseService
 from app.core.database import SessionLocal, init_db
-from app.api.v1.endpoints import foreclosure_cases, divorce_cases
 
 # Configure logging
 logger.remove()
@@ -38,10 +37,6 @@ app.add_middleware(
 # Include API router
 app.include_router(api_router, prefix=settings.API_V1_STR)
 
-# Include routers
-app.include_router(foreclosure_cases.router, prefix="/api/v1/foreclosure-cases", tags=["foreclosure-cases"])
-app.include_router(divorce_cases.router, prefix="/api/v1/divorce-cases", tags=["divorce-cases"])
-
 @app.on_event("startup")
 async def startup_event():
     """Initialize database on startup"""
@@ -56,8 +51,8 @@ async def scrape_probate_cases():
     """Endpoint to trigger the probate case scraping process"""
     try:
         db = SessionLocal()
-        scraper = ProbateCaseScraper()
-        service = ProbateCaseService(db)
+        scraper = MontgomeryProbateCaseScraper()
+        service = MontgomeryProbateCaseService(db)
         
         cases = scraper.scrape_all_cases()
         new_cases = []

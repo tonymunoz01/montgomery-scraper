@@ -7,10 +7,11 @@ import os
 from dotenv import load_dotenv
 from loguru import logger
 from datetime import datetime
+import uuid
 
 from app.core.config import settings
 from app.core.database import get_db
-from app.models.divorce_case import DivorceCase
+from app.models.montgomery_divorce_case import MontgomeryDivorceCase
 from app.utils.recaptcha import get_recaptcha_token
 
 def get_search_results(captcha_token: str) -> str:
@@ -212,12 +213,13 @@ def scrape_case_details(case_data: Dict) -> Dict:
         case_details = {
             'id': None,  # Will be set by the database
             'case_id': case_data['case_id'],
+            'petitioner_name': '',  # Changed from plaintiff
+            'respondent_name': '',  # Changed from defendant
             'filing_date': '',
-            'status': '',
-            'plaintiff': '',
-            'defendant': '',
+            'source_url': case_info_url,  # Added source URL
             'county': 'Montgomery',
-            'property_address': '',  # Add default empty string for property_address
+            'case_status': '',  # Changed from status
+            'parcel_number': '',
             'created_at': None  # Will be set by the database
         }
         
@@ -236,7 +238,12 @@ def scrape_case_details(case_data: Dict) -> Dict:
             elif 'Status:' in cell_text:
                 next_cell = cells[i + 1] if i + 1 < len(cells) else None
                 if next_cell:
-                    case_details['status'] = next_cell.text.strip()
+                    case_details['case_status'] = next_cell.text.strip()
+                    
+            elif 'Parcel Number:' in cell_text or 'Parcel #:' in cell_text:
+                next_cell = cells[i + 1] if i + 1 < len(cells) else None
+                if next_cell:
+                    case_details['parcel_number'] = next_cell.text.strip()
         
         # Special handling for plaintiff and defendant information
         for row in soup.find_all('tr'):
@@ -246,13 +253,13 @@ def scrape_case_details(case_data: Dict) -> Dict:
                 
                 # Handle PLAINTIFF
                 if first_cell_text.strip() == 'PLAINTIFF':
-                    case_details['plaintiff'] = cells[1].text.strip()
+                    case_details['petitioner_name'] = cells[1].text.strip()
                 
                 # Handle DEFENDANT
                 elif 'DEFENDANT' in first_cell_text:
                     defendant_text = cells[1].text.strip()
                     if defendant_text:
-                        case_details['defendant'] = defendant_text
+                        case_details['respondent_name'] = defendant_text
         
         # Log the case details for debugging
         logger.info(f"Successfully scraped case ID {case_data['case_id']}:")
@@ -273,50 +280,30 @@ def save_to_database(data: List[Dict[str, str]]) -> None:
     Save the scraped data to the database.
     """
     try:
-        logger.info("Starting to save data to database")
-        logger.info(f"Number of cases to save: {len(data)}")
         db = next(get_db())
-        
-        logger.info("Ensuring divorce_cases table exists")
-        DivorceCase.__table__.create(db.get_bind(), checkfirst=True)
-        logger.info("Divorce_cases table exists or was created successfully")
-        
-        new_cases_added = 0
-        
-        for case in data:
-            if not case:
-                logger.warning("Skipping empty case data")
-                continue
-                
-            logger.info(f"Processing case: {case.get('case_id', 'No case ID')}")
-            
-            existing_case = db.query(DivorceCase).filter(
-                DivorceCase.case_id == case['case_id']
-            ).first()
-            
-            if not existing_case:
-                try:
-                    new_case = DivorceCase(**case)
-                    db.add(new_case)
-                    new_cases_added += 1
-                    logger.info(f"Successfully saved case {case['case_id']} to database")
-                except Exception as e:
-                    logger.error(f"Error saving case {case.get('case_id', 'No case ID')}: {str(e)}")
-                    logger.error(f"Case data: {json.dumps(case, indent=2)}")
-            else:
-                logger.info(f"Case ID {case['case_id']} already exists in database, skipping...")
+        for case_data in data:
+            # Create a new case record
+            case = MontgomeryDivorceCase(
+                id=str(uuid.uuid4()),
+                case_id=case_data['case_id'],
+                petitioner_name=case_data['petitioner_name'],
+                respondent_name=case_data['respondent_name'],
+                filing_date=datetime.strptime(case_data['filing_date'], '%m/%d/%Y').date(),
+                case_status=case_data['case_status'],
+                county=case_data['county'],
+                parcel_number=case_data['parcel_number'],
+                source_url=case_data['source_url']
+            )
+            db.add(case)
         
         db.commit()
-        logger.info(f"Successfully saved {new_cases_added} new cases to database")
-        
+        logger.info(f"Successfully saved {len(data)} cases to database")
     except Exception as e:
-        logger.error(f"Error saving to database: {e}")
-        if 'db' in locals():
-            db.rollback()
+        db.rollback()
+        logger.error(f"Error saving to database: {str(e)}")
         raise
     finally:
-        if 'db' in locals():
-            db.close()
+        db.close()
 
 def run_scraper() -> None:
     """

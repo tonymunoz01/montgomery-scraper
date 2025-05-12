@@ -9,7 +9,7 @@ import uuid
 
 from app.core.config import settings
 from app.core.database import get_db
-from app.models.foreclosure_case import ForeclosureCase
+from app.models.montgomery_foreclosure_case import MontgomeryForeclosureCase
 from app.utils.recaptcha import get_recaptcha_token
 
 def get_search_results(captcha_token: str) -> str:
@@ -305,78 +305,34 @@ def save_to_database(data: List[Dict[str, str]]) -> None:
     """
     Save the scraped data to the database.
     """
-    db = None
     try:
-        logger.info("Starting to save data to database")
         db = next(get_db())
+        for case_data in data:
+            # Create a new case record
+            case = MontgomeryForeclosureCase(
+                id=str(uuid.uuid4()),
+                case_id=case_data['case_id'],
+                filing_type=case_data['filing_type'],
+                filing_date=datetime.strptime(case_data['filing_date'], '%m/%d/%Y').date(),
+                case_status=case_data['case_status'],
+                plaintiff=case_data['plaintiff'],
+                defendants=case_data['defendants'],
+                parcel_number=case_data['parcel_number'],
+                case_filing_id=case_data['case_filing_id'],
+                county=case_data['county'],
+                property_address=case_data['property_address'],
+                source_url=case_data['source_url']
+            )
+            db.add(case)
         
-        # Create the table if it doesn't exist
-        logger.info("Ensuring foreclosure_cases table exists")
-        ForeclosureCase.__table__.create(db.get_bind(), checkfirst=True)
-        logger.info("Foreclosure_cases table exists or was created successfully")
-        
-        # Track how many new cases were added
-        new_cases_added = 0
-        
-        for case in data:
-            if not case:
-                continue
-                
-            try:
-                # Check if case_id already exists
-                existing_case = db.query(ForeclosureCase).filter(
-                    ForeclosureCase.case_id == case['case_id']
-                ).first()
-                
-                if not existing_case:
-                    # Generate UUID for id field
-                    case_id = str(uuid.uuid4())
-                    
-                    # Create new case
-                    new_case = ForeclosureCase(
-                        id=case_id,  # Set id explicitly
-                        case_id=case['case_id'],  # Save the original case_id
-                        property_address=case.get('property_address', ''),
-                        filing_date=datetime.strptime(case['filing_date'], '%m/%d/%Y').date() if case.get('filing_date') else None,
-                        source_url=case.get('source_url', ''),
-                        county=case.get('county', 'Montgomery'),
-                        case_status=case.get('status'),
-                        filing_type=case.get('filing_type', ''),
-                        plaintiff=case.get('plaintiff', ''),
-                        defendants=json.dumps(case.get('defendants', [])),  # Convert list to JSON string
-                        parcel_number=case.get('parcel_number', ''),
-                        case_filing_id=case.get('case_filing_id', ''),
-                    )
-                    
-                    # Add the new case to the session
-                    db.add(new_case)
-                    # Flush to get any database errors before commit
-                    db.flush()
-                    new_cases_added += 1
-                    logger.info(f"Successfully saved case {case['case_id']} to database")
-                else:
-                    logger.info(f"Case {case['case_id']} already exists in database, skipping...")
-                    
-            except Exception as case_error:
-                logger.error(f"Error processing case {case.get('case_id', 'unknown')}: {str(case_error)}")
-                # Continue with next case instead of failing the entire batch
-                continue
-        
-        # Commit all successful cases
-        if new_cases_added > 0:
-            db.commit()
-            logger.info(f"Successfully saved {new_cases_added} new cases to database")
-        else:
-            logger.info("No new cases to save")
-        
+        db.commit()
+        logger.info(f"Successfully saved {len(data)} cases to database")
     except Exception as e:
-        logger.error(f"Error saving to database: {e}")
-        if db:
-            db.rollback()
+        db.rollback()
+        logger.error(f"Error saving to database: {str(e)}")
         raise
     finally:
-        if db:
-            db.close()
+        db.close()
 
 def run_scraper() -> None:
     """

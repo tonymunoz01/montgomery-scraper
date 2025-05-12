@@ -4,29 +4,29 @@ from typing import List
 from loguru import logger
 
 from app.core.database import get_db
-from app.schemas.probate_case import ProbateCase
-from app.services.probate_case_service import ProbateCaseService
-from app.utils.probate_case_scraper import ProbateCaseScraper
+from app.schemas.montgomery_probate_case import MontgomeryProbateCase
+from app.services.montgomery_probate_case_service import MontgomeryProbateCaseService
+from app.utils.montgomery_probate_case_scraper import MontgomeryProbateCaseScraper
 
 router = APIRouter()
 
-@router.get("/", response_model=List[ProbateCase])
+@router.get("/", response_model=List[MontgomeryProbateCase])
 def get_probate_cases(
     skip: int = 0,
     limit: int = 100,
     db: Session = Depends(get_db)
 ):
     """Get all probate cases"""
-    service = ProbateCaseService(db)
+    service = MontgomeryProbateCaseService(db)
     return service.get_all_probate_cases()[skip:skip + limit]
 
-@router.get("/{case_number}", response_model=ProbateCase)
+@router.get("/{case_number}", response_model=MontgomeryProbateCase)
 def get_probate_case(
     case_number: str,
     db: Session = Depends(get_db)
 ):
     """Get a specific probate case by case number"""
-    service = ProbateCaseService(db)
+    service = MontgomeryProbateCaseService(db)
     case = service.get_probate_case(case_number)
     if not case:
         raise HTTPException(status_code=404, detail="Case not found")
@@ -39,8 +39,8 @@ async def scrape_probate_cases(db: Session = Depends(get_db)):
         logger.info("Starting probate case scraping process")
         
         # Initialize scraper and service
-        scraper = ProbateCaseScraper()
-        service = ProbateCaseService(db)
+        scraper = MontgomeryProbateCaseScraper()
+        service = MontgomeryProbateCaseService(db)
         
         # Get all cases
         logger.info("Fetching cases from website")

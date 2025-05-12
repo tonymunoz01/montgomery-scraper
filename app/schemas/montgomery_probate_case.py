@@ -2,7 +2,7 @@ from pydantic import BaseModel, Field
 from datetime import date
 from typing import Optional
 
-class ProbateCaseBase(BaseModel):
+class MontgomeryProbateCaseBase(BaseModel):
     decedent_name: str
     filing_date: date
     case_number: str
@@ -15,10 +15,10 @@ class ProbateCaseBase(BaseModel):
     fiduciary_city: Optional[str] = None
     fiduciary_zip: Optional[str] = None
 
-class ProbateCaseCreate(ProbateCaseBase):
+class MontgomeryProbateCaseCreate(MontgomeryProbateCaseBase):
     pass
 
-class ProbateCase(ProbateCaseBase):
+class MontgomeryProbateCase(MontgomeryProbateCaseBase):
     id: str
     created_at: Optional[date] = None
     updated_at: Optional[date] = None

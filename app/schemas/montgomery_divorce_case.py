@@ -2,7 +2,7 @@ from pydantic import BaseModel
 from datetime import datetime
 from typing import Optional
 
-class DivorceCaseBase(BaseModel):
+class MontgomeryDivorceCaseBase(BaseModel):
     case_id: str
     case_number: str
     plaintiff: str
@@ -12,10 +12,10 @@ class DivorceCaseBase(BaseModel):
     county: str
     property_address: Optional[str] = None
 
-class DivorceCaseCreate(DivorceCaseBase):
+class MontgomeryDivorceCaseCreate(MontgomeryDivorceCaseBase):
     pass
 
-class DivorceCase(DivorceCaseBase):
+class MontgomeryDivorceCase(MontgomeryDivorceCaseBase):
     id: int
     created_at: datetime
 
