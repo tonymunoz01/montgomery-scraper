@@ -23698,3 +23698,461 @@
 2025-05-11 22:26:08.912 | INFO     | app.services.montgomery_probate_case_service:create_probate_case:30 - Successfully created probate case: 2025EST00873
 2025-05-11 22:26:08.912 | INFO     | app.api.v1.endpoints.montgomery_probate_cases:scrape_probate_cases:61 - Successfully created case: 2025EST00873
 2025-05-11 22:26:08.912 | INFO     | app.api.v1.endpoints.montgomery_probate_cases:scrape_probate_cases:74 - Scraping completed. Added 323 new cases, updated 0 cases, skipped 0 cases
+2025-05-12 01:58:17.875 | INFO     | app.core.database:init_db:36 - Database tables created successfully
+2025-05-12 01:58:50.429 | INFO     | app.core.database:init_db:36 - Database tables created successfully
+2025-05-12 01:58:51.728 | INFO     | app.utils.recaptcha:get_recaptcha_token:11 - Starting reCAPTCHA token generation
+2025-05-12 01:58:51.728 | INFO     | app.utils.recaptcha:get_recaptcha_token:26 - Creating reCAPTCHA task
+2025-05-12 01:58:53.506 | INFO     | app.utils.recaptcha:get_recaptcha_token:30 - Created task with ID: 205706269
+2025-05-12 01:58:53.507 | INFO     | app.utils.recaptcha:get_recaptcha_token:43 - Checking task result (attempt 1/30)
+2025-05-12 01:58:57.301 | INFO     | app.utils.recaptcha:get_recaptcha_token:43 - Checking task result (attempt 2/30)
+2025-05-12 01:59:01.107 | INFO     | app.utils.recaptcha:get_recaptcha_token:43 - Checking task result (attempt 3/30)
+2025-05-12 01:59:02.978 | INFO     | app.utils.recaptcha:get_recaptcha_token:50 - Successfully obtained reCAPTCHA token
+2025-05-12 01:59:02.979 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_ids:130 - Starting case ID scraping process...
+2025-05-12 01:59:02.979 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_ids:133 - Getting search results
+2025-05-12 01:59:02.979 | INFO     | app.utils.montgomery_foreclosure_scraper:get_search_results:20 - Starting search request process...
+2025-05-12 01:59:02.979 | INFO     | app.utils.montgomery_foreclosure_scraper:get_search_results:21 - Received reCAPTCHA token: 03AFcWeA5aeG0G8oNdoE...
+2025-05-12 01:59:02.979 | INFO     | app.utils.montgomery_foreclosure_scraper:get_search_results:25 - Created new session
+2025-05-12 01:59:02.979 | INFO     | app.utils.montgomery_foreclosure_scraper:get_search_results:28 - Fetching initial page from https://pro.mcohio.org/
+2025-05-12 01:59:04.248 | INFO     | app.utils.montgomery_foreclosure_scraper:get_search_results:31 - Successfully retrieved initial page
+2025-05-12 01:59:04.249 | INFO     | app.utils.montgomery_foreclosure_scraper:get_search_results:32 - Initial page status code: 200
+2025-05-12 01:59:04.250 | INFO     | app.utils.montgomery_foreclosure_scraper:get_search_results:33 - Initial page content length: 20623 bytes
+2025-05-12 01:59:04.259 | INFO     | app.utils.montgomery_foreclosure_scraper:get_search_results:40 - Preparing search request with reCAPTCHA token
+2025-05-12 01:59:04.260 | INFO     | app.utils.montgomery_foreclosure_scraper:get_search_results:76 - Sending search request with the following parameters:
+2025-05-12 01:59:04.260 | INFO     | app.utils.montgomery_foreclosure_scraper:get_search_results:77 - Case Type: 
+2025-05-12 01:59:04.260 | INFO     | app.utils.montgomery_foreclosure_scraper:get_search_results:78 - Case Status: OPEN
+2025-05-12 01:59:04.260 | INFO     | app.utils.montgomery_foreclosure_scraper:get_search_results:79 - Search URL: https://pro.mcohio.org/Helpers/generalSearchResults.aspx
+2025-05-12 01:59:04.260 | INFO     | app.utils.montgomery_foreclosure_scraper:get_search_results:80 - Request headers: {
+  "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
+  "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
+  "Accept-Language": "en-US,en;q=0.5",
+  "Accept-Encoding": "gzip, deflate, br",
+  "Content-Type": "application/x-www-form-urlencoded",
+  "Origin": "https://pro.mcohio.org",
+  "Referer": "https://pro.mcohio.org/",
+  "Connection": "keep-alive",
+  "Upgrade-Insecure-Requests": "1",
+  "Sec-Fetch-Dest": "document",
+  "Sec-Fetch-Mode": "navigate",
+  "Sec-Fetch-Site": "same-origin",
+  "Sec-Fetch-User": "?1"
+}
+2025-05-12 01:59:04.260 | INFO     | app.utils.montgomery_foreclosure_scraper:get_search_results:81 - Request data: {
+  "__VIEWSTATE": "",
+  "__EVENTVALIDATION": "",
+  "__EVENTTARGET": "",
+  "__EVENTARGUMENT": "",
+  "searchType": "general",
+  "captchaToken": "03AFcWeA5aeG0G8oNdoEo6N_79M-9XTE811bfEpkLWC6IpPoPUpPeMsoeyPbqY5RaB_MPqq6s8wTwNllfyfntPmYbBlqWCcYBn7SYEg1I4-k4ofgN3XWj1-NOxpMIIGeEQUpqPSOvjXs3RTixbOoVez7ifejd6BrGmohWXF92IHGZjzdbXcTv9WErTUsQ1dxMQigkFGj7myYlwKBqwcNPaCRfRLQA1ePsHbGV_thknN9M_RA2d7MPyQ-Wcd9oHMxGTwJuupcUuOR-EMnbt0pqLjEgVLm3LneXelAOBxGkhtpw9xORwcf9PjObztLetg7LpJNA2hpT_0jkRzROtAIKMojPizItv0q30g_2t5z8MgRmTdVcfc-kwxmOrBVTu2bbUpnV8iP_CDMrUbOLGizkPEpgsoMFsoFM9qXViGQJ2vtF-n2L57kT6p2mJtGttgbkjSJBxn0aCgViAMzzwL_vFTVf4jwajaam5Q4o8lu8Op8CHWmVRGq99TfQJjClEDvaO3BTDOBdH1VZaDtstG7YOe_C693TqZJ8QuzYAoi0z5774QHBHasBnb0ZLg2uvIWZaHI4fr5brFPb5b0d83K6TiK0K1wAubc9Lf5KEAVxms64hF5mEg6M2McxVGz_yuHlXdEzjEJ9fwWP4GWWGbH0Cl4nU9q8-BthwfgYxXmRRMvUeeHUXUrKrW69i6FAgO2xVlaiTMsbrDcEgoLsKHeOIx-LXV2aqyZoGd7FLp8Tcb-U6eO7YPInNVvg53QNhNTFbCwJOdI2lC13DekofbLuxIi7LbMEKJfklxXUQFx_PHzPBXsUaEsKWOfv_K964Pv-1U6Nqt515xCE_QJ5BGBfLduv2tMHOBrBYAGYbE4WghtJ0A95t-kJcvSa-612L9tZ2jz7teioUMD-mJDmmqMCD1HJ-a8JYOCKsUAXa6IghPY4silIbt0AZ9oU",
+  "ctl00$ContentPlaceHolder1$txtCaseNumber": "",
+  "ctl00$ContentPlaceHolder1$txtPartyName": "",
+  "ctl00$ContentPlaceHolder1$txtAttorneyName": "",
+  "ctl00$ContentPlaceHolder1$txtAttorneyBarNumber": "",
+  "ctl00$ContentPlaceHolder1$txtCaseType": "",
+  "ctl00$ContentPlaceHolder1$txtCaseStatus": "OPEN",
+  "ctl00$ContentPlaceHolder1$txtFilingDateFrom": "",
+  "ctl00$ContentPlaceHolder1$txtFilingDateTo": "",
+  "ctl00$ContentPlaceHolder1$btnSearch": "Search"
+}
+2025-05-12 01:59:04.260 | INFO     | app.utils.montgomery_foreclosure_scraper:get_search_results:84 - Making POST request to https://pro.mcohio.org/Helpers/generalSearchResults.aspx
+2025-05-12 01:59:16.789 | INFO     | app.utils.montgomery_foreclosure_scraper:get_search_results:88 - Search request completed with status code: 200
+2025-05-12 01:59:16.790 | INFO     | app.utils.montgomery_foreclosure_scraper:get_search_results:89 - Response headers: {
+  "Cache-Control": "private",
+  "Content-Type": "text/html; charset=utf-8",
+  "Server": "Microsoft-IIS/10.0",
+  "X-AspNet-Version": "4.0.30319",
+  "X-Powered-By": "ASP.NET",
+  "Strict-Transport-Security": "max-age=31536000",
+  "Date": "Mon, 12 May 2025 05:59:16 GMT",
+  "Content-Length": "78470"
+}
+2025-05-12 01:59:16.791 | INFO     | app.utils.montgomery_foreclosure_scraper:get_search_results:90 - Response content length: 78470 bytes
+2025-05-12 01:59:16.846 | INFO     | app.utils.montgomery_foreclosure_scraper:get_search_results:101 - Successfully retrieved HTML table with search results
+2025-05-12 01:59:16.846 | INFO     | app.utils.montgomery_foreclosure_scraper:get_search_results:103 - Found 3 rows in the results table
+2025-05-12 01:59:16.846 | INFO     | app.utils.montgomery_foreclosure_scraper:get_search_results:106 - First row content: Search Parameters
+ Print Search Results
+2025-05-12 01:59:16.847 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_ids:140 - Parsing HTML content for case IDs
+2025-05-12 01:59:16.881 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_ids:145 - Found 257 total rows in the table
+2025-05-12 01:59:16.886 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_ids:166 - Found case ID: 77883757
+2025-05-12 01:59:16.886 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_ids:167 - Case Status: OPEN
+2025-05-12 01:59:16.893 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_ids:166 - Found case ID: 1165132
+2025-05-12 01:59:16.893 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_ids:167 - Case Status: REOPENED
+2025-05-12 01:59:16.894 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_ids:171 - Scraping complete. Found 2 case IDs
+2025-05-12 01:59:16.894 | INFO     | app.services.montgomery_foreclosure_scraper:scrape_new_cases:23 - Found 2 cases to process
+2025-05-12 01:59:16.894 | INFO     | app.services.montgomery_foreclosure_scraper:scrape_new_cases:28 - Processing case ID: 77883757
+2025-05-12 01:59:16.894 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:184 - Starting to scrape details for case ID: 77883757
+2025-05-12 01:59:16.894 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:203 - Making request for case details to https://pro.mcohio.org/Helpers/caseInformation.aspx
+2025-05-12 01:59:18.304 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:206 - Successfully retrieved case details for case ID: 77883757
+2025-05-12 01:59:18.318 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:242 - Found filing date: 8/16/2024
+2025-05-12 01:59:18.319 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:267 - Found case status from Status field: OPEN
+2025-05-12 01:59:18.319 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:236 - Found filing type: PERSONAL INJURY (PI)
+2025-05-12 01:59:18.319 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:289 - Found plaintiff: HEATHER WINTERBOTHAM
+2025-05-12 01:59:18.319 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:296 - Found defendant: ANGELA R SANNING
+2025-05-12 01:59:18.320 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:296 - Found defendant: DONALD H SANNING
+2025-05-12 01:59:18.320 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:296 - Found defendant: JANE DOE 1 NAME UNKNOWN
+2025-05-12 01:59:18.320 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:296 - Found defendant: JOHN DOE 2
+2025-05-12 01:59:18.320 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:296 - Found defendant: JOHN DOE 3
+2025-05-12 01:59:18.320 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:296 - Found defendant: STATE FARM MUTUAL AUTOMOBILE INS. CO.
+2025-05-12 01:59:18.321 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:301 - Found case filing ID: 6267118_CI
+2025-05-12 01:59:18.321 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:303 - Successfully scraped all details for case ID: 77883757
+2025-05-12 01:59:18.321 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:304 - Case details summary:
+2025-05-12 01:59:18.321 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:305 - {
+  "case_id": "77883757",
+  "filing_type": "PERSONAL INJURY (PI)",
+  "filing_date": "8/16/2024",
+  "case_status": "OPEN",
+  "plaintiff": "HEATHER WINTERBOTHAM",
+  "defendants": [
+    "ANGELA R SANNING",
+    "DONALD H SANNING",
+    "JANE DOE 1 NAME UNKNOWN",
+    "JOHN DOE 2",
+    "JOHN DOE 3",
+    "STATE FARM MUTUAL AUTOMOBILE INS. CO."
+  ],
+  "parcel_number": "",
+  "case_filing_id": "6267118_CI",
+  "county": "Montgomery",
+  "property_address": "",
+  "source_url": "https://pro.mcohio.org/Helpers/caseInformation.aspx?case_id=77883757"
+}
+2025-05-12 01:59:18.323 | INFO     | app.services.montgomery_foreclosure_scraper:scrape_new_cases:28 - Processing case ID: 1165132
+2025-05-12 01:59:18.323 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:184 - Starting to scrape details for case ID: 1165132
+2025-05-12 01:59:18.323 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:203 - Making request for case details to https://pro.mcohio.org/Helpers/caseInformation.aspx
+2025-05-12 01:59:20.750 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:206 - Successfully retrieved case details for case ID: 1165132
+2025-05-12 01:59:20.767 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:242 - Found filing date: 12/22/2010
+2025-05-12 01:59:20.767 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:267 - Found case status from Status field: REOPENED
+2025-05-12 01:59:20.767 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:236 - Found filing type: MORTGAGE FORECLOSURE (MF)
+2025-05-12 01:59:20.768 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:289 - Found plaintiff: CITIMORTGAGE INC.
+2025-05-12 01:59:20.768 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:296 - Found defendant: GENEVIEVE M. GRAY
+2025-05-12 01:59:20.768 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:296 - Found defendant: JEFFREY A. GRAY
+2025-05-12 01:59:20.769 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:296 - Found defendant: CITYWIDE BUILDING FINANCE
+2025-05-12 01:59:20.769 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:284 - Found parcel number: R72060070013
+2025-05-12 01:59:20.769 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:301 - Found case filing ID: 797654_C
+2025-05-12 01:59:20.769 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:303 - Successfully scraped all details for case ID: 1165132
+2025-05-12 01:59:20.769 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:304 - Case details summary:
+2025-05-12 01:59:20.769 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:305 - {
+  "case_id": "1165132",
+  "filing_type": "MORTGAGE FORECLOSURE (MF)",
+  "filing_date": "12/22/2010",
+  "case_status": "REOPENED",
+  "plaintiff": "CITIMORTGAGE INC.",
+  "defendants": [
+    "GENEVIEVE M. GRAY",
+    "JEFFREY A. GRAY",
+    "CITYWIDE BUILDING FINANCE"
+  ],
+  "parcel_number": "R72060070013",
+  "case_filing_id": "797654_C",
+  "county": "Montgomery",
+  "property_address": "",
+  "source_url": "https://pro.mcohio.org/Helpers/caseInformation.aspx?case_id=1165132"
+}
+2025-05-12 01:59:20.777 | INFO     | app.core.database:init_db:36 - Database tables created successfully
+2025-05-12 01:59:20.801 | INFO     | app.utils.montgomery_foreclosure_scraper:save_to_database:340 - Successfully saved 2 cases to database
+2025-05-12 01:59:20.802 | INFO     | app.services.montgomery_foreclosure_scraper:scrape_new_cases:35 - Successfully saved 2 case details to PostgreSQL database
+2025-05-12 02:01:29.626 | INFO     | app.core.database:init_db:36 - Database tables created successfully
+2025-05-12 02:01:31.304 | INFO     | app.utils.recaptcha:get_recaptcha_token:11 - Starting reCAPTCHA token generation
+2025-05-12 02:01:31.304 | INFO     | app.utils.recaptcha:get_recaptcha_token:26 - Creating reCAPTCHA task
+2025-05-12 02:01:33.424 | INFO     | app.utils.recaptcha:get_recaptcha_token:30 - Created task with ID: 399824061
+2025-05-12 02:01:33.425 | INFO     | app.utils.recaptcha:get_recaptcha_token:43 - Checking task result (attempt 1/30)
+2025-05-12 02:01:37.166 | INFO     | app.utils.recaptcha:get_recaptcha_token:43 - Checking task result (attempt 2/30)
+2025-05-12 02:01:40.979 | INFO     | app.utils.recaptcha:get_recaptcha_token:43 - Checking task result (attempt 3/30)
+2025-05-12 02:01:44.763 | INFO     | app.utils.recaptcha:get_recaptcha_token:43 - Checking task result (attempt 4/30)
+2025-05-12 02:01:46.565 | INFO     | app.utils.recaptcha:get_recaptcha_token:50 - Successfully obtained reCAPTCHA token
+2025-05-12 02:01:46.568 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_ids:130 - Starting case ID scraping process...
+2025-05-12 02:01:46.569 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_ids:133 - Getting search results
+2025-05-12 02:01:46.569 | INFO     | app.utils.montgomery_foreclosure_scraper:get_search_results:20 - Starting search request process...
+2025-05-12 02:01:46.569 | INFO     | app.utils.montgomery_foreclosure_scraper:get_search_results:21 - Received reCAPTCHA token: 03AFcWeA46N4wmVIQU6Y...
+2025-05-12 02:01:46.569 | INFO     | app.utils.montgomery_foreclosure_scraper:get_search_results:25 - Created new session
+2025-05-12 02:01:46.570 | INFO     | app.utils.montgomery_foreclosure_scraper:get_search_results:28 - Fetching initial page from https://pro.mcohio.org/
+2025-05-12 02:01:48.203 | INFO     | app.utils.montgomery_foreclosure_scraper:get_search_results:31 - Successfully retrieved initial page
+2025-05-12 02:01:48.204 | INFO     | app.utils.montgomery_foreclosure_scraper:get_search_results:32 - Initial page status code: 200
+2025-05-12 02:01:48.204 | INFO     | app.utils.montgomery_foreclosure_scraper:get_search_results:33 - Initial page content length: 20623 bytes
+2025-05-12 02:01:48.218 | INFO     | app.utils.montgomery_foreclosure_scraper:get_search_results:40 - Preparing search request with reCAPTCHA token
+2025-05-12 02:01:48.218 | INFO     | app.utils.montgomery_foreclosure_scraper:get_search_results:76 - Sending search request with the following parameters:
+2025-05-12 02:01:48.218 | INFO     | app.utils.montgomery_foreclosure_scraper:get_search_results:77 - Case Type: MF
+2025-05-12 02:01:48.219 | INFO     | app.utils.montgomery_foreclosure_scraper:get_search_results:78 - Case Status: OPEN
+2025-05-12 02:01:48.219 | INFO     | app.utils.montgomery_foreclosure_scraper:get_search_results:79 - Search URL: https://pro.mcohio.org/Helpers/generalSearchResults.aspx
+2025-05-12 02:01:48.219 | INFO     | app.utils.montgomery_foreclosure_scraper:get_search_results:80 - Request headers: {
+  "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
+  "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
+  "Accept-Language": "en-US,en;q=0.5",
+  "Accept-Encoding": "gzip, deflate, br",
+  "Content-Type": "application/x-www-form-urlencoded",
+  "Origin": "https://pro.mcohio.org",
+  "Referer": "https://pro.mcohio.org/",
+  "Connection": "keep-alive",
+  "Upgrade-Insecure-Requests": "1",
+  "Sec-Fetch-Dest": "document",
+  "Sec-Fetch-Mode": "navigate",
+  "Sec-Fetch-Site": "same-origin",
+  "Sec-Fetch-User": "?1"
+}
+2025-05-12 02:01:48.219 | INFO     | app.utils.montgomery_foreclosure_scraper:get_search_results:81 - Request data: {
+  "__VIEWSTATE": "",
+  "__EVENTVALIDATION": "",
+  "__EVENTTARGET": "",
+  "__EVENTARGUMENT": "",
+  "searchType": "general",
+  "captchaToken": "03AFcWeA46N4wmVIQU6Yf7EwRjpo3UL94usDWL7hOIFSYplRbNUse48f-QpvgUXoGrNhch3zEdYgyFU_rFsF9bSyjGCJ2Wlze5XKZ064jF4Eb3stn8vWim53UqBv9VfPTiOV4Dv6mdxZAFDUFULVL0LUMJJcgLZp0XJADazGj5hJwrEV2lgFpZloejk6mhuy_liw6gADSZ6fPm3O7Q-4N-8md8sITxZswtgOovNxfYnmYkvSFqUE5o91Q3ihObCMAyDBuIRA0TvMHyZDbon-gO0y-ylWmpJiiuxQ6TnSC2dR_4Q9cJ4RYBnDzS9ZzI0fJw1zatN8BRIE-Io_EfFyfMVZ3ZzP_NLEDA_CfnzLKcT24OoPfWt-1ZmJXHjgz1eYlehhJqpFmfxIJ_RxjbcTrIZCVLFbPA27vnKBXJ_NuWIhm6Zo8l2iE9ppbCzUYt0cV194y2eIiRbe7xMUbBbqR2Pxva6dFXgGvBc1kf8F_JgLewZXUHahaLa1t61u4m4oTMJOLnrfnIX2nVTWN04I3HsvmxsOVx393D3_HHadfR82Q0mAOxqLa-TsOZQFtc1SOcFDtalJIioDIlow3CdFF4PVjgjf6uc-jBumF1Xin63AC8j7egcqz7UpvUxt2SVrKY1QmPYR5F2SQXW40PaXSVl2hx0cTVQIUIMzyMUYHN8L4r8N6iXH9lfHffdOJ5L6i1QGKA_TPMoeEMel_vSimrRXGGagQF3uX5XllvO1bcjnZtiQTBIqhd-N-amQh-_Db3FH-U4QdaAGuEFQ0owNUN-0ibqvipNxTs7SiLH9ZsO68aZ33b2kAWWn02vG4BxOd2J8XvE-TrEd7rN8AqyiCpBDI8aJrbPvSn_BdvCSH23ifTTV8RQ-4JEeOIUerJSAA5cB3O5palZ5r_hiYmdhyBV-hQ8QY3jjc2iArjxpAg79CtbbDi1DqHOuFsAZ2qJG5UK2-FVA5mhzxW",
+  "ctl00$ContentPlaceHolder1$txtCaseNumber": "",
+  "ctl00$ContentPlaceHolder1$txtPartyName": "",
+  "ctl00$ContentPlaceHolder1$txtAttorneyName": "",
+  "ctl00$ContentPlaceHolder1$txtAttorneyBarNumber": "",
+  "ctl00$ContentPlaceHolder1$txtCaseType": "MF",
+  "ctl00$ContentPlaceHolder1$txtCaseStatus": "OPEN",
+  "ctl00$ContentPlaceHolder1$txtFilingDateFrom": "",
+  "ctl00$ContentPlaceHolder1$txtFilingDateTo": "",
+  "ctl00$ContentPlaceHolder1$btnSearch": "Search"
+}
+2025-05-12 02:01:48.219 | INFO     | app.utils.montgomery_foreclosure_scraper:get_search_results:84 - Making POST request to https://pro.mcohio.org/Helpers/generalSearchResults.aspx
+2025-05-12 02:02:00.914 | INFO     | app.utils.montgomery_foreclosure_scraper:get_search_results:88 - Search request completed with status code: 200
+2025-05-12 02:02:00.915 | INFO     | app.utils.montgomery_foreclosure_scraper:get_search_results:89 - Response headers: {
+  "Cache-Control": "private",
+  "Content-Type": "text/html; charset=utf-8",
+  "Server": "Microsoft-IIS/10.0",
+  "X-AspNet-Version": "4.0.30319",
+  "X-Powered-By": "ASP.NET",
+  "Strict-Transport-Security": "max-age=31536000",
+  "Date": "Mon, 12 May 2025 06:02:00 GMT",
+  "Content-Length": "78874"
+}
+2025-05-12 02:02:00.916 | INFO     | app.utils.montgomery_foreclosure_scraper:get_search_results:90 - Response content length: 78874 bytes
+2025-05-12 02:02:00.973 | INFO     | app.utils.montgomery_foreclosure_scraper:get_search_results:101 - Successfully retrieved HTML table with search results
+2025-05-12 02:02:00.973 | INFO     | app.utils.montgomery_foreclosure_scraper:get_search_results:103 - Found 3 rows in the results table
+2025-05-12 02:02:00.974 | INFO     | app.utils.montgomery_foreclosure_scraper:get_search_results:106 - First row content: Search Parameters
+ Print Search Results
+2025-05-12 02:02:00.975 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_ids:140 - Parsing HTML content for case IDs
+2025-05-12 02:02:01.008 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_ids:145 - Found 257 total rows in the table
+2025-05-12 02:02:01.013 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_ids:166 - Found case ID: 77883757
+2025-05-12 02:02:01.013 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_ids:167 - Case Status: OPEN
+2025-05-12 02:02:01.020 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_ids:166 - Found case ID: 1165132
+2025-05-12 02:02:01.020 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_ids:167 - Case Status: REOPENED
+2025-05-12 02:02:01.020 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_ids:171 - Scraping complete. Found 2 case IDs
+2025-05-12 02:02:01.020 | INFO     | app.services.montgomery_foreclosure_scraper:scrape_new_cases:23 - Found 2 cases to process
+2025-05-12 02:02:01.020 | INFO     | app.services.montgomery_foreclosure_scraper:scrape_new_cases:28 - Processing case ID: 77883757
+2025-05-12 02:02:01.020 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:184 - Starting to scrape details for case ID: 77883757
+2025-05-12 02:02:01.021 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:203 - Making request for case details to https://pro.mcohio.org/Helpers/caseInformation.aspx
+2025-05-12 02:02:02.366 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:206 - Successfully retrieved case details for case ID: 77883757
+2025-05-12 02:02:02.390 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:242 - Found filing date: 8/16/2024
+2025-05-12 02:02:02.391 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:267 - Found case status from Status field: OPEN
+2025-05-12 02:02:02.392 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:236 - Found filing type: PERSONAL INJURY (PI)
+2025-05-12 02:02:02.395 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:289 - Found plaintiff: HEATHER WINTERBOTHAM
+2025-05-12 02:02:02.396 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:296 - Found defendant: ANGELA R SANNING
+2025-05-12 02:02:02.396 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:296 - Found defendant: DONALD H SANNING
+2025-05-12 02:02:02.397 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:296 - Found defendant: JANE DOE 1 NAME UNKNOWN
+2025-05-12 02:02:02.397 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:296 - Found defendant: JOHN DOE 2
+2025-05-12 02:02:02.398 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:296 - Found defendant: JOHN DOE 3
+2025-05-12 02:02:02.398 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:296 - Found defendant: STATE FARM MUTUAL AUTOMOBILE INS. CO.
+2025-05-12 02:02:02.399 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:301 - Found case filing ID: 6267118_CI
+2025-05-12 02:02:02.400 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:303 - Successfully scraped all details for case ID: 77883757
+2025-05-12 02:02:02.400 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:304 - Case details summary:
+2025-05-12 02:02:02.400 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:305 - {
+  "case_id": "77883757",
+  "filing_type": "PERSONAL INJURY (PI)",
+  "filing_date": "8/16/2024",
+  "case_status": "OPEN",
+  "plaintiff": "HEATHER WINTERBOTHAM",
+  "defendants": [
+    "ANGELA R SANNING",
+    "DONALD H SANNING",
+    "JANE DOE 1 NAME UNKNOWN",
+    "JOHN DOE 2",
+    "JOHN DOE 3",
+    "STATE FARM MUTUAL AUTOMOBILE INS. CO."
+  ],
+  "parcel_number": "",
+  "case_filing_id": "6267118_CI",
+  "county": "Montgomery",
+  "property_address": "",
+  "source_url": "https://pro.mcohio.org/Helpers/caseInformation.aspx?case_id=77883757"
+}
+2025-05-12 02:02:02.403 | INFO     | app.services.montgomery_foreclosure_scraper:scrape_new_cases:28 - Processing case ID: 1165132
+2025-05-12 02:02:02.403 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:184 - Starting to scrape details for case ID: 1165132
+2025-05-12 02:02:02.405 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:203 - Making request for case details to https://pro.mcohio.org/Helpers/caseInformation.aspx
+2025-05-12 02:02:04.815 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:206 - Successfully retrieved case details for case ID: 1165132
+2025-05-12 02:02:04.835 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:242 - Found filing date: 12/22/2010
+2025-05-12 02:02:04.835 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:267 - Found case status from Status field: REOPENED
+2025-05-12 02:02:04.835 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:236 - Found filing type: MORTGAGE FORECLOSURE (MF)
+2025-05-12 02:02:04.836 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:289 - Found plaintiff: CITIMORTGAGE INC.
+2025-05-12 02:02:04.836 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:296 - Found defendant: GENEVIEVE M. GRAY
+2025-05-12 02:02:04.836 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:296 - Found defendant: JEFFREY A. GRAY
+2025-05-12 02:02:04.836 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:296 - Found defendant: CITYWIDE BUILDING FINANCE
+2025-05-12 02:02:04.837 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:284 - Found parcel number: R72060070013
+2025-05-12 02:02:04.837 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:301 - Found case filing ID: 797654_C
+2025-05-12 02:02:04.837 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:303 - Successfully scraped all details for case ID: 1165132
+2025-05-12 02:02:04.837 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:304 - Case details summary:
+2025-05-12 02:02:04.837 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:305 - {
+  "case_id": "1165132",
+  "filing_type": "MORTGAGE FORECLOSURE (MF)",
+  "filing_date": "12/22/2010",
+  "case_status": "REOPENED",
+  "plaintiff": "CITIMORTGAGE INC.",
+  "defendants": [
+    "GENEVIEVE M. GRAY",
+    "JEFFREY A. GRAY",
+    "CITYWIDE BUILDING FINANCE"
+  ],
+  "parcel_number": "R72060070013",
+  "case_filing_id": "797654_C",
+  "county": "Montgomery",
+  "property_address": "",
+  "source_url": "https://pro.mcohio.org/Helpers/caseInformation.aspx?case_id=1165132"
+}
+2025-05-12 02:02:04.845 | INFO     | app.core.database:init_db:36 - Database tables created successfully
+2025-05-12 02:02:04.870 | INFO     | app.utils.montgomery_foreclosure_scraper:save_to_database:340 - Successfully saved 2 cases to database
+2025-05-12 02:02:04.870 | INFO     | app.services.montgomery_foreclosure_scraper:scrape_new_cases:35 - Successfully saved 2 case details to PostgreSQL database
+2025-05-12 02:04:13.938 | INFO     | app.core.database:init_db:36 - Database tables created successfully
+2025-05-12 02:04:17.204 | INFO     | app.utils.recaptcha:get_recaptcha_token:11 - Starting reCAPTCHA token generation
+2025-05-12 02:04:17.205 | INFO     | app.utils.recaptcha:get_recaptcha_token:26 - Creating reCAPTCHA task
+2025-05-12 02:04:19.270 | INFO     | app.utils.recaptcha:get_recaptcha_token:30 - Created task with ID: 1706644835
+2025-05-12 02:04:19.271 | INFO     | app.utils.recaptcha:get_recaptcha_token:43 - Checking task result (attempt 1/30)
+2025-05-12 02:04:23.076 | INFO     | app.utils.recaptcha:get_recaptcha_token:43 - Checking task result (attempt 2/30)
+2025-05-12 02:04:26.867 | INFO     | app.utils.recaptcha:get_recaptcha_token:43 - Checking task result (attempt 3/30)
+2025-05-12 02:04:30.693 | INFO     | app.utils.recaptcha:get_recaptcha_token:43 - Checking task result (attempt 4/30)
+2025-05-12 02:04:32.572 | INFO     | app.utils.recaptcha:get_recaptcha_token:50 - Successfully obtained reCAPTCHA token
+2025-05-12 02:04:32.575 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_ids:130 - Starting case ID scraping process...
+2025-05-12 02:04:32.575 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_ids:133 - Getting search results
+2025-05-12 02:04:32.575 | INFO     | app.utils.montgomery_foreclosure_scraper:get_search_results:20 - Starting search request process...
+2025-05-12 02:04:32.576 | INFO     | app.utils.montgomery_foreclosure_scraper:get_search_results:21 - Received reCAPTCHA token: 03AFcWeA6odKJBbJU0ML...
+2025-05-12 02:04:32.576 | INFO     | app.utils.montgomery_foreclosure_scraper:get_search_results:25 - Created new session
+2025-05-12 02:04:32.576 | INFO     | app.utils.montgomery_foreclosure_scraper:get_search_results:28 - Fetching initial page from https://pro.mcohio.org/
+2025-05-12 02:04:33.831 | INFO     | app.utils.montgomery_foreclosure_scraper:get_search_results:31 - Successfully retrieved initial page
+2025-05-12 02:04:33.832 | INFO     | app.utils.montgomery_foreclosure_scraper:get_search_results:32 - Initial page status code: 200
+2025-05-12 02:04:33.832 | INFO     | app.utils.montgomery_foreclosure_scraper:get_search_results:33 - Initial page content length: 20623 bytes
+2025-05-12 02:04:33.846 | INFO     | app.utils.montgomery_foreclosure_scraper:get_search_results:40 - Preparing search request with reCAPTCHA token
+2025-05-12 02:04:33.846 | INFO     | app.utils.montgomery_foreclosure_scraper:get_search_results:76 - Sending search request with the following parameters:
+2025-05-12 02:04:33.846 | INFO     | app.utils.montgomery_foreclosure_scraper:get_search_results:77 - Case Type: MF
+2025-05-12 02:04:33.846 | INFO     | app.utils.montgomery_foreclosure_scraper:get_search_results:78 - Case Status: OPEN
+2025-05-12 02:04:33.846 | INFO     | app.utils.montgomery_foreclosure_scraper:get_search_results:79 - Search URL: https://pro.mcohio.org/Helpers/generalSearchResults.aspx
+2025-05-12 02:04:33.847 | INFO     | app.utils.montgomery_foreclosure_scraper:get_search_results:80 - Request headers: {
+  "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
+  "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
+  "Accept-Language": "en-US,en;q=0.5",
+  "Accept-Encoding": "gzip, deflate, br",
+  "Content-Type": "application/x-www-form-urlencoded",
+  "Origin": "https://pro.mcohio.org",
+  "Referer": "https://pro.mcohio.org/",
+  "Connection": "keep-alive",
+  "Upgrade-Insecure-Requests": "1",
+  "Sec-Fetch-Dest": "document",
+  "Sec-Fetch-Mode": "navigate",
+  "Sec-Fetch-Site": "same-origin",
+  "Sec-Fetch-User": "?1"
+}
+2025-05-12 02:04:33.847 | INFO     | app.utils.montgomery_foreclosure_scraper:get_search_results:81 - Request data: {
+  "__VIEWSTATE": "",
+  "__EVENTVALIDATION": "",
+  "__EVENTTARGET": "",
+  "__EVENTARGUMENT": "",
+  "searchType": "general",
+  "captchaToken": "03AFcWeA6odKJBbJU0ML3WeRJ2vkWz7X6y3sStmWKzA_Bt0x-L6dxfDYzYVQAjJhrB1hAdz8BwMc7F8mBUeq6hWmvMB8XTwDwg6KPWV75lT8qhz1G8BYw68FcIqtUO3L-gng2sVb_zZBFucalzQcf3nqTkPIpOVTiy7hFUfOWt0u4dnpMXneVSRC1aqqGkM44BoMCoYhVSt0V2oTIVm5zNmZs2oqmLJy_yXjy_Gkj3NjiEqn5zO6CBCSltY3pVihV5glvvj0_0ymWLIrIKHdjKmmmzlH27Szfwc7ceOfaDCKZf-ysSCFsUJZVYadTjZrqc3UVYdCh9xdj-0yfRbMHkYIKdAzVkZcM3w4VZZ_rXVngju2JhVbBek60H7FUDLx32fqIII_9gaQcVSzJs_SfWHBmw_Q88w19DrNGLCfKGbFPL_J-2X0xTr7oUL_0-cYcWg1oY9iFnmdq0D3GthJSFSmA0Jy2oreBkaO1NE0TiXKij0moYEJuXfhzwNCdU6umYSlDjHyICWDLTEq-xQuxuazVl5D2xWZHjL_1IbZj35VgnyJZ4e9L0mAmdH9rQKadzQHmgKG6KDOdvWCZ2x8O6uaLraTk-xpSJ9a4EwLW7QlOfOYdpkBvWHouf4sSEyPqDMS9PrN92k7N_0PDh9F4xZk6x_kIXyU7yRWd5GSmw5CGpglhvzEgIMTw--Kb6KSUafyh5WbUEANaUVive1xL_IekIT7Vsj3Amk5MNateYXNqiT5LAH9moOUhTJj7-RTw5pN3PEZMHHgqbOJUCfEsbLNgMLFJXchp4ZlAq1P9THwSdSbfj7m2VQC8BeTqI5NWlyWpE4nBwcgMzERPiaV73kXRJued6fAFipSGu67eS7T7gLog6J-Oj8jD0iNatsE31v8L-BhqdiDeDSuzwImdtG5JAj0rtgfHZm-IQ_CgLm2nGlt7tJepAzqA",
+  "ctl00$ContentPlaceHolder1$txtCaseNumber": "",
+  "ctl00$ContentPlaceHolder1$txtPartyName": "",
+  "ctl00$ContentPlaceHolder1$txtAttorneyName": "",
+  "ctl00$ContentPlaceHolder1$txtAttorneyBarNumber": "",
+  "ctl00$ContentPlaceHolder1$txtCaseType": "MF",
+  "ctl00$ContentPlaceHolder1$txtCaseStatus": "OPEN",
+  "ctl00$ContentPlaceHolder1$txtFilingDateFrom": "",
+  "ctl00$ContentPlaceHolder1$txtFilingDateTo": "",
+  "ctl00$ContentPlaceHolder1$btnSearch": "Search"
+}
+2025-05-12 02:04:33.847 | INFO     | app.utils.montgomery_foreclosure_scraper:get_search_results:84 - Making POST request to https://pro.mcohio.org/Helpers/generalSearchResults.aspx
+2025-05-12 02:04:46.236 | INFO     | app.utils.montgomery_foreclosure_scraper:get_search_results:88 - Search request completed with status code: 200
+2025-05-12 02:04:46.238 | INFO     | app.utils.montgomery_foreclosure_scraper:get_search_results:89 - Response headers: {
+  "Cache-Control": "private",
+  "Content-Type": "text/html; charset=utf-8",
+  "Server": "Microsoft-IIS/10.0",
+  "X-AspNet-Version": "4.0.30319",
+  "X-Powered-By": "ASP.NET",
+  "Strict-Transport-Security": "max-age=31536000",
+  "Date": "Mon, 12 May 2025 06:04:45 GMT",
+  "Content-Length": "78874"
+}
+2025-05-12 02:04:46.238 | INFO     | app.utils.montgomery_foreclosure_scraper:get_search_results:90 - Response content length: 78874 bytes
+2025-05-12 02:04:46.292 | INFO     | app.utils.montgomery_foreclosure_scraper:get_search_results:101 - Successfully retrieved HTML table with search results
+2025-05-12 02:04:46.292 | INFO     | app.utils.montgomery_foreclosure_scraper:get_search_results:103 - Found 3 rows in the results table
+2025-05-12 02:04:46.292 | INFO     | app.utils.montgomery_foreclosure_scraper:get_search_results:106 - First row content: Search Parameters
+ Print Search Results
+2025-05-12 02:04:46.293 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_ids:140 - Parsing HTML content for case IDs
+2025-05-12 02:04:46.327 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_ids:145 - Found 257 total rows in the table
+2025-05-12 02:04:46.332 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_ids:166 - Found case ID: 77883757
+2025-05-12 02:04:46.332 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_ids:167 - Case Status: OPEN
+2025-05-12 02:04:46.339 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_ids:166 - Found case ID: 1165132
+2025-05-12 02:04:46.339 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_ids:167 - Case Status: REOPENED
+2025-05-12 02:04:46.339 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_ids:171 - Scraping complete. Found 2 case IDs
+2025-05-12 02:04:46.339 | INFO     | app.services.montgomery_foreclosure_scraper:scrape_new_cases:23 - Found 2 cases to process
+2025-05-12 02:04:46.340 | INFO     | app.services.montgomery_foreclosure_scraper:scrape_new_cases:28 - Processing case ID: 77883757
+2025-05-12 02:04:46.340 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:184 - Starting to scrape details for case ID: 77883757
+2025-05-12 02:04:46.340 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:203 - Making request for case details to https://pro.mcohio.org/Helpers/caseInformation.aspx
+2025-05-12 02:04:47.660 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:206 - Successfully retrieved case details for case ID: 77883757
+2025-05-12 02:04:47.680 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:242 - Found filing date: 8/16/2024
+2025-05-12 02:04:47.680 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:267 - Found case status from Status field: OPEN
+2025-05-12 02:04:47.680 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:236 - Found filing type: PERSONAL INJURY (PI)
+2025-05-12 02:04:47.681 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:289 - Found plaintiff: HEATHER WINTERBOTHAM
+2025-05-12 02:04:47.681 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:296 - Found defendant: ANGELA R SANNING
+2025-05-12 02:04:47.681 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:296 - Found defendant: DONALD H SANNING
+2025-05-12 02:04:47.681 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:296 - Found defendant: JANE DOE 1 NAME UNKNOWN
+2025-05-12 02:04:47.681 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:296 - Found defendant: JOHN DOE 2
+2025-05-12 02:04:47.682 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:296 - Found defendant: JOHN DOE 3
+2025-05-12 02:04:47.682 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:296 - Found defendant: STATE FARM MUTUAL AUTOMOBILE INS. CO.
+2025-05-12 02:04:47.682 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:301 - Found case filing ID: 6267118_CI
+2025-05-12 02:04:47.682 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:303 - Successfully scraped all details for case ID: 77883757
+2025-05-12 02:04:47.682 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:304 - Case details summary:
+2025-05-12 02:04:47.683 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:305 - {
+  "case_id": "77883757",
+  "filing_type": "PERSONAL INJURY (PI)",
+  "filing_date": "8/16/2024",
+  "case_status": "OPEN",
+  "plaintiff": "HEATHER WINTERBOTHAM",
+  "defendants": [
+    "ANGELA R SANNING",
+    "DONALD H SANNING",
+    "JANE DOE 1 NAME UNKNOWN",
+    "JOHN DOE 2",
+    "JOHN DOE 3",
+    "STATE FARM MUTUAL AUTOMOBILE INS. CO."
+  ],
+  "parcel_number": "",
+  "case_filing_id": "6267118_CI",
+  "county": "Montgomery",
+  "property_address": "",
+  "source_url": "https://pro.mcohio.org/Helpers/caseInformation.aspx?case_id=77883757"
+}
+2025-05-12 02:04:47.684 | INFO     | app.services.montgomery_foreclosure_scraper:scrape_new_cases:28 - Processing case ID: 1165132
+2025-05-12 02:04:47.685 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:184 - Starting to scrape details for case ID: 1165132
+2025-05-12 02:04:47.685 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:203 - Making request for case details to https://pro.mcohio.org/Helpers/caseInformation.aspx
+2025-05-12 02:04:50.079 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:206 - Successfully retrieved case details for case ID: 1165132
+2025-05-12 02:04:50.094 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:242 - Found filing date: 12/22/2010
+2025-05-12 02:04:50.095 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:267 - Found case status from Status field: REOPENED
+2025-05-12 02:04:50.095 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:236 - Found filing type: MORTGAGE FORECLOSURE (MF)
+2025-05-12 02:04:50.096 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:289 - Found plaintiff: CITIMORTGAGE INC.
+2025-05-12 02:04:50.096 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:296 - Found defendant: GENEVIEVE M. GRAY
+2025-05-12 02:04:50.096 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:296 - Found defendant: JEFFREY A. GRAY
+2025-05-12 02:04:50.096 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:296 - Found defendant: CITYWIDE BUILDING FINANCE
+2025-05-12 02:04:50.096 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:284 - Found parcel number: R72060070013
+2025-05-12 02:04:50.097 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:301 - Found case filing ID: 797654_C
+2025-05-12 02:04:50.097 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:303 - Successfully scraped all details for case ID: 1165132
+2025-05-12 02:04:50.097 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:304 - Case details summary:
+2025-05-12 02:04:50.097 | INFO     | app.utils.montgomery_foreclosure_scraper:scrape_case_details:305 - {
+  "case_id": "1165132",
+  "filing_type": "MORTGAGE FORECLOSURE (MF)",
+  "filing_date": "12/22/2010",
+  "case_status": "REOPENED",
+  "plaintiff": "CITIMORTGAGE INC.",
+  "defendants": [
+    "GENEVIEVE M. GRAY",
+    "JEFFREY A. GRAY",
+    "CITYWIDE BUILDING FINANCE"
+  ],
+  "parcel_number": "R72060070013",
+  "case_filing_id": "797654_C",
+  "county": "Montgomery",
+  "property_address": "",
+  "source_url": "https://pro.mcohio.org/Helpers/caseInformation.aspx?case_id=1165132"
+}
+2025-05-12 02:04:50.103 | INFO     | app.core.database:init_db:36 - Database tables created successfully
+2025-05-12 02:04:50.114 | WARNING  | app.utils.montgomery_foreclosure_scraper:save_to_database:331 - Skipping invalid case - Case ID: 77883757, Type: PERSONAL INJURY (PI), Status: OPEN
+2025-05-12 02:04:50.114 | INFO     | app.utils.montgomery_foreclosure_scraper:save_to_database:329 - Valid case found - Case ID: 1165132, Type: MORTGAGE FORECLOSURE (MF), Status: REOPENED
+2025-05-12 02:04:50.126 | INFO     | app.utils.montgomery_foreclosure_scraper:save_to_database:356 - Successfully saved 1 valid cases to database
+2025-05-12 02:04:50.126 | INFO     | app.services.montgomery_foreclosure_scraper:scrape_new_cases:35 - Successfully saved 2 case details to PostgreSQL database

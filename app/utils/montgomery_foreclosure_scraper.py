@@ -66,8 +66,8 @@ def get_search_results(captcha_token: str) -> str:
             'ctl00$ContentPlaceHolder1$txtPartyName': '',
             'ctl00$ContentPlaceHolder1$txtAttorneyName': '',
             'ctl00$ContentPlaceHolder1$txtAttorneyBarNumber': '',
-            'ctl00$ContentPlaceHolder1$txtCaseType': '',  # Remove case type filter
-            'ctl00$ContentPlaceHolder1$txtCaseStatus': 'OPEN',  # Only filter by OPEN status
+            'ctl00$ContentPlaceHolder1$txtCaseType': 'MF',  # Filter for MORTGAGE FORECLOSURE
+            'ctl00$ContentPlaceHolder1$txtCaseStatus': 'OPEN',  # Filter by OPEN status
             'ctl00$ContentPlaceHolder1$txtFilingDateFrom': '',
             'ctl00$ContentPlaceHolder1$txtFilingDateTo': '',
             'ctl00$ContentPlaceHolder1$btnSearch': 'Search'
@@ -148,7 +148,7 @@ def scrape_case_ids(captcha_token: str) -> List[str]:
         case_data = []
         
         for row in rows:
-            # Check for OPEN status
+            # Check for OPEN or REOPENED status
             status_cell = row.find('td', string='OPEN')
             reopen_cell = row.find('td', string='REOPENED')
             
@@ -212,8 +212,7 @@ def scrape_case_details(case_id: str) -> Dict:
             'case_id': case_id,
             'filing_type': '',
             'filing_date': '',
-            'status': '',
-            'case_status': '',  # Add case_status field
+            'case_status': '',
             'plaintiff': '',
             'defendants': [],
             'parcel_number': '',
@@ -249,11 +248,23 @@ def scrape_case_details(case_id: str) -> Dict:
                     # Extract status and date if present
                     status_parts = status_text.split()
                     if status_parts:
-                        case_details['case_status'] = status_parts[0]  # First word is the status
-                        case_details['status'] = status_parts[0]  # Keep both fields in sync
-                        logger.info(f"Found case status: {case_details['case_status']}")
-                        if len(status_parts) > 1:
-                            logger.info(f"Status date: {' '.join(status_parts[1:])}")
+                        # Handle various status formats
+                        if len(status_parts) >= 1:
+                            case_details['case_status'] = status_parts[0]  # First word is the status
+                            logger.info(f"Found case status: {case_details['case_status']}")
+                            if len(status_parts) > 1:
+                                logger.info(f"Status date: {' '.join(status_parts[1:])}")
+                        else:
+                            case_details['case_status'] = status_text
+                            logger.info(f"Found case status (single word): {case_details['case_status']}")
+            
+            # Additional check for status in other formats
+            elif 'Status:' in cell_text:
+                next_cell = cells[i + 1] if i + 1 < len(cells) else None
+                if next_cell:
+                    status_text = next_cell.text.strip()
+                    case_details['case_status'] = status_text
+                    logger.info(f"Found case status from Status field: {case_details['case_status']}")
             
             elif 'Property Address:' in cell_text:
                 next_cell = cells[i + 1] if i + 1 < len(cells) else None
@@ -304,10 +315,26 @@ def scrape_case_details(case_id: str) -> Dict:
 def save_to_database(data: List[Dict[str, str]]) -> None:
     """
     Save the scraped data to the database.
+    Only saves records that are MORTGAGE FORECLOSURE (MF) with OPEN or REOPENED status.
     """
     try:
         db = next(get_db())
+        valid_cases = []
+        
         for case_data in data:
+            # Validate case type and status
+            if (case_data['filing_type'] == 'MORTGAGE FORECLOSURE (MF)' and 
+                case_data['case_status'] in ['OPEN', 'REOPENED']):
+                valid_cases.append(case_data)
+                logger.info(f"Valid case found - Case ID: {case_data['case_id']}, Type: {case_data['filing_type']}, Status: {case_data['case_status']}")
+            else:
+                logger.warning(f"Skipping invalid case - Case ID: {case_data['case_id']}, Type: {case_data['filing_type']}, Status: {case_data['case_status']}")
+        
+        if not valid_cases:
+            logger.warning("No valid cases found to save to database")
+            return
+            
+        for case_data in valid_cases:
             # Create a new case record
             case = MontgomeryForeclosureCase(
                 id=str(uuid.uuid4()),
@@ -326,7 +353,7 @@ def save_to_database(data: List[Dict[str, str]]) -> None:
             db.add(case)
         
         db.commit()
-        logger.info(f"Successfully saved {len(data)} cases to database")
+        logger.info(f"Successfully saved {len(valid_cases)} valid cases to database")
     except Exception as e:
         db.rollback()
         logger.error(f"Error saving to database: {str(e)}")
@@ -337,6 +364,7 @@ def save_to_database(data: List[Dict[str, str]]) -> None:
 def run_scraper() -> None:
     """
     Run the foreclosure scraper.
+    Only processes MORTGAGE FORECLOSURE (MF) cases with OPEN or REOPENED status.
     """
     try:
         logger.info("Starting foreclosure scraper")
@@ -359,12 +387,19 @@ def run_scraper() -> None:
             logger.info(f"\nProcessing case ID: {case_id}")
             case_details = scrape_case_details(case_id)
             if case_details:
-                case_details_list.append(case_details)
-                logger.info(f"Successfully processed case ID: {case_id}")
+                # Validate case type and status
+                if (case_details['filing_type'] == 'MORTGAGE FORECLOSURE (MF)' and 
+                    case_details['case_status'] in ['OPEN', 'REOPENED']):
+                    case_details_list.append(case_details)
+                    logger.info(f"Successfully processed valid case ID: {case_id}")
+                    logger.info(f"Case Type: {case_details['filing_type']}, Status: {case_details['case_status']}")
+                else:
+                    logger.info(f"Skipping invalid case ID: {case_id}")
+                    logger.info(f"Invalid Case Type: {case_details['filing_type']}, Status: {case_details['case_status']}")
             else:
                 logger.error(f"Failed to process case ID: {case_id}")
         
-        logger.info(f"Successfully processed {len(case_details_list)} cases")
+        logger.info(f"Successfully processed {len(case_details_list)} valid cases")
         
         # Save to database
         logger.info("Starting to save cases to database")
