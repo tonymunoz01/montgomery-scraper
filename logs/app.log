@@ -27382,3 +27382,5 @@
 2025-05-12 03:05:07.243 | INFO     | app.utils.montgomery_divorce_scraper:save_to_database:313 - Created log entry for no data
 2025-05-12 03:05:07.243 | INFO     | app.services.montgomery_divorce_scraper:scrape_new_cases:36 - Successfully saved 0 case details to PostgreSQL database
 2025-05-12 03:05:07.246 | INFO     | app.core.database:init_db:36 - Database tables created successfully
+2025-05-12 03:11:47.218 | INFO     | app.core.database:init_db:36 - Database tables created successfully
+2025-05-12 03:11:59.010 | INFO     | app.core.database:init_db:36 - Database tables created successfully
