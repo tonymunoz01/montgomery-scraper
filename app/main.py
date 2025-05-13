@@ -25,13 +25,20 @@ app = FastAPI(
     openapi_url=f"{settings.API_V1_STR}/openapi.json"
 )
 
-# Set up CORS middleware
+# Set up CORS middleware with appropriate origins
+origins = ["*"] if settings.ALLOW_ALL_ORIGINS else [str(origin) for origin in settings.BACKEND_CORS_ORIGINS]
+
+# Note: When allow_origins=["*"], allow_credentials must be False according to CORS spec
+allow_credentials = not settings.ALLOW_ALL_ORIGINS
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=settings.BACKEND_CORS_ORIGINS,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_origins=origins,
+    allow_credentials=allow_credentials,
+    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
+    allow_headers=["*"],  # Allow all headers for maximum compatibility
+    expose_headers=["Content-Type", "Set-Cookie", "Authorization"],
+    max_age=600,  # Maximum time (in seconds) that results can be cached
 )
 
 # Include API router
@@ -45,6 +52,15 @@ async def startup_event():
 @app.get("/")
 async def root():
     return {"message": "Welcome to the Probate Case Scraper API"}
+
+@app.get("/cors-test")
+async def cors_test():
+    """Endpoint to test if CORS is working properly"""
+    return {
+        "message": "CORS is configured correctly!",
+        "allow_all_origins": settings.ALLOW_ALL_ORIGINS,
+        "cors_origins": origins
+    }
 
 @app.post("/scrape")
 async def scrape_probate_cases():

@@ -22,18 +22,20 @@ def init_db(recreate: bool = False):
         from app.models.montgomery_probate_case import MontgomeryProbateCase
         from app.models.montgomery_foreclosure_case import MontgomeryForeclosureCase
         from app.models.montgomery_divorce_case import MontgomeryDivorceCase
+        from app.models.scraping_log import ScrapingLog
         
-        # Check if scraping_log table exists
-        inspector = inspect(engine)
-        if 'scraping_log' not in inspector.get_table_names():
-            from app.models.scraping_log import ScrapingLog
-            logger.info("Creating scraping_log table...")
-            ScrapingLog.__table__.create(bind=engine)
-            logger.info("scraping_log table created successfully")
+        # # Check if scraping_log table exists
+        # inspector = inspect(engine)
+        # if 'scraping_log' not in inspector.get_table_names():
+        #     logger.info("Creating scraping_log table...")
+        #     ScrapingLog.__table__.create(bind=engine)
+        #     logger.info("scraping_log table created successfully")
+        # else:
+        #     logger.info("scraping_log table already exists")
         
-        # Create all other tables if they don't exist
-        Base.metadata.create_all(bind=engine)
-        logger.info("Database tables created successfully")
+        # # Create all other tables if they don't exist
+        # Base.metadata.create_all(bind=engine)
+        # logger.info("Database tables created successfully")
         
         # Check for missing columns and add them
         inspector = inspect(engine)
@@ -57,7 +59,7 @@ def init_db(recreate: bool = False):
                     logger.info(f"Successfully added column {column.name} to table {table_name}")
         
     except Exception as e:
-        logger.error(f"Error creating database tables: {str(e)}")
+        logger.error(f"Error initializing database: {str(e)}")
         raise
 
 def get_db():
@@ -66,7 +68,7 @@ def get_db():
     """
     try:
         # Ensure tables exist before getting session
-        init_db(recreate=False)
+        # init_db(recreate=False)
         
         db = SessionLocal()
         try:

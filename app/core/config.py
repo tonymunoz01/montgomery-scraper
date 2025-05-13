@@ -1,5 +1,5 @@
-from typing import List
-from pydantic import AnyHttpUrl
+from typing import List, Union
+from pydantic import AnyHttpUrl, validator, Field
 from pydantic_settings import BaseSettings
 
 class Settings(BaseSettings):
@@ -9,7 +9,24 @@ class Settings(BaseSettings):
     API_V1_STR: str = "/api/v1"
     
     # CORS
-    BACKEND_CORS_ORIGINS: List[AnyHttpUrl] = ["http://localhost:3000", "http://localhost:8000"]
+    # Set to True to allow requests from any origin (useful for development)
+    ALLOW_ALL_ORIGINS: bool = Field(True, env="ALLOW_ALL_ORIGINS")  # Default to True for development
+    
+    BACKEND_CORS_ORIGINS: List[Union[str, AnyHttpUrl]] = [
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+        "http://localhost:8000",
+        "http://127.0.0.1:8000",
+        "https://yourfrontenddomain.com",  # Replace with your actual frontend domain in production
+    ]
+    
+    @validator("BACKEND_CORS_ORIGINS", pre=True)
+    def assemble_cors_origins(cls, v: Union[str, List[str]]) -> Union[List[str], str]:
+        if isinstance(v, str) and not v.startswith("["):
+            return [i.strip() for i in v.split(",")]
+        elif isinstance(v, (list, str)):
+            return v
+        raise ValueError(v)
     
     # Database
     DB_HOST: str

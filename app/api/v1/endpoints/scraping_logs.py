@@ -10,7 +10,7 @@ from app.schemas.scraping_log import ScrapingLog as ScrapingLogSchema
 router = APIRouter()
 
 @router.get("/", response_model=List[ScrapingLogSchema])
-async def get_scraping_logs(db: Session = Depends(get_db)):
+def get_scraping_logs(db: Session = Depends(get_db)):
     """
     Get all scraping logs from the database
     """
